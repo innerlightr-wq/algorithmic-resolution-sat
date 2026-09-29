@@ -1,0 +1,47 @@
+=== Pilot 1: R=20, T=50 (initial attempt, found too-high coverage) ===
+id=40 n=16 regime=solution_rich |S_I|=539 |A_W|=111 |A_C(R=20,T=50)|=463 cov_C=0.859 cov_W=0.206
+id=41 n=16 regime=solution_rich |S_I|=475 |A_W|=127 |A_C(R=20,T=50)|=429 cov_C=0.903 cov_W=0.267
+id=42 n=16 regime=solution_rich |S_I|=367 |A_W|=118 |A_C(R=20,T=50)|=356 cov_C=0.970 cov_W=0.322
+id=43 n=16 regime=solution_rich |S_I|=169 |A_W|=85 |A_C(R=20,T=50)|=169 cov_C=1.000 cov_W=0.503
+id=120 n=16 regime=intermediate |S_I|=100 |A_W|=77 |A_C(R=20,T=50)|=100 cov_C=1.000 cov_W=0.770
+id=121 n=16 regime=intermediate |S_I|=22 |A_W|=22 |A_C(R=20,T=50)|=22 cov_C=1.000 cov_W=1.000
+id=122 n=16 regime=intermediate |S_I|=17 |A_W|=17 |A_C(R=20,T=50)|=17 cov_C=1.000 cov_W=1.000
+id=123 n=16 regime=intermediate |S_I|=4 |A_W|=4 |A_C(R=20,T=50)|=4 cov_C=1.000 cov_W=1.000
+id=200 n=16 regime=near_threshold |S_I|=2 |A_W|=2 |A_C(R=20,T=50)|=2 cov_C=1.000 cov_W=1.000
+id=201 n=16 regime=near_threshold |S_I|=5 |A_W|=5 |A_C(R=20,T=50)|=5 cov_C=1.000 cov_W=1.000
+id=202 n=16 regime=near_threshold |S_I|=2 |A_W|=2 |A_C(R=20,T=50)|=2 cov_C=1.000 cov_W=1.000
+id=203 n=16 regime=near_threshold |S_I|=8 |A_W|=8 |A_C(R=20,T=50)|=8 cov_C=1.000 cov_W=1.000
+
+=== Pilot 2: sweep (R,T) to find a comparable-coverage budget ===
+
+--- R=5, T=8 (total attempts=40) ---
+id=40 n=16 regime=solution_rich |S_I|=539 |A_W|=111 |A_C|=40 cov_C=0.074 cov_W=0.206
+id=41 n=16 regime=solution_rich |S_I|=475 |A_W|=127 |A_C|=36 cov_C=0.076 cov_W=0.267
+id=42 n=16 regime=solution_rich |S_I|=367 |A_W|=118 |A_C|=37 cov_C=0.101 cov_W=0.322
+id=43 n=16 regime=solution_rich |S_I|=169 |A_W|=85 |A_C|=36 cov_C=0.213 cov_W=0.503
+id=120 n=16 regime=intermediate |S_I|=100 |A_W|=77 |A_C|=37 cov_C=0.370 cov_W=0.770
+id=121 n=16 regime=intermediate |S_I|=22 |A_W|=22 |A_C|=20 cov_C=0.909 cov_W=1.000
+id=122 n=16 regime=intermediate |S_I|=17 |A_W|=17 |A_C|=17 cov_C=1.000 cov_W=1.000
+id=123 n=16 regime=intermediate |S_I|=4 |A_W|=4 |A_C|=4 cov_C=1.000 cov_W=1.000
+
+--- R=3, T=5 (total attempts=15) ---
+id=40 n=16 regime=solution_rich |S_I|=539 |A_W|=111 |A_C|=15 cov_C=0.028 cov_W=0.206
+id=41 n=16 regime=solution_rich |S_I|=475 |A_W|=127 |A_C|=15 cov_C=0.032 cov_W=0.267
+id=42 n=16 regime=solution_rich |S_I|=367 |A_W|=118 |A_C|=15 cov_C=0.041 cov_W=0.322
+id=43 n=16 regime=solution_rich |S_I|=169 |A_W|=85 |A_C|=13 cov_C=0.077 cov_W=0.503
+id=120 n=16 regime=intermediate |S_I|=100 |A_W|=77 |A_C|=15 cov_C=0.150 cov_W=0.770
+id=121 n=16 regime=intermediate |S_I|=22 |A_W|=22 |A_C|=12 cov_C=0.545 cov_W=1.000
+id=122 n=16 regime=intermediate |S_I|=17 |A_W|=17 |A_C|=11 cov_C=0.647 cov_W=1.000
+id=123 n=16 regime=intermediate |S_I|=4 |A_W|=4 |A_C|=4 cov_C=1.000 cov_W=1.000
+
+--- R=4, T=6 (total attempts=24) ---
+id=40 n=16 regime=solution_rich |S_I|=539 |A_W|=111 |A_C|=24 cov_C=0.045 cov_W=0.206
+id=41 n=16 regime=solution_rich |S_I|=475 |A_W|=127 |A_C|=24 cov_C=0.051 cov_W=0.267
+id=42 n=16 regime=solution_rich |S_I|=367 |A_W|=118 |A_C|=24 cov_C=0.065 cov_W=0.322
+id=43 n=16 regime=solution_rich |S_I|=169 |A_W|=85 |A_C|=20 cov_C=0.118 cov_W=0.503
+id=120 n=16 regime=intermediate |S_I|=100 |A_W|=77 |A_C|=21 cov_C=0.210 cov_W=0.770
+id=121 n=16 regime=intermediate |S_I|=22 |A_W|=22 |A_C|=16 cov_C=0.727 cov_W=1.000
+id=122 n=16 regime=intermediate |S_I|=17 |A_W|=17 |A_C|=16 cov_C=0.941 cov_W=1.000
+id=123 n=16 regime=intermediate |S_I|=4 |A_W|=4 |A_C|=4 cov_C=1.000 cov_W=1.000
+
+=== DECISION: R=5, T=8 selected as primary CDCL budget ===

@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+message: "If you use this work, please cite it using the metadata below."
+type: software
+title: "Algorithmic Resolution and Solver-Dependent Observational Geometry in SAT Solution Spaces"
+authors:
+  - family-names: "De Jesus"
+    given-names: "Elias"
+    orcid: "https://orcid.org/0009-0007-0190-9143"
+    affiliation: "Independent Researcher"
+date-released: 2026-09-29
+version: "0.2.0"
+repository-code: "https://github.com/innerlightr-wq/algorithmic-resolution-sat"
+license: Apache-2.0
+abstract: >-
+  A geometric framework distinguishing SAT solution-space coverage from
+  geometric and connectivity fidelity, formalizing the separation between
+  the intrinsic solution space S_I and an algorithm's observed subset
+  A(I). Includes a corrected discrete distinguishability theorem, a
+  correctly-attributed connectivity-stability bound with an independently
+  verified sharpness result, a proof that coverage and resolution are
+  logically independent, and held-out empirical evidence that WalkSAT and
+  a CDCL solver (Glucose3) trade off oppositely on resolution and
+  connectivity fidelity at matched coverage on the same solution spaces.
+keywords:
+  - satisfiability
+  - SAT solving
+  - solution space geometry
+  - Hausdorff distance
+  - persistent homology
+  - WalkSAT
+  - CDCL
+  - Glucose
+preferred-citation:
+  type: article
+  title: "Algorithmic Resolution and Solver-Dependent Observational Geometry in SAT Solution Spaces"
+  authors:
+    - family-names: "De Jesus"
+      given-names: "Elias"
+      orcid: "https://orcid.org/0009-0007-0190-9143"
+      affiliation: "Independent Researcher"
+  year: 2026
+  # No DOI yet -- to be added after Zenodo deposition.

@@ -1,0 +1,8 @@
+# Exact versions used to produce every result and figure reported in this
+# paper (recorded from the live environment, not guessed). Python 3.12.2.
+python-sat==1.9.dev15
+numpy==1.26.4
+scipy==1.13.1
+scikit-learn==1.5.1
+matplotlib==3.9.2
+networkx==3.3

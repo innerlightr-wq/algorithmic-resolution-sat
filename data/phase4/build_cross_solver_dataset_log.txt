@@ -1,0 +1,3 @@
+wc_dataset (y in A_W, predicting CDCL blindness): 20124 rows, 360 instances
+cw_dataset (y in A_C, predicting WalkSAT blindness): 8608 rows, 360 instances
+Wrote ../data/wc_dataset.json and ../data/cw_dataset.json

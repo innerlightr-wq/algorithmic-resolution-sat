@@ -1,0 +1,136 @@
+[
+  {
+    "id": 537,
+    "n": 20,
+    "alpha": 2.5,
+    "regime": "solution_rich",
+    "S_I_size": 2507,
+    "r_fixed": 1,
+    "C_S_r_fixed": 2,
+    "trajectory": [
+      {
+        "T": 5,
+        "A_T_size": 5,
+        "coverage": 0.001994415636218588,
+        "eps_hat": 10,
+        "C_A_r": 5
+      },
+      {
+        "T": 10,
+        "A_T_size": 10,
+        "coverage": 0.003988831272437176,
+        "eps_hat": 10,
+        "C_A_r": 10
+      },
+      {
+        "T": 20,
+        "A_T_size": 20,
+        "coverage": 0.007977662544874352,
+        "eps_hat": 8,
+        "C_A_r": 20
+      },
+      {
+        "T": 40,
+        "A_T_size": 40,
+        "coverage": 0.015955325089748704,
+        "eps_hat": 7,
+        "C_A_r": 40
+      },
+      {
+        "T": 80,
+        "A_T_size": 74,
+        "coverage": 0.029517351416035103,
+        "eps_hat": 5,
+        "C_A_r": 69
+      },
+      {
+        "T": 150,
+        "A_T_size": 137,
+        "coverage": 0.05464698843238931,
+        "eps_hat": 5,
+        "C_A_r": 118
+      },
+      {
+        "T": 300,
+        "A_T_size": 265,
+        "coverage": 0.10570402871958516,
+        "eps_hat": 3,
+        "C_A_r": 183
+      },
+      {
+        "T": 600,
+        "A_T_size": 504,
+        "coverage": 0.20103709613083368,
+        "eps_hat": 3,
+        "C_A_r": 189
+      }
+    ]
+  },
+  {
+    "id": 619,
+    "n": 20,
+    "alpha": 3.5,
+    "regime": "intermediate",
+    "S_I_size": 482,
+    "r_fixed": 1,
+    "C_S_r_fixed": 4,
+    "trajectory": [
+      {
+        "T": 5,
+        "A_T_size": 5,
+        "coverage": 0.01037344398340249,
+        "eps_hat": 9,
+        "C_A_r": 5
+      },
+      {
+        "T": 10,
+        "A_T_size": 10,
+        "coverage": 0.02074688796680498,
+        "eps_hat": 7,
+        "C_A_r": 10
+      },
+      {
+        "T": 20,
+        "A_T_size": 20,
+        "coverage": 0.04149377593360996,
+        "eps_hat": 7,
+        "C_A_r": 20
+      },
+      {
+        "T": 40,
+        "A_T_size": 40,
+        "coverage": 0.08298755186721991,
+        "eps_hat": 4,
+        "C_A_r": 37
+      },
+      {
+        "T": 80,
+        "A_T_size": 70,
+        "coverage": 0.14522821576763487,
+        "eps_hat": 3,
+        "C_A_r": 48
+      },
+      {
+        "T": 150,
+        "A_T_size": 109,
+        "coverage": 0.22614107883817428,
+        "eps_hat": 3,
+        "C_A_r": 48
+      },
+      {
+        "T": 300,
+        "A_T_size": 193,
+        "coverage": 0.4004149377593361,
+        "eps_hat": 2,
+        "C_A_r": 32
+      },
+      {
+        "T": 600,
+        "A_T_size": 286,
+        "coverage": 0.5933609958506224,
+        "eps_hat": 2,
+        "C_A_r": 13
+      }
+    ]
+  }
+]

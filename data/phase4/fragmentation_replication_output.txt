@@ -1,0 +1,33 @@
+Instances with |A_W|>=2, |A_C|>=2, |S_I|>=2: 349/360
+
+Absolute fragmentation (excess components at r=1):
+  WalkSAT: mean=18.96, median=1.00, frac_fragmented(excess>0)=0.504
+  CDCL:    mean=1.16, median=0.00, frac_fragmented(excess>0)=0.424
+
+Relative ratio (excess_W / max(excess_C,1)), among 176 instances where WalkSAT shows any fragmentation:
+  median ratio = 11.58
+  mean ratio = 15.83
+  [25th,75th] percentile = [2.92, 21.00]
+  95% bootstrap CI on median ratio: [9.60, 13.25]
+
+Paired comparison (Wilcoxon signed-rank, excess_W vs excess_C, all 349 instances):
+  stat=540.5, p=5.2e-31, median(excess_W - excess_C)=1.00
+
+--- Stratified by regime ---
+  solution_rich: n=120, mean_excess_W=52.24, mean_excess_C=2.92, frac_frag_W=0.983, frac_frag_C=0.850
+  intermediate: n=118, mean_excess_W=2.81, mean_excess_C=0.41, frac_frag_W=0.407, frac_frag_C=0.314
+  near_threshold: n=111, mean_excess_W=0.16, mean_excess_C=0.05, frac_frag_W=0.090, frac_frag_C=0.081
+
+--- Stratified by n ---
+  n=16: n_inst=114, mean_excess_W=10.00, mean_excess_C=0.92
+  n=18: n_inst=118, mean_excess_W=18.35, mean_excess_C=1.09
+  n=20: n_inst=117, mean_excess_W=28.32, mean_excess_C=1.45
+
+--- Stratified by coverage band (own coverage, W vs C separately) ---
+  coverage 0-20%: WalkSAT n=49 mean_excess=82.81632653061224; CDCL n=110 mean_excess=3.0454545454545454
+  coverage 20-50%: WalkSAT n=62 mean_excess=36.53225806451613; CDCL n=51 mean_excess=1.0392156862745099
+  coverage 50-100%: WalkSAT n=238 mean_excess=1.2394957983193278; CDCL n=188 mean_excess=0.0851063829787234
+
+--- Coverage-matched (|cov_W-cov_C|<0.10), n=160 ---
+  mean_excess_W=16.18, mean_excess_C=0.64
+  Wilcoxon (matched): stat=4.5, p=2.37e-07

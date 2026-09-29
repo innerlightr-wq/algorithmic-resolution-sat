@@ -1,0 +1,28 @@
+=== Stratified raw single-feature AUROC (Part 8) ===
+
+--- W->C (basin) ---
+  Overall: median=0.6247 (n=177)
+  regime=solution_rich: median=0.6046 (n=60)
+  regime=intermediate: median=0.6485 (n=88)
+  regime=near_threshold: median=0.5758 (n=29)
+  n=16: median=0.6049 (n=55)
+  n=18: median=0.6344 (n=64)
+  n=20: median=0.6382 (n=58)
+  |S_I| tercile=small: median=0.6333 (n=130)
+  |S_I| tercile=mid: median=0.6153 (n=36)
+  |S_I| tercile=large: median=0.5740 (n=11)
+  coverage-matched (|cov_W-cov_C|<0.10): median=0.5562 (n_instances=171, n_evaluable=30)
+
+--- C->W (recurrence) ---
+  Overall: median=0.5256 (n=143)
+  regime=solution_rich: median=0.4844 (n=39)
+  regime=intermediate: median=0.5644 (n=80)
+  regime=near_threshold: median=0.5397 (n=24)
+  n=16: median=0.5417 (n=45)
+  n=18: median=0.5009 (n=52)
+  n=20: median=0.5327 (n=46)
+  |S_I| tercile=small: median=0.5463 (n=72)
+  |S_I| tercile=mid: median=0.5295 (n=62)
+  |S_I| tercile=large: median=0.4861 (n=9)
+  coverage-matched (|cov_W-cov_C|<0.10): median=0.5463 (n_instances=171, n_evaluable=26)
+

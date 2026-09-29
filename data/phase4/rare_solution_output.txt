@@ -1,0 +1,11 @@
+Overall: 0.2389 of WalkSAT-found solutions are ALSO found by CDCL (n=20124)
+Spearman(basin, jointly_found) pooled: rho=0.4530 p=0
+Per-instance AUROC(basin -> jointly_found): median=0.5333 (n=239)
+
+Mean basin | jointly_found=1: 6.525
+Mean basin | jointly_found=0 (WalkSAT-only): 1.477
+Mann-Whitney U test: p=0
+
+Overall: 0.5586 of CDCL-found solutions are ALSO found by WalkSAT (n=8608)
+Spearman(recurrence, jointly_found) pooled: rho=0.3803 p=2.89e-294
+Per-instance AUROC(recurrence -> jointly_found): median=0.5000 (n=227)

@@ -1,0 +1,141 @@
+% ============================================================================
+% references.bib -- every entry cross-checked against either (a) a direct
+% primary-source read recorded in the frozen Phase 1-4 audit, or (b) a live
+% bibliographic search performed while preparing this repository (see
+% docs/CLAIM_EVIDENCE_AUDIT.md for full provenance). No entry is included
+% that is not actually \cite'd in paper/main.tex.
+% ============================================================================
+
+@article{mezard2002analytic,
+  author  = {M{\'e}zard, Marc and Parisi, Giorgio and Zecchina, Riccardo},
+  title   = {Analytic and Algorithmic Solution of Random Satisfiability Problems},
+  journal = {Science},
+  volume  = {297},
+  number  = {5582},
+  pages   = {812--815},
+  year    = {2002},
+  doi     = {10.1126/science.1073287},
+  note    = {Verified: cited in the original January 2026 preprint's own reference list (read directly); standard, widely-cited source.}
+}
+
+@inproceedings{achlioptas2006solution,
+  author    = {Achlioptas, Dimitris and Ricci-Tersenghi, Federico},
+  title     = {On the Solution-Space Geometry of Random Constraint Satisfaction Problems},
+  booktitle = {Proceedings of the 38th Annual ACM Symposium on Theory of Computing (STOC)},
+  pages     = {130--139},
+  year      = {2006},
+  eprint    = {cs/0611052},
+  archiveprefix = {arXiv},
+  note      = {Verified via prior-art search during the audit: proves solutions in random CSPs organize into exponentially many well-separated clusters before the SAT/UNSAT threshold.}
+}
+
+@misc{chakraborty2015constrained,
+  author       = {Chakraborty, Supratik and Meel, Kuldeep S. and Vardi, Moshe Y.},
+  title        = {Constrained Sampling and Counting: Universal Hashing Meets {SAT} Solving},
+  year         = {2015},
+  eprint       = {1512.06633},
+  archiveprefix = {arXiv},
+  note         = {Verified via prior-art search: motivates the near-uniform SAT sampling literature referenced in the Related Work section.}
+}
+
+@article{chazal2014persistence,
+  author  = {Chazal, Fr{\'e}d{\'e}ric and de Silva, Vin and Oudot, Steve},
+  title   = {Persistence Stability for Geometric Complexes},
+  journal = {Geometriae Dedicata},
+  volume  = {173},
+  pages   = {193--214},
+  year    = {2014},
+  doi     = {10.1007/s10711-013-9937-z},
+  eprint  = {1207.3885},
+  archiveprefix = {arXiv},
+  note    = {Verified in two independent literature-verification passes during the audit: gives the general (symmetric, all-dimension) Hausdorff-distance Rips-complex stability bound with constant 2, for totally bounded metric spaces.}
+}
+
+@article{harker2019comparison,
+  author  = {Harker, Shaun and Kram{\'a}r, Miroslav and Levanger, Rachel and Mischaikow, Konstantin},
+  title   = {A Comparison Framework for Interleaved Persistence Modules},
+  journal = {Journal of Applied and Computational Topology},
+  volume  = {3},
+  number  = {1--2},
+  pages   = {85--118},
+  year    = {2019},
+  doi     = {10.1007/s41468-019-00026-x},
+  eprint  = {1801.06725},
+  archiveprefix = {arXiv},
+  note    = {Verified by direct primary-source reading: the PDF was fetched, converted to text, and Proposition 5.6(i) read in full together with its proof. This is the source of our connectivity-recovery theorem. The arXiv identifier was independently confirmed against the PDF's own title page after an earlier, incorrect identifier belonging to an unrelated paper was caught and corrected during the audit.}
+}
+
+@article{cohensteiner2007stability,
+  author  = {Cohen-Steiner, David and Edelsbrunner, Herbert and Harer, John},
+  title   = {Stability of Persistence Diagrams},
+  journal = {Discrete \& Computational Geometry},
+  volume  = {37},
+  number  = {1},
+  pages   = {103--120},
+  year    = {2007},
+  doi     = {10.1007/s00454-006-1276-5},
+  note    = {Verified in two independent literature passes: the historical ancestor of persistence-diagram stability, for tame functions on a fixed topological space (sublevel-set persistence) -- not itself a Rips/point-cloud stability statement; cited only as background.}
+}
+
+@misc{blumberglesnick2020stability,
+  author       = {Blumberg, Andrew J. and Lesnick, Michael},
+  title        = {Stability of 2-Parameter Persistent Homology},
+  year         = {2020},
+  eprint       = {2010.09628},
+  archiveprefix = {arXiv},
+  note         = {Verified by direct primary-source reading: their Proposition 3.9 addresses a different setting (2-parameter degree-Rips/degree-Cech bifiltrations, Prokhorov-distance-based shifts, base constant 3, not 2) than the one used in this paper; cited only to distinguish it. No independently confirmed journal venue was located; cited as an arXiv preprint.}
+}
+
+@inproceedings{selman1994noise,
+  author    = {Selman, Bart and Kautz, Henry A. and Cohen, Bram},
+  title     = {Noise Strategies for Improving Local Search},
+  booktitle = {Proceedings of the 12th National Conference on Artificial Intelligence (AAAI)},
+  pages     = {337--343},
+  year      = {1994},
+  note      = {Verified: cited in the original January 2026 preprint's own reference list (read directly). Foundational WalkSAT-style noise-strategy reference.}
+}
+
+@article{davis1962machine,
+  author  = {Davis, Martin and Logemann, George and Loveland, Donald},
+  title   = {A Machine Program for Theorem-Proving},
+  journal = {Communications of the ACM},
+  volume  = {5},
+  number  = {7},
+  pages   = {394--397},
+  year    = {1962},
+  doi     = {10.1145/368273.368557},
+  note    = {Verified: cited in the original January 2026 preprint's own reference list (read directly). The DPLL algorithm underlying the branching/backtracking core of modern CDCL solvers.}
+}
+
+@book{cohen1997covering,
+  author    = {Cohen, Gerard and Honkala, Iiro and Litsyn, Simon and Lobstein, Antoine},
+  title     = {Covering Codes},
+  series    = {North-Holland Mathematical Library},
+  volume    = {54},
+  publisher = {Elsevier (North-Holland)},
+  year      = {1997},
+  isbn      = {0-444-82511-8},
+  note      = {Verified via prior-art search: standard reference for covering radius, perfect codes, and covering-code cardinality bounds.}
+}
+
+@inproceedings{audemard2009predicting,
+  author    = {Audemard, Gilles and Simon, Laurent},
+  title     = {Predicting Learnt Clauses Quality in Modern {SAT} Solvers},
+  booktitle = {Proceedings of the 21st International Joint Conference on Artificial Intelligence (IJCAI)},
+  pages     = {399--404},
+  year      = {2009},
+  note      = {Verified via live bibliographic search while preparing this repository (page numbers confirmed against the ACM Digital Library record). Introduces the Glucose solver and the LBD clause-quality metric used by our CDCL experiments.}
+}
+
+@inproceedings{ignatiev2018pysat,
+  author    = {Ignatiev, Alexey and Morgado, Antonio and Marques-Silva, Joao},
+  title     = {{PySAT}: A {P}ython Toolkit for Prototyping with {SAT} Oracles},
+  booktitle = {Theory and Applications of Satisfiability Testing -- SAT 2018},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {10929},
+  pages     = {428--437},
+  publisher = {Springer},
+  year      = {2018},
+  doi       = {10.1007/978-3-319-94144-8_26},
+  note      = {Verified via live bibliographic search while preparing this repository. The Python toolkit (version 1.9.dev15 used in our experiments) through which Glucose3 was accessed.}
+}

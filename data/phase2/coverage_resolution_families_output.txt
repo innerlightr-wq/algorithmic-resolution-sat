@@ -1,0 +1,26 @@
+/Users/eliasdejesus/scratch/sat-algorithmic-resolution-v2-audit-2026-09-28/phase2/scripts/coverage_resolution_families.py:1: SyntaxWarning: invalid escape sequence '\ '
+  """
+=== Family A: high coverage, poor resolution ===
+   n   |S|   |A|   coverage  eps_hat  eps_hat/n  closed-form cov  closed-form eps
+   5     7     6   0.857143        4     0.8000         0.857143                4   match=True
+  10    12    11   0.916667        9     0.9000         0.916667                9   match=True
+  20    22    21   0.954545       19     0.9500         0.954545               19   match=True
+  50    52    51   0.980769       49     0.9800         0.980769               49   match=True
+ 100   102   101   0.990196       99     0.9900         0.990196               99   match=True
+ 500   502   501   0.998008      499     0.9980         0.998008              499   match=True
+
+=== Family B: low coverage, good resolution (Hamming codes) ===
+  m    n     |code|   coverage=1/(n+1)   eps_hat (verified)                       method
+  3    7         16         0.12500000                    1   EXHAUSTIVE over all 2^7=128 points
+  4   15       2048         0.06250000                    1   EXHAUSTIVE over all 2^15=32768 points
+  5   31   67108864         0.03125000                    1   EXACT syndrome decoding on 200000 random points
+  6   63 144115188075855872         0.01562500                    1   EXACT syndrome decoding on 200000 random points
+
+Note: syndrome decoding is EXACT (not approximate) per point -- it proves
+that specific point's distance to the code precisely, not a bound. What is
+SAMPLED for n=31,63 is which points get checked, not the correctness of the
+distance computed for each checked point. The general covering-radius=1 claim
+for ALL of {0,1}^n follows from the standard analytic argument (every nonzero
+syndrome matches exactly one column of H by construction, so every vector is
+within distance 1 of a codeword) -- this is a STANDARD coding-theory fact,
+restated and spot-checked here, not re-derived as new.

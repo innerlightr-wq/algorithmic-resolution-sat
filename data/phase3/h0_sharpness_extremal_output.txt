@@ -1,0 +1,9 @@
+r= 1 eps= 1 n=  3: d(p,q)=1 d(a,b)=3 (=r+2eps=3) eps_hat=1  SHARP=True
+r= 2 eps= 1 n=  4: d(p,q)=2 d(a,b)=4 (=r+2eps=4) eps_hat=1  SHARP=True
+r= 3 eps= 2 n=  7: d(p,q)=3 d(a,b)=7 (=r+2eps=7) eps_hat=2  SHARP=True
+r= 4 eps= 4 n= 12: d(p,q)=4 d(a,b)=12 (=r+2eps=12) eps_hat=4  SHARP=True
+r= 5 eps= 3 n= 11: d(p,q)=5 d(a,b)=11 (=r+2eps=11) eps_hat=3  SHARP=True
+r=10 eps= 5 n= 20: d(p,q)=10 d(a,b)=20 (=r+2eps=20) eps_hat=5  SHARP=True
+r= 1 eps=10 n= 21: d(p,q)=1 d(a,b)=21 (=r+2eps=21) eps_hat=10  SHARP=True
+
+All 7 parameter combinations confirm exact equality (no slack) -- the constant 2 is sharp, realized directly in the Hamming cube for every tested (r,eps).

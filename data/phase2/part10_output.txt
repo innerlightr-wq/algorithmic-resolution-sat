@@ -1,0 +1,25 @@
+  processed 50 (1.7s)
+  processed 100 (2.2s)
+  processed 150 (9.8s)
+  processed 200 (11.8s)
+  processed 250 (29.9s)
+  processed 300 (45.0s)
+
+Processed 349 test instances with |A(I)|>=1, |S_I|>=2, in 52.2s
+
+=== THEOREM CHECK: C_A(r+2*eps_hat) <= C_S(r) ===
+Violations: 0
+
+=== NO-FALSE-MERGE CHECK ===
+Violations: 0
+
+=== FRAGMENTATION FREQUENCY ===
+Fragmented instances (C_A(r)>C_S(r) for some r): 179/349 (51.3%)
+  solution_rich: 119/120 (99.2%)
+  intermediate: 50/118 (42.4%)
+  near_threshold: 10/111 (9.0%)
+
+Mean eps_hat (fragmented instances): 2.463687150837989
+Mean eps_hat (all instances): 1.413
+
+Wrote ../data/part10_results.json

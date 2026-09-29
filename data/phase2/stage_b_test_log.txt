@@ -1,0 +1,7 @@
+Loaded frozen RHO=1.0 from ../data/rho_frozen.json (train-derived)
+Stage A hash verified for split=test: sha256=fd45c75065401e56...
+  Stage B processed 100/360 (2.1s)
+  Stage B processed 200/360 (7.8s)
+  Stage B processed 300/360 (22.7s)
+Stage B (test): processed 360 instances in 29.6s
+Wrote ../data/stage_b_results_test.json

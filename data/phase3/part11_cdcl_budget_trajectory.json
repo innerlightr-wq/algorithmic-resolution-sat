@@ -1,0 +1,122 @@
+[
+  {
+    "id": 537,
+    "n": 20,
+    "alpha": 2.5,
+    "regime": "solution_rich",
+    "S_I_size": 2507,
+    "r_fixed": 1,
+    "C_S_r_fixed": 2,
+    "trajectory": [
+      {
+        "T": 1,
+        "A_size": 5,
+        "coverage": 0.001994415636218588,
+        "eps_hat": 12,
+        "C_A_r": 5
+      },
+      {
+        "T": 2,
+        "A_size": 10,
+        "coverage": 0.003988831272437176,
+        "eps_hat": 11,
+        "C_A_r": 5
+      },
+      {
+        "T": 4,
+        "A_size": 20,
+        "coverage": 0.007977662544874352,
+        "eps_hat": 11,
+        "C_A_r": 6
+      },
+      {
+        "T": 8,
+        "A_size": 38,
+        "coverage": 0.015157558835261268,
+        "eps_hat": 10,
+        "C_A_r": 7
+      },
+      {
+        "T": 16,
+        "A_size": 69,
+        "coverage": 0.027522935779816515,
+        "eps_hat": 8,
+        "C_A_r": 9
+      },
+      {
+        "T": 32,
+        "A_size": 147,
+        "coverage": 0.05863581970482649,
+        "eps_hat": 7,
+        "C_A_r": 9
+      },
+      {
+        "T": 64,
+        "A_size": 283,
+        "coverage": 0.11288392500997207,
+        "eps_hat": 6,
+        "C_A_r": 5
+      }
+    ]
+  },
+  {
+    "id": 619,
+    "n": 20,
+    "alpha": 3.5,
+    "regime": "intermediate",
+    "S_I_size": 482,
+    "r_fixed": 1,
+    "C_S_r_fixed": 4,
+    "trajectory": [
+      {
+        "T": 1,
+        "A_size": 5,
+        "coverage": 0.01037344398340249,
+        "eps_hat": 8,
+        "C_A_r": 5
+      },
+      {
+        "T": 2,
+        "A_size": 10,
+        "coverage": 0.02074688796680498,
+        "eps_hat": 7,
+        "C_A_r": 7
+      },
+      {
+        "T": 4,
+        "A_size": 20,
+        "coverage": 0.04149377593360996,
+        "eps_hat": 7,
+        "C_A_r": 10
+      },
+      {
+        "T": 8,
+        "A_size": 38,
+        "coverage": 0.07883817427385892,
+        "eps_hat": 6,
+        "C_A_r": 8
+      },
+      {
+        "T": 16,
+        "A_size": 67,
+        "coverage": 0.13900414937759337,
+        "eps_hat": 5,
+        "C_A_r": 10
+      },
+      {
+        "T": 32,
+        "A_size": 131,
+        "coverage": 0.2717842323651452,
+        "eps_hat": 4,
+        "C_A_r": 11
+      },
+      {
+        "T": 64,
+        "A_size": 240,
+        "coverage": 0.4979253112033195,
+        "eps_hat": 4,
+        "C_A_r": 10
+      }
+    ]
+  }
+]

@@ -1,0 +1,7 @@
+CDCL Stage A hash verified for split=test: sha256=e94a679dd5057a18...
+Using Phase 2 frozen rho=1.0 (train-derived, reused unchanged per PHASE2_FREEZE.md)
+  Stage B processed 100/360 (3.8s)
+  Stage B processed 200/360 (12.7s)
+  Stage B processed 300/360 (34.2s)
+CDCL Stage B (test): processed 360 instances in 43.7s
+Wrote ../data/cdcl_stage_b_results_test.json

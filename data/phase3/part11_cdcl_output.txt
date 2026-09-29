@@ -1,0 +1,44 @@
+
+=== Instance 537 (n=20, alpha=2.5, regime=solution_rich, |S_I|=2507, r_fixed=1, C_S(1)=2) [CDCL, R=5] ===
+ T(sols/run)   |A_T|   coverage  eps_hat   C_A(r)   C_S(r)
+           1       5     0.0020       12        5        2
+           2      10     0.0040       11        5        2
+           4      20     0.0080       11        6        2
+           8      38     0.0152       10        7        2
+          16      69     0.0275        8        9        2
+          32     147     0.0586        7        9        2
+          64     283     0.1129        6        5        2
+
+  --- WalkSAT trajectory on same instance (from Phase 2, for comparison) ---
+   T(restarts)   |A_T|   coverage  eps_hat   C_A(r)
+             5       5     0.0020       10        5
+            10      10     0.0040       10       10
+            20      20     0.0080        8       20
+            40      40     0.0160        7       40
+            80      74     0.0295        5       69
+           150     137     0.0546        5      118
+           300     265     0.1057        3      183
+           600     504     0.2010        3      189
+
+=== Instance 619 (n=20, alpha=3.5, regime=intermediate, |S_I|=482, r_fixed=1, C_S(1)=4) [CDCL, R=5] ===
+ T(sols/run)   |A_T|   coverage  eps_hat   C_A(r)   C_S(r)
+           1       5     0.0104        8        5        4
+           2      10     0.0207        7        7        4
+           4      20     0.0415        7       10        4
+           8      38     0.0788        6        8        4
+          16      67     0.1390        5       10        4
+          32     131     0.2718        4       11        4
+          64     240     0.4979        4       10        4
+
+  --- WalkSAT trajectory on same instance (from Phase 2, for comparison) ---
+   T(restarts)   |A_T|   coverage  eps_hat   C_A(r)
+             5       5     0.0104        9        5
+            10      10     0.0207        7       10
+            20      20     0.0415        7       20
+            40      40     0.0830        4       37
+            80      70     0.1452        3       48
+           150     109     0.2261        3       48
+           300     193     0.4004        2       32
+           600     286     0.5934        2       13
+
+Wrote ../data/part11_cdcl_budget_trajectory.json

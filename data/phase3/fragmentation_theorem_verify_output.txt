@@ -1,0 +1,13 @@
+=== Example: under-representation causing C_A(r) < C_S(r) ===
+S = [(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), (1, 0, 0, 0, 0, 0, 0, 0, 0, 0), (1, 1, 1, 1, 1, 1, 1, 1, 1, 1)]
+A = [(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+eps = 10
+r=1: C_S(r)=2 C_A(r)=1  C_A<C_S? True  (r>=eps? False)
+r=5: C_S(r)=2 C_A(r)=1  C_A<C_S? True  (r>=eps? False)
+r=9: C_S(r)=1 C_A(r)=1  C_A<C_S? False  (r>=eps? False)
+r=10: C_S(r)=1 C_A(r)=1  C_A<C_S? False  (r>=eps? True)
+r=11: C_S(r)=1 C_A(r)=1  C_A<C_S? False  (r>=eps? True)
+
+=== Verify Proposition: r>=eps implies C_A(r)>=C_S(r), 200 random trials ===
+Total (trial,r) checks with r>=eps: 877
+Violations of 'r>=eps => C_A(r)>=C_S(r)': 0 (should be 0)

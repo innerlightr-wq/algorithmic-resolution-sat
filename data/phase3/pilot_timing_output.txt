@@ -1,0 +1,22 @@
+=== Correctness check: exhaustive enumeration on hand-checkable 3-var CNF ===
+clauses: [[1, 2], [-1, 3]] -> all models: [[-1, 2, -3], [-1, 2, 3], [1, 2, 3], [1, -2, 3]]
+(manual check: (x1 or x2) and (not x1 or x3); satisfying assignments are
+ (F,T,F),(F,T,T),(T,T,T),(T,F,T) -- matches)
+
+=== Timing across regimes, n=16, T=150 models ===
+id=40 n=16 alpha=2.5 regime=solution_rich: found 150 models in 0.0004s, stats={'restarts': 150, 'conflicts': 95, 'decisions': 1617, 'propagations': 2782}
+id=41 n=16 alpha=2.5 regime=solution_rich: found 150 models in 0.0004s, stats={'restarts': 150, 'conflicts': 88, 'decisions': 1502, 'propagations': 2801}
+id=42 n=16 alpha=2.5 regime=solution_rich: found 150 models in 0.0004s, stats={'restarts': 150, 'conflicts': 85, 'decisions': 1464, 'propagations': 2759}
+id=120 n=16 alpha=3.5 regime=intermediate: found 100 models in 0.0003s, stats={'restarts': 101, 'conflicts': 81, 'decisions': 891, 'propagations': 1994}
+id=121 n=16 alpha=3.5 regime=intermediate: found 22 models in 0.0001s, stats={'restarts': 23, 'conflicts': 25, 'decisions': 152, 'propagations': 488}
+id=122 n=16 alpha=3.5 regime=intermediate: found 17 models in 0.0001s, stats={'restarts': 18, 'conflicts': 28, 'decisions': 152, 'propagations': 412}
+id=200 n=16 alpha=4.2 regime=near_threshold: found 2 models in 0.0000s, stats={'restarts': 3, 'conflicts': 12, 'decisions': 27, 'propagations': 101}
+id=201 n=16 alpha=4.2 regime=near_threshold: found 5 models in 0.0000s, stats={'restarts': 5, 'conflicts': 16, 'decisions': 43, 'propagations': 183}
+id=202 n=16 alpha=4.2 regime=near_threshold: found 2 models in 0.0000s, stats={'restarts': 3, 'conflicts': 12, 'decisions': 21, 'propagations': 111}
+
+=== Randomization confirmation: n=20 solution_rich instance, 3 permutation seeds ===
+id=520 n=20 alpha=2.5
+unpermuted baseline: 150 models in 0.0005s, stats={'restarts': 150, 'conflicts': 92, 'decisions': 1540, 'propagations': 3502}
+seed=1: 150 models, first_model(orig labels)=(0, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0), stats={'restarts': 150, 'conflicts': 94, 'decisions': 1600, 'propagations': 3461}
+seed=2: 150 models, first_model(orig labels)=(0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 1, 0, 1, 0, 0), stats={'restarts': 150, 'conflicts': 105, 'decisions': 1549, 'propagations': 3550}
+seed=3: 150 models, first_model(orig labels)=(1, 1, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0), stats={'restarts': 150, 'conflicts': 97, 'decisions': 1621, 'propagations': 3493}

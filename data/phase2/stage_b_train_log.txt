@@ -1,0 +1,8 @@
+Stage A hash verified for split=train: sha256=82753fda6185457a...
+Computed and froze RHO = 1.0 (median NN-distance within S_I, pooled over 96382 train solutions)
+Stage A hash verified for split=train: sha256=82753fda6185457a...
+  Stage B processed 100/360 (2.1s)
+  Stage B processed 200/360 (7.7s)
+  Stage B processed 300/360 (23.1s)
+Stage B (train): processed 360 instances in 30.4s
+Wrote ../data/stage_b_results_train.json

@@ -1,0 +1,23 @@
+Part 7: 360 paired test instances
+Median observed Jaccard(M_W,M_C): 0.4054
+Median null-expected Jaccard (independence given sizes): 0.3878
+Median observed/expected ratio: 1.004 (MORE overlapping than independence null)
+Wilcoxon signed-rank test (observed vs expected intersection... using jaccard here): stat=9423.0, p=0.001485
+Wilcoxon (intersection size observed vs expected): stat=7365.0, p=1.089e-07, median_diff=0.000
+
+By regime:
+  solution_rich: n=120, median_obs_jaccard=0.7291, median_exp_jaccard=0.7285, ratio=1.001
+  intermediate: n=120, median_obs_jaccard=0.1622, median_exp_jaccard=0.1363, ratio=1.190
+  near_threshold: n=120, median_obs_jaccard=0.0000, median_exp_jaccard=0.0430, ratio=0.000
+
+
+Part 8: geometric characterization of blind-zone decomposition
+  mean_weight_shared: median=9.090 (n=204)
+  mean_weight_Wonly: median=9.000 (n=227)
+  mean_weight_Conly: median=9.000 (n=239)
+  mean_weight_V: median=9.000 (n=360)
+  mean_dist_to_V_shared: median=3.182 (n=204)
+  mean_dist_to_V_Wonly: median=1.333 (n=227)
+  mean_dist_to_V_Conly: median=3.048 (n=239)
+
+Wrote ../data/part7_cross_solver_geometry.json and part8_blind_zone_decomposition.json

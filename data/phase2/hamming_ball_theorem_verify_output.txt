@@ -1,0 +1,29 @@
+n=1 (exhaustive, 1 pairs): open running match=7/7, closed running match=7/7
+n=2 (exhaustive, 6 pairs): open running match=57/57, closed running match=57/57
+n=3 (exhaustive, 28 pairs): open running match=341/341, closed running match=341/341
+n=4 (exhaustive, 120 pairs): open running match=1789/1789, closed running match=1789/1789
+n=5 (exhaustive, 496 pairs): open running match=8749/8749, closed running match=8749/8749
+n=6 (exhaustive, 2016 pairs): open running match=41037/41037, closed running match=41037/41037
+n=7 (representative+spotcheck, D=1..7, 6 pairs/D): open running match=41799/41799, closed running match=41799/41799
+n=8 (representative+spotcheck, D=1..8, 6 pairs/D): open running match=42759/42759, closed running match=42759/42759
+n=9 (representative+spotcheck, D=1..9, 6 pairs/D): open running match=43953/43953, closed running match=43953/43953
+n=10 (representative+spotcheck, D=1..10, 6 pairs/D): open running match=45393/45393, closed running match=45393/45393
+
+=== FINAL RESULTS ===
+OPEN balls:   45393/45393 match (100.0000%)
+CLOSED balls: 45393/45393 match (100.0000%)
+Transitivity failures (same n,D, different pair -> different outcome): 0
+
+Open-ball mismatches (formula: disjoint iff eps<=ceil(D/2)): 0
+
+Closed-ball mismatches (formula: disjoint iff eps<ceil(D/2)): 0
+
+=== EXPLICIT BOUNDARY EXAMPLES FOR WRITE-UP ===
+n=2 x=(0, 0) y=(1, 1) D=2 eps=1.0 [OPEN]  balls disjoint(empty)=True  ceil(D/2)=1
+n=2 x=(0, 0) y=(1, 1) D=2 eps=1.0 [CLOSED]  balls disjoint(empty)=False  ceil(D/2)=1
+n=3 x=(0, 0, 0) y=(1, 0, 0) D=1 eps=1.0 [OPEN]  balls disjoint(empty)=True  ceil(D/2)=1
+n=3 x=(0, 0, 0) y=(1, 0, 0) D=1 eps=0.5 [OPEN]  balls disjoint(empty)=True  ceil(D/2)=1
+n=4 x=(0, 0, 0, 0) y=(1, 1, 1, 0) D=3 eps=1.0 [OPEN]  balls disjoint(empty)=True  ceil(D/2)=2
+n=4 x=(0, 0, 0, 0) y=(1, 1, 1, 0) D=3 eps=2.0 [OPEN]  balls disjoint(empty)=True  ceil(D/2)=2
+n=4 x=(0, 0, 0, 0) y=(1, 1, 1, 0) D=3 eps=2.0 [CLOSED]  balls disjoint(empty)=False  ceil(D/2)=2
+n=4 x=(0, 0, 0, 0) y=(1, 1, 1, 0) D=3 eps=2.01 [OPEN]  balls disjoint(empty)=False  ceil(D/2)=2

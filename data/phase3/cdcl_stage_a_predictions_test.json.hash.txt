@@ -1,0 +1,5 @@
+file: ../data/cdcl_stage_a_predictions_test.json
+sha256: e94a679dd5057a187ff0394da938e42ad439702857ae9c76b22fd1a87cdfe42a
+frozen_utc_timestamp: 2026-09-29T03:31:12Z
+n_instances: 360
+stage: A (pre-reveal, CDCL, no ground truth touched)

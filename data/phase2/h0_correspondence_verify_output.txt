@@ -1,0 +1,13 @@
+Total (n, random S, random A) instances checked: 100
+Claim 1 (no false merge, exact) failures: 0
+Claim 2 (guaranteed re-merge at r+2*eps_hat) failures: 0
+Consequence (C_A(r+2eh) <= C_S(r)) failures: 0
+
+--- Tightness check on a hand example ---
+S=[(0, 0, 0, 0), (1, 1, 0, 0), (1, 1, 1, 1)]
+A=[(0, 0, 0, 0), (1, 1, 1, 1)], eps_hat=2
+  r=0: C_S(r)=3  C_A(r)=2  C_A(r+2eh=4)=1  (claim: C_A(r+2eh) <= C_S(r) -> True)
+  r=1: C_S(r)=3  C_A(r)=2  C_A(r+2eh=5)=1  (claim: C_A(r+2eh) <= C_S(r) -> True)
+  r=2: C_S(r)=1  C_A(r)=2  C_A(r+2eh=6)=1  (claim: C_A(r+2eh) <= C_S(r) -> True)
+  r=3: C_S(r)=1  C_A(r)=2  C_A(r+2eh=7)=1  (claim: C_A(r+2eh) <= C_S(r) -> True)
+  r=4: C_S(r)=1  C_A(r)=1  C_A(r+2eh=8)=1  (claim: C_A(r+2eh) <= C_S(r) -> True)

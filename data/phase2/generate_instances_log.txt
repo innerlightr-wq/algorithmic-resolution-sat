@@ -1,0 +1,12 @@
+  [solution_rich] n=16 alpha=2.5: got 80/80 in 80 attempts (0.4s)
+  [intermediate] n=16 alpha=3.5: got 80/80 in 85 attempts (0.4s)
+  [near_threshold] n=16 alpha=4.2: got 80/80 in 111 attempts (0.6s)
+  [solution_rich] n=18 alpha=2.5: got 80/80 in 80 attempts (1.5s)
+  [intermediate] n=18 alpha=3.5: got 80/80 in 81 attempts (1.9s)
+  [near_threshold] n=18 alpha=4.2: got 80/80 in 111 attempts (2.9s)
+  [solution_rich] n=20 alpha=2.5: got 80/80 in 80 attempts (7.9s)
+  [intermediate] n=20 alpha=3.5: got 80/80 in 83 attempts (9.6s)
+  [near_threshold] n=20 alpha=4.2: got 80/80 in 123 attempts (15.2s)
+
+Wrote 360 train instances, 360 test instances.
+NOTE: these files contain CNF clauses only -- no solution/S_I data.

@@ -1,0 +1,6 @@
+{
+  "rho": 1.0,
+  "n_nn_dists_pooled": 96382,
+  "computed_from_split": "train",
+  "median_used_as_rho": 1.0
+}

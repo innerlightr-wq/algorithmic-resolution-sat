@@ -1,0 +1,12 @@
+=== eps_hat paired comparison, n=349 instances ===
+mean eps_W=1.413  mean eps_C=3.516
+median eps_W=1.000  median eps_C=3.000
+Wilcoxon: stat=132.0 p=5.14e-38  median(eps_W-eps_C)=-2.000
+
+Coverage-matched (n=160): mean eps_W=0.806 mean eps_C=1.625
+Wilcoxon (matched): stat=34.0 p=2.49e-08 median diff=0.000
+
+By regime:
+  solution_rich: n=120 mean_eps_W=2.933 mean_eps_C=7.075
+  intermediate: n=118 mean_eps_W=0.966 mean_eps_C=2.661
+  near_threshold: n=111 mean_eps_W=0.243 mean_eps_C=0.577

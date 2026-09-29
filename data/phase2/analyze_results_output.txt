@@ -1,0 +1,43 @@
+Train: 321/360 instances qualify (>= 4 found solutions)
+Test:  319/360 instances qualify
+
+======================================================================
+MODEL SELECTION (TRAIN SPLIT ONLY)
+======================================================================
+Hamming-weight baseline sign selection: +1 -> median AUROC=0.5191, -1 -> median AUROC=0.4809  => chosen sign = +1
+  risk_basin             median_AUROC=0.6516666666666666 median_spearman=0.2369684541692273 (n_eval=205/321)
+  risk_disc_flips        median_AUROC=0.39999999999999997 median_spearman=-0.17248977067561305 (n_eval=205/321)
+  risk_foundneighbor     median_AUROC=0.2831196581196581 median_spearman=-0.31110116316437353 (n_eval=205/321)
+  risk_hamming_weight    median_AUROC=0.5191358024691358 median_spearman=0.02613575535394229 (n_eval=205/321)
+  risk_random            median_AUROC=0.5 median_spearman=0.01616462387908931 (n_eval=205/321)
+
+=> CHOSEN PRIMARY SOLVER-DYNAMICS PREDICTOR (selected on TRAIN only): risk_basin
+
+======================================================================
+FINAL EVALUATION (TEST SPLIT, TOUCHED ONCE)
+======================================================================
+  risk_basin             median_AUROC=0.6584249084249084 [0.6355072463768117,0.6850393700787402]  median_spearman=0.25218251969331645 [0.23295762557421146,0.27166790843535255]  (n_eval=203/319)
+  risk_disc_flips        median_AUROC=0.40694444444444444 [0.38782051282051283,0.42551020408163265]  median_spearman=-0.15989935482005302 [-0.18526202955828236,-0.14077895226308088]  (n_eval=203/319)
+  risk_foundneighbor     median_AUROC=0.2793040293040293 [0.24107142857142858,0.2975]  median_spearman=-0.34924412248938863 [-0.37851393640871883,-0.3000032837635579]  (n_eval=203/319)
+  risk_hamming_weight    median_AUROC=0.5185897435897435 [0.4895999999999999,0.5431034482758621]  median_spearman=0.02460998751112256 [-0.015063504056874063,0.06146442482063699]  (n_eval=203/319)
+  risk_random            median_AUROC=0.5038961038961038 [0.4870277777777778,0.5194444444444445]  median_spearman=0.01595565555841496 [0.003439980625112107,0.02921674123584648]  (n_eval=203/319)
+
+Permutation test for chosen predictor (risk_basin) on TEST: {'true_median_auroc': 0.6584249084249084, 'null_median_auroc_mean': 0.48711752873909925, 'null_median_auroc_std': 0.00974143413862371, 'p_value_one_sided': 0.000999000999000999, 'n_perm': 1000}
+Permutation test for risk_random (sanity null check) on TEST: {'true_median_auroc': 0.5038961038961038, 'null_median_auroc_mean': 0.500330461901207, 'null_median_auroc_std': 0.01023227882817127, 'p_value_one_sided': 0.34665334665334663, 'n_perm': 1000}
+
+======================================================================
+STRATIFIED RESULTS FOR CHOSEN PREDICTOR (TEST SPLIT)
+======================================================================
+  regime=solution_rich: median_AUROC=0.6315 (n=120, evaluable=93)
+  regime=intermediate: median_AUROC=0.6473484848484848 (n=112, evaluable=85)
+  regime=near_threshold: median_AUROC=0.7315789473684211 (n=87, evaluable=25)
+  n=16: median_AUROC=0.6445024396212852 (n=94, evaluable=62)
+  n=18: median_AUROC=0.6486742424242424 (n=112, evaluable=72)
+  n=20: median_AUROC=0.6813186813186813 (n=113, evaluable=69)
+
+======================================================================
+PART 10 PREP: coverage vs eps_hat, chosen-predictor vs eps_hat (TEST)
+======================================================================
+Spearman(coverage, eps_hat) across TEST instances: rho=-0.9751, p=2.247e-209, n=319
+
+Wrote ../data/analysis_results.json

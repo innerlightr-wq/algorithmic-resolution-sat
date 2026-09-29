@@ -1,0 +1,24 @@
+
+=== Instance 537 (n=20, alpha=2.5, regime=solution_rich, |S_I|=2507, r_fixed=1, C_S(1)=2) ===
+     T   |A_T|   coverage  eps_hat   C_A(r)   C_S(r)  fragmented?
+     5       5     0.0020       10        5        2         True
+    10      10     0.0040       10       10        2         True
+    20      20     0.0080        8       20        2         True
+    40      40     0.0160        7       40        2         True
+    80      74     0.0295        5       69        2         True
+   150     137     0.0546        5      118        2         True
+   300     265     0.1057        3      183        2         True
+   600     504     0.2010        3      189        2         True
+
+=== Instance 619 (n=20, alpha=3.5, regime=intermediate, |S_I|=482, r_fixed=1, C_S(1)=4) ===
+     T   |A_T|   coverage  eps_hat   C_A(r)   C_S(r)  fragmented?
+     5       5     0.0104        9        5        4         True
+    10      10     0.0207        7       10        4         True
+    20      20     0.0415        7       20        4         True
+    40      40     0.0830        4       37        4         True
+    80      70     0.1452        3       48        4         True
+   150     109     0.2261        3       48        4         True
+   300     193     0.4004        2       32        4         True
+   600     286     0.5934        2       13        4         True
+
+Wrote ../data/part11_budget_trajectory.json

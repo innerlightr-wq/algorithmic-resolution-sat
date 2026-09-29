@@ -1,0 +1,6 @@
+  processed 100/360 (0.1s)
+  processed 200/360 (0.2s)
+  processed 300/360 (0.4s)
+CDCL Stage A (train): processed 360 instances in 0.4s
+Wrote ../data/cdcl_stage_a_predictions_train.json
+Wrote ../data/cdcl_stage_a_predictions_train.json.hash.txt with sha256=4ce9c8e66ed4d11b...

@@ -1,0 +1,48 @@
+{
+  "wc": {
+    "direction": "W -> C  (risk_basin predicting CDCL blindness)",
+    "base_rate": 0.8803418803418803,
+    "n_risk_distinct_values": 93,
+    "model_A_auroc": {
+      "median": 0.9457013574660633,
+      "lo": 0.9329004329004329,
+      "hi": 0.9555598958333333,
+      "n": 177
+    },
+    "model_B_auroc": {
+      "median": 0.9426605504587156,
+      "lo": 0.9340659340659341,
+      "hi": 0.952991452991453,
+      "n": 177
+    },
+    "paired_improvement": {
+      "median": 0.0,
+      "lo": 0.0,
+      "hi": 1.1102230246251565e-16,
+      "n": 177
+    }
+  },
+  "cw": {
+    "direction": "C -> W  (risk_cdcl_recurrence predicting WalkSAT blindness)",
+    "base_rate": 0.6919144981412639,
+    "n_risk_distinct_values": 5,
+    "model_A_auroc": {
+      "median": 0.875,
+      "lo": 0.8549107142857143,
+      "hi": 0.8901515151515151,
+      "n": 161
+    },
+    "model_B_auroc": {
+      "median": 0.875,
+      "lo": 0.855,
+      "hi": 0.888157894736842,
+      "n": 161
+    },
+    "paired_improvement": {
+      "median": 0.0,
+      "lo": 0.0,
+      "hi": 0.0,
+      "n": 161
+    }
+  }
+}

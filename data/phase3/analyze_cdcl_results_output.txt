@@ -1,0 +1,43 @@
+Train: 321/360 instances qualify (>= 4 found)
+Test:  319/360 instances qualify
+
+======================================================================
+MODEL SELECTION (TRAIN SPLIT ONLY)
+======================================================================
+Hamming-weight sign: +1 -> 0.5180, -1 -> 0.4820 => chosen -1
+  risk_cdcl_recurrence     median_AUROC=0.676923076923077 median_spearman=0.29128696585567426 (n_eval=161/321)
+  risk_cdcl_conflicts      median_AUROC=0.48132747933884296 median_spearman=-0.02548032732630174 (n_eval=182/321)
+  risk_cdcl_decisions      median_AUROC=0.6440886699507389 median_spearman=0.3098705644135025 (n_eval=182/321)
+  risk_foundneighbor       median_AUROC=0.43242365172189734 median_spearman=-0.06256521167072221 (n_eval=182/321)
+  risk_hamming_weight      median_AUROC=0.4820261437908497 median_spearman=0.015372057760498712 (n_eval=182/321)
+  risk_random              median_AUROC=0.5082539682539682 median_spearman=0.0019503064117221453 (n_eval=182/321)
+
+=> CHOSEN PRIMARY CDCL SOLVER-DYNAMICS PREDICTOR (train-selected): risk_cdcl_recurrence
+
+======================================================================
+FINAL EVALUATION (TEST SPLIT, TOUCHED ONCE)
+======================================================================
+  risk_cdcl_recurrence     median_AUROC=0.6666666666666667 [0.6474358974358975,0.7]  median_spearman=0.34622250188139303 [0.31107746199124825,0.37591362473282564]  (n_eval=169/319)
+  risk_cdcl_conflicts      median_AUROC=0.47089947089947093 [0.4444444444444444,0.4897119341563786]  median_spearman=-0.04334233577893586 [-0.06685868143591972,-0.008407537690180657]  (n_eval=191/319)
+  risk_cdcl_decisions      median_AUROC=0.6319444444444444 [0.5833333333333334,0.6604938271604939]  median_spearman=0.27502602936459386 [0.23594832180436798,0.31162069774083456]  (n_eval=191/319)
+  risk_foundneighbor       median_AUROC=0.4666666666666667 [0.4090909090909091,0.49677419354838703]  median_spearman=-0.04738998865753054 [-0.11378891015744312,0.01210095637315664]  (n_eval=191/319)
+  risk_hamming_weight      median_AUROC=0.492063492063492 [0.45312500000000006,0.538961038961039]  median_spearman=-0.01078746118560242 [-0.0629515928029091,0.07887852275428935]  (n_eval=191/319)
+  risk_random              median_AUROC=0.4805194805194805 [0.4487179487179487,0.5142857142857142]  median_spearman=-0.0008309534939215648 [-0.03560980917509925,0.02315916925548967]  (n_eval=191/319)
+
+Permutation test for chosen predictor (risk_cdcl_recurrence) on TEST: {'true_median_auroc': 0.6666666666666667, 'null_median_auroc_mean': 0.48638502328025723, 'null_median_auroc_std': 0.003527919768574962, 'p_value_one_sided': 0.000999000999000999, 'n_perm': 1000}
+Permutation test for risk_random (sanity check) on TEST: {'true_median_auroc': 0.4805194805194805, 'null_median_auroc_mean': 0.5000478015225195, 'null_median_auroc_std': 0.013650401227570821, 'p_value_one_sided': 0.9340659340659341, 'n_perm': 1000}
+
+======================================================================
+STRATIFIED RESULTS FOR CHOSEN PREDICTOR (TEST SPLIT)
+======================================================================
+  regime=solution_rich: median_AUROC=0.6149425287356323 (n=120, evaluable=56)
+  regime=intermediate: median_AUROC=0.6707142857142857 (n=112, evaluable=86)
+  regime=near_threshold: median_AUROC=0.7611111111111111 (n=87, evaluable=27)
+  n=16: median_AUROC=0.6521990740740741 (n=94, evaluable=56)
+  n=18: median_AUROC=0.667741935483871 (n=112, evaluable=59)
+  n=20: median_AUROC=0.6919774159663865 (n=113, evaluable=54)
+  S_I_size_tercile=small: median_AUROC=0.7847222222222222 (n=114, evaluable=32)
+  S_I_size_tercile=mid: median_AUROC=0.6631944444444444 (n=99, evaluable=94)
+  S_I_size_tercile=large: median_AUROC=0.6149425287356323 (n=106, evaluable=43)
+
+Wrote ../data/cdcl_analysis_results.json

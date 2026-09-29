@@ -1,0 +1,20 @@
+Cross-prediction summary (TEST split, no retraining):
+
+1. risk_basin -> WalkSAT blind zone (within-solver)
+   n_instances_evaluable=203  median_AUROC=0.6584249084249084 [0.6355072463768117,0.6850393700787402]
+
+2. risk_cdcl_recurrence -> CDCL blind zone (within-solver)
+   n_instances_evaluable=169  median_AUROC=0.6666666666666667 [0.6481481481481481,0.7]
+
+3. risk_basin -> CDCL blind zone (cross-solver)
+   n_instances_evaluable=177  median_AUROC=0.624731182795699 [0.5986842105263158,0.6666666666666667]
+
+4. risk_cdcl_recurrence -> WalkSAT blind zone (cross-solver)
+   n_instances_evaluable=143  median_AUROC=0.5256410256410255 [0.4868421052631579,0.5666666666666667]
+
+Average within-solver median AUROC: 0.6625
+Average cross-solver median AUROC:  0.5752
+Within - Cross gap: 0.0874
+=> within >> cross: evidence for SOLVER-SPECIFIC observational geometry
+
+Wrote ../data/part9_cross_prediction.json

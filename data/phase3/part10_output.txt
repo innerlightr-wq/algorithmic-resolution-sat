@@ -1,0 +1,16 @@
+Instances with eps_union computable: 360
+eps_union < min(eps_W, eps_C) strictly: 56/360 (15.6%)
+Median improvement (min(eW,eC) - eU): 0.000
+Mean improvement: 0.156
+Fraction with improvement > 0: 0.156
+Fraction with improvement == 0 (union = best single): 0.844
+
+Median coverage gain (union - max(cov_W,cov_C)): 0.0357
+Mean coverage gain: 0.0409
+
+By regime:
+  solution_rich: n=120, eps_union<min strictly: 27/120 (22.5%), median_improvement=0.000
+  intermediate: n=120, eps_union<min strictly: 22/120 (18.3%), median_improvement=0.000
+  near_threshold: n=120, eps_union<min strictly: 7/120 (5.8%), median_improvement=0.000
+
+Wrote ../data/part10_portfolio.json
