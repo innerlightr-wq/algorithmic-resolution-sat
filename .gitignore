@@ -28,3 +28,8 @@ paper/main.pdf
 
 # OS temp
 *~
+
+# Extensions: built third-party checker, caches, and extracted certificate temporaries
+extensions/*/tools/drat-trim/
+extensions/*/certificates/certs-*/
+extensions/*/tests/fx-*/
