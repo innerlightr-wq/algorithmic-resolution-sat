@@ -33,3 +33,6 @@ paper/main.pdf
 extensions/*/tools/drat-trim/
 extensions/*/certificates/certs-*/
 extensions/*/tests/fx-*/
+# Pilot: per-query certification artifacts (1.2 GB of CNFs/proofs/witnesses).
+# Regenerable from the frozen selected sets; see the pilot's REPRODUCE notes.
+extensions/*/artifacts/
