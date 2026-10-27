@@ -1,0 +1,65 @@
+n,cell,comparison,A_W_size,A_C_size,size_confound,W_lo,W_hi,W_exact,C_lo,C_hi,C_exact,verdict
+32,n32_a2.5_k0,W vs C,150,40,True,9,9,True,17,17,True,certified C > W
+32,n32_a2.5_k2,W vs C,150,40,True,8,8,True,16,16,True,certified C > W
+32,n32_a2.5_k4,W vs C,150,40,True,9,9,True,17,17,True,certified C > W
+32,n32_a2.5_k0,eqW vs eqC,150,40,,12,32,False,,,,unresolved: a side has no certified record
+32,n32_a2.5_k2,eqW vs eqC,150,40,,13,32,False,,,,unresolved: a side has no certified record
+32,n32_a2.5_k4,eqW vs eqC,150,40,,12,32,False,,,,unresolved: a side has no certified record
+48,n48_a2.5_k0,W vs C,150,40,True,17,17,True,26,26,True,certified C > W
+48,n48_a2.5_k1,W vs C,150,40,True,15,15,True,27,27,True,certified C > W
+48,n48_a2.5_k2,W vs C,150,40,True,15,15,True,26,26,True,certified C > W
+48,n48_a2.5_k3,W vs C,150,40,True,16,16,True,30,30,True,certified C > W
+48,n48_a2.5_k4,W vs C,150,40,True,15,15,True,24,24,True,certified C > W
+48,n48_a3.5_k0,W vs C,129,40,True,6,6,True,22,22,True,certified C > W
+48,n48_a3.5_k1,W vs C,150,40,True,13,13,True,23,23,True,certified C > W
+48,n48_a3.5_k2,W vs C,127,37,True,4,4,True,11,11,True,certified C > W
+48,n48_a3.5_k3,W vs C,145,40,True,9,9,True,23,23,True,certified C > W
+48,n48_a3.5_k4,W vs C,99,40,True,5,5,True,17,17,True,certified C > W
+48,n48_a4.2_k1,W vs C,44,38,True,2,2,True,2,2,True,certified equality
+48,n48_a4.2_k2,W vs C,71,27,True,2,2,True,13,13,True,certified C > W
+48,n48_a4.2_k3,W vs C,135,40,True,5,5,True,10,10,True,certified C > W
+48,n48_a4.2_k4,W vs C,78,33,True,4,4,True,9,9,True,certified C > W
+48,n48_a2.5_k0,eqW vs eqC,150,40,,20,48,False,,,,unresolved: a side has no certified record
+48,n48_a2.5_k1,eqW vs eqC,150,40,,19,48,False,,,,unresolved: a side has no certified record
+48,n48_a2.5_k2,eqW vs eqC,150,40,,21,48,False,,,,unresolved: a side has no certified record
+48,n48_a2.5_k3,eqW vs eqC,150,40,,19,48,False,,,,unresolved: a side has no certified record
+48,n48_a2.5_k4,eqW vs eqC,150,40,,19,48,False,,,,unresolved: a side has no certified record
+48,n48_a3.5_k0,eqW vs eqC,129,40,,11,48,False,,,,unresolved: a side has no certified record
+48,n48_a3.5_k1,eqW vs eqC,150,40,,17,48,False,,,,unresolved: a side has no certified record
+48,n48_a3.5_k2,eqW vs eqC,127,37,,7,48,False,,,,unresolved: a side has no certified record
+48,n48_a3.5_k3,eqW vs eqC,145,40,,12,48,False,,,,unresolved: a side has no certified record
+48,n48_a3.5_k4,eqW vs eqC,99,40,,6,48,False,,,,unresolved: a side has no certified record
+48,n48_a4.2_k1,eqW vs eqC,44,38,,2,48,False,,,,unresolved: a side has no certified record
+48,n48_a4.2_k2,eqW vs eqC,71,27,,17,48,False,,,,unresolved: a side has no certified record
+48,n48_a4.2_k3,eqW vs eqC,135,40,,8,48,False,,,,unresolved: a side has no certified record
+48,n48_a4.2_k4,eqW vs eqC,78,33,,6,48,False,,,,unresolved: a side has no certified record
+64,n64_a2.5_k0,W vs C,150,40,True,26,26,True,37,37,True,certified C > W
+64,n64_a2.5_k1,W vs C,150,40,True,17,32,False,38,38,True,certified C > W
+64,n64_a2.5_k2,W vs C,150,40,True,17,32,False,35,35,True,certified C > W
+64,n64_a2.5_k3,W vs C,150,40,True,17,32,False,36,36,True,certified C > W
+64,n64_a2.5_k4,W vs C,150,40,True,17,32,False,36,36,True,certified C > W
+64,n64_a3.5_k0,W vs C,150,40,True,16,16,True,27,27,True,certified C > W
+64,n64_a3.5_k1,W vs C,150,40,True,18,18,True,32,32,True,certified C > W
+64,n64_a3.5_k2,W vs C,149,40,True,15,15,True,32,32,True,certified C > W
+64,n64_a3.5_k3,W vs C,150,40,True,15,15,True,28,28,True,certified C > W
+64,n64_a3.5_k4,W vs C,150,40,True,18,18,True,28,28,True,certified C > W
+64,n64_a4.2_k0,W vs C,144,40,True,9,9,True,21,21,True,certified C > W
+64,n64_a4.2_k1,W vs C,140,38,True,7,7,True,18,18,True,certified C > W
+64,n64_a4.2_k2,W vs C,79,32,True,3,3,True,7,7,True,certified C > W
+64,n64_a4.2_k3,W vs C,29,30,False,2,2,True,5,5,True,certified C > W
+64,n64_a4.2_k4,W vs C,123,40,True,4,4,True,28,28,True,certified C > W
+64,n64_a2.5_k0,eqW vs eqC,150,40,,30,64,False,,,,unresolved: a side has no certified record
+64,n64_a2.5_k1,eqW vs eqC,150,40,,29,64,False,,,,unresolved: a side has no certified record
+64,n64_a2.5_k2,eqW vs eqC,150,40,,28,64,False,,,,unresolved: a side has no certified record
+64,n64_a2.5_k3,eqW vs eqC,150,40,,28,64,False,,,,unresolved: a side has no certified record
+64,n64_a2.5_k4,eqW vs eqC,150,40,,27,64,False,,,,unresolved: a side has no certified record
+64,n64_a3.5_k0,eqW vs eqC,150,40,,19,64,False,,,,unresolved: a side has no certified record
+64,n64_a3.5_k1,eqW vs eqC,150,40,,22,64,False,,,,unresolved: a side has no certified record
+64,n64_a3.5_k2,eqW vs eqC,149,40,,20,64,False,,,,unresolved: a side has no certified record
+64,n64_a3.5_k3,eqW vs eqC,150,40,,24,64,False,,,,unresolved: a side has no certified record
+64,n64_a3.5_k4,eqW vs eqC,150,40,,27,64,False,,,,unresolved: a side has no certified record
+64,n64_a4.2_k0,eqW vs eqC,144,40,,13,64,False,,,,unresolved: a side has no certified record
+64,n64_a4.2_k1,eqW vs eqC,140,38,,13,64,False,,,,unresolved: a side has no certified record
+64,n64_a4.2_k2,eqW vs eqC,79,32,,4,64,False,,,,unresolved: a side has no certified record
+64,n64_a4.2_k3,eqW vs eqC,29,30,,,,,5,64,False,unresolved: a side has no certified record
+64,n64_a4.2_k4,eqW vs eqC,123,40,,8,64,False,,,,unresolved: a side has no certified record

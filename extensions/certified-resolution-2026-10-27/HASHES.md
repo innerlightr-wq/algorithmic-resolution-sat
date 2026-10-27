@@ -1,0 +1,101 @@
+# Artifact hashes — certified-resolution extension, 2026-10-27
+
+sha256 for every file distributed in this extension. Regenerate with:
+```
+cd extensions/certified-resolution-2026-10-27
+find . -type f -not -name HASHES.md -not -path './tools/drat-trim/*' | sort | xargs sha256sum
+```
+
+## Pinned third-party checker (not distributed here)
+```
+drat-trim commit    2e3b2dc0ecf938addbd779d42877b6ed69d9a985
+drat-trim.c sha256  d834b649f437e091597f5347f259b9f681087f89ca0844d0cee250a1a1a0c2ee
+binary (gcc 16.2.1) e17cd2e8de37c4c43bf88360ae3d17740781fe971175bf0b0c935ee3aae4ae19
+```
+
+## Full-evidence archive (LOCAL ONLY — not published, no public location exists)
+```
+sat-certified-resolution-evidence-2026-10-27.tar.zst
+  bytes  379237329
+  sha256 97fb2fefbb04101b6d83da8a9f332808c85d6ef4eaf958e5c7b7861fc1365ea0
+  manifest: sat-certified-resolution-evidence-2026-10-27.MANIFEST.txt
+```
+
+## Distributed files
+```
+0ffe3f8c8c45028d602a7d2010a21608ee7faf5296b7c4c093e86f56d559aa8e  ./certificates/equal-size-proofs.tar.gz
+9dc75f139726d03bf9b06aaddfcbc9749f8eb0954d0e1c818ace512589287a9e  ./certificates/MANIFEST.json
+8bc7ba2788c5e75519b79dc86b2e832f18638bbc8578ba56c63cb980e5fe7770  ./data/equal-size/cohort_manifest.json
+65db46a2646d41bc05fb4188d643773cf5ad2577c1fc58ea1adb00c74a4c6b90  ./data/equal-size/paired_results.csv
+85a8ab0ba07086ba03964d4cf732a532cf058cf91221afaa7f38f954b634800f  ./data/equal-size/subsampling_manifest.json
+6e2b22cdfbfc2856e285defe900e406239855981682b30924e70023d79bf4f9a  ./data/equal-size/summary.json
+21a28b90a6db0adaf5b94347a3513894b05baa20fffdfe6a683750f0a18b7584  ./data/equal-size/transfer_only.json
+e60548fd8a0cb8dded1ebd57eee79f908a4ba9582f00a87ccf7a8999d344bca9  ./data/optimization/baseline.json
+9af06351916859ba5a73165ccd228d68c715e895503f5525cb183c9f201c6a59  ./data/optimization/continuation_resume_n48.csv
+a75c82dfbc7459c9820a9f0e4be022788806203a4baca4c7bece4d2900fc2a95  ./data/optimization/continuation_resume_n64.csv
+ee5c6419105edf742a2112170fe54e96e1a523c6d39b5cfe042489fcb2297c5a  ./data/optimization/continuation_summary.json
+afea0b3fe24113e3b68cc9a806b709f6f97543403de34e20ab9914edffde7b8c  ./data/optimization/paired_results.csv
+ecce55f4a99d80f32ca646e19f09c851c0dbf2e78f18dd52793516c1e4a7d126  ./data/optimization/summary.json
+44fabcf4dcbbf1fec62d6b4c8410e3808572488f6a14961b7a1aafd7446e40cb  ./data/ordering/ordering_audit.csv
+b02dca54d975cce677b63f01ac87af44275774ba01bddfbe5022bf2c47460229  ./data/ordering/ordering_summary.json
+1c22b825799742c5fef1ce42251960c234568da3982089e5b98a40c57f7a7411  ./frozen/equal-size/n32_a2.5_k4_eqW_r0.json
+7507f679096e3604bc36dab176c2e8ce4b55d64321245f77324a001e7ca13a1d  ./frozen/equal-size/n32_a2.5_k4_eqW_r1.json
+f4d0c20292de652a96addc0dba7093518903390f95d2e966ccb4cfe3f77909d4  ./frozen/equal-size/n32_a2.5_k4_eqW_r2.json
+f74f8a4031d41abb3115e84e6e30a5b6afcb241905d46020b3b1fae5e3457f32  ./frozen/equal-size/n48_a2.5_k0_eqW_r0.json
+161ccf4ae719f12e0d14cc7b3bc70677e067a58c82381b715969a47e6bb52bba  ./frozen/equal-size/n48_a2.5_k0_eqW_r1.json
+0138ff0f23ca1f5d7748438f087b6a69423ca739e418c9b3d11779932d32277e  ./frozen/equal-size/n48_a2.5_k0_eqW_r2.json
+6dc3fc1bab0a7bfdbdd8c175e0cb962fb37fd720b49c3733b569696f91b1b3a5  ./frozen/equal-size/n48_a3.5_k0_eqW_r0.json
+5da428525e45935ce2ee2338ebbc4b61e3f3fcde1199b01185c233fe1507488f  ./frozen/equal-size/n48_a3.5_k0_eqW_r1.json
+a09b99a0f3db39c4b4fb6e1e37fdedc3b285094f3ed41aec8a145dcac3e45909  ./frozen/equal-size/n48_a3.5_k0_eqW_r2.json
+e4d743f6f20a7de659533c87621b50e04aa6a73a50c637c73effbf3a1c9dcac2  ./frozen/equal-size/n48_a4.2_k1_eqW_r0.json
+e22f3b24f1ded7dea63e23ecb625cac009b8d78e0305dddd1191df49adf6ae28  ./frozen/equal-size/n48_a4.2_k1_eqW_r1.json
+641088e43ddb7db8206f3c0d70dcde92a6287d35efe60fa64e4cd77421d30d09  ./frozen/equal-size/n48_a4.2_k1_eqW_r2.json
+bc3c3023e6d9f034a61997274f0056d47c6cbe13fda07a82a8ef934ec155d82c  ./frozen/equal-size/n64_a2.5_k4_eqW_r0.json
+a12c5c4640cd60f84f6eb42801af9dc7e5c42a21629c608a71e676252d125f05  ./frozen/equal-size/n64_a2.5_k4_eqW_r1.json
+686b720d7eb2ef3d99e73ed576516c3c5d902d4f36892ee344018cb86916c3db  ./frozen/equal-size/n64_a2.5_k4_eqW_r2.json
+8ab3f9614ea3e2e410a7e862dcf4483ce51dc603f271d976691ca469e065a87b  ./frozen/equal-size/n64_a3.5_k3_eqW_r0.json
+68038a6be9eb78631dc238ef5b49575386a5ea22e4a85ddfcb9de6223c9e702e  ./frozen/equal-size/n64_a3.5_k3_eqW_r1.json
+13f2929fa8b808938a80987a6cad3f537f01c76a550071f27d7eebcc47fdad1e  ./frozen/equal-size/n64_a3.5_k3_eqW_r2.json
+603e95dae241bad1fd2f8f1b398bcc9172696aa3bd57da936d9028257e1bf371  ./frozen/equal-size/n64_a4.2_k1_eqW_r0.json
+0fd526a0d3866bc9b9f4e99129d23c371dd77c1286a9314184422fbe5b123a8f  ./frozen/equal-size/n64_a4.2_k1_eqW_r1.json
+5eb187709af68a249c2de75fb455009ca54d0516fe5ff7c1a0c566376f7ff955  ./frozen/equal-size/n64_a4.2_k1_eqW_r2.json
+5cf6627d12bafca00b6f9661957d61848756461ec41dea3d5525f3fc285ea3f1  ./frozen/optimization/n64_a2.5_k0_W.json
+a291e5c17fa8146520eae2e203c57dddf8c078335d8ffb3d2015e1db3459dcd3  ./frozen/optimization/n64_a2.5_k1_eqW.json
+8c198496cb7b4f6e1d207524049ec8b87c8983cc946ee10b9c1d69fa1a1bb836  ./frozen/optimization/n64_a2.5_k1_W.json
+f7235d79ff3ff64f10b05033c17dcb74088b7f413f2f09d6cff86f8d1dfb79db  ./frozen/optimization/n64_a2.5_k2_W.json
+cbb744b8d7c333fe1a1f60cd86c6d076a2fcc3993c6b02d81dde685084695d58  ./frozen/optimization/n64_a2.5_k3_W.json
+9c4e18ff347bb1a4de4e2f200eb7beb5a9d626652427721fe27784ae5a747ac1  ./frozen/optimization/n64_a2.5_k4_W.json
+a596a2929e55dac166b45fc352c69ecfe8cae2e9e85ca05344319b7a4d7cd646  ./frozen/optimization/n64_a3.5_k0_W.json
+8c94b9d94bbb0d9934b17e3465ef5cbc30d58c565ed9776903ba09136a4782dd  ./frozen/optimization/n64_a3.5_k1_W.json
+ebed89de59bcb0d38d8876fdba4db2ccdb75f9704bb0e5de986c724068e973f9  ./frozen/optimization/n64_a4.2_k0_W.json
+cc8dde7687ecd3905e682712be8e47b98507eadb81b83c02aabe4ad76ee10a90  ./README.md
+d5254328edcfd6d274e8056ff47720a66b79c29a1e01c290f6d1ad56f8c7cbde  ./reports/00-base-audit/CLAIMS.md
+ee1e77bf7e3907e9dab70abd049da2508b36129275486a84d16079db20318372  ./reports/00-base-audit/ENCODING.md
+ea64650c64eca0dcbd655c1ea3180ddad8f88d7eca345a91851f16b0cc62048a  ./reports/00-base-audit/MANIFEST.md
+e59fb359f11344865f2b85e8e2859f32b330685bfb667ac9b2e689f3b1e1f31d  ./reports/00-base-audit/PILOT_PROTOCOL.md
+7d9837663e220f2692d17d6f92384bdf875579cf1cad8d848adb08ace2257551  ./reports/00-base-audit/REPORT.md
+9c51c4ba587645a153f1069a82bed74336aef5349b2371805efbd9685d5a228f  ./reports/01-continuation/CLAIMS_ADDENDUM.md
+8166f2ada295dff651b7b65c7d64e508b05c11040fcc9ac13bc243938ea43ae2  ./reports/01-continuation/CONTINUATION_REPORT.md
+f1c5aa2e6e86a9fbfcc1022333f2ac8edd8d67bfc6b665905c401a7e57d268de  ./reports/01-continuation/INVENTORY.md
+fcdd59cdeb83da2ed0dd0e5e16bc29d84358b311e1205414d22535a023f7c2f5  ./reports/01-continuation/MANIFEST_CONTINUATION.md
+26074223fd16d09322be7141107d3d608fec12170cad519638f704bf0fbdc5f4  ./reports/01-continuation/PROTOCOL_AMENDMENT.md
+71e93a609256ced311ef9cd4c974ee5f4fd0c4e575096eb5b7dc53d6ed58dd99  ./reports/02-optimization/CLAIMS.md
+a0318f0e0d4f8971fc4801754b5732d8804e0bbfeacaef871b00e6fdfc1e645c  ./reports/02-optimization/MANIFEST.md
+b3093f2193703c1c3c94b423afe400aef62303c7a4abd90ab5cd9c685d38d521  ./reports/02-optimization/PROTOCOL.md
+a99dbf2804b72fa12c134807481e460b0b83141e393f663957032f436156beec  ./reports/02-optimization/REPORT.md
+2ed15bb8205a6991e57d819a75044da7d1a3a39241020f9a879ca092ced1b52d  ./reports/03-equal-size/CLAIMS.md
+7ff8673c1021eb1e8fa757133f1008bdfbf2f4b8a0214c2556da5fc4ee25a565  ./reports/03-equal-size/MANIFEST.md
+c2a8d899f721ba123dbac4eb00deb6d3f4fd4b8d65a8d6009fad6dc5fef85891  ./reports/03-equal-size/PROTOCOL.md
+9a09f706674a8ff77e79034495d420fc7bb57fb3459bd9433b6a884849ec9a9d  ./reports/03-equal-size/REPORT.md
+c82122e2ca715bf2f7384174d7380a5d716706cb0d5b36af73f8090d9e64af13  ./REPRODUCE.md
+2162ec3e66b81f9092cd2b8bbaa3e305205e427004e7571f9f29873e8769e267  ./requirements.txt
+c42c9c132bf5df478fccf47b0f2aebf3b35f15c9d9abd5d3af833fd57ce17473  ./src/dratcheck.py
+fd8f8c4d1532487e5707062deef88e26790ca8afc9fa54a558fa778920120357  ./src/drup.py
+dac2a439074e9917d8aca67e2962a8df905d75b8c4007f4d3107e798a42d6b51  ./src/encode.py
+9047e6980604d5add235ad55e748bbb13264c715c92e69e313b512382b704a65  ./src/eqlib.py
+4d07d58be8a5a1db5b7e2396d7987e60895e13ad0f93adab9b47c5d78be94aea  ./src/store.py
+227e2f27b536ed3a384c2370d10deb0b6f6e2dfa59fd24226d7f8f3f038ef6d6  ./src/verify_extension.py
+cb4c564e7d8d978a6af11f1ccdce081bcbd546b61053be21b89d49eee88312f4  ./src/verify.py
+3317a649270ed8375d402c0db24ed689f70e3db6c6d7d224f057f61f9fb1976e  ./tests/test_fixtures.py
+4edd8bfbad248e0fc71b817c251bc93a14b66322414655d93dbd5c3c6b7d5559  ./tools/build_drat_trim.sh
+```

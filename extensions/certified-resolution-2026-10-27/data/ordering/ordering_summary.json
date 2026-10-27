@@ -1,0 +1,34 @@
+{
+  "primary_denominator": 32,
+  "solver_measurements": 64,
+  "both_exact": 28,
+  "verdicts": {
+    "certified C > W": 31,
+    "certified equality": 1
+  },
+  "verdicts_both_exact": {
+    "certified C > W": 27,
+    "certified equality": 1
+  },
+  "by_size": {
+    "32": {
+      "certified C > W": 3
+    },
+    "48": {
+      "certified C > W": 13,
+      "certified equality": 1
+    },
+    "64": {
+      "certified C > W": 15
+    }
+  },
+  "equalsize_verdicts": {
+    "unresolved: a side has no certified record": 32
+  },
+  "excluded_c_side_uncertified": 28,
+  "size_confound_present": 31,
+  "size_confound_absent": 1,
+  "size_confound_absent_cells": [
+    "n64_a4.2_k3"
+  ]
+}
