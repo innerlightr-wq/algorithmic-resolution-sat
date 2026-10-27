@@ -1,0 +1,20 @@
+{
+  "p32_a4.2_f0": {
+    "status": "UNSAT",
+    "secs": 0.0,
+    "models_up_to_60": null,
+    "formula_hash": "f5fef33d71dfdd0b9bd27bab3efaa969f260963e2b6f4234f874eeb654273db5"
+  },
+  "p32_a4.2_f1": {
+    "status": "SAT",
+    "secs": 0.0,
+    "models_up_to_60": 2,
+    "formula_hash": "7338c14f3e9a1ec9801c4bc208f742317b020b0d013bb267347f3ce4dfeb81cd"
+  },
+  "p64_a4.2_f0": {
+    "status": "SAT",
+    "secs": 0.0,
+    "models_up_to_60": 60,
+    "formula_hash": "914561482f463bde2dc9e2089cd368ec104eb30a2b77cc343c5c06906ba5d500"
+  }
+}
