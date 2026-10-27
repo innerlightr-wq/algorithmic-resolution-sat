@@ -1,0 +1,1949 @@
+{
+  "denominators": {
+    "attempted_instances": 18,
+    "instances": 18,
+    "groups": 36,
+    "eligible_groups": 30,
+    "ineligible_groups": 6,
+    "not_attempted": 0,
+    "comparisons": 144,
+    "certified": 110
+  },
+  "table1_solver_by_budget": {
+    "b5_prefix": {
+      "certified C > W": 15
+    },
+    "b5_uniform0": {
+      "certified W > C": 6,
+      "certified equality": 3,
+      "certified C > W": 5,
+      "unresolved": 1
+    },
+    "b30_prefix": {
+      "certified C > W": 15
+    },
+    "b30_uniform0": {
+      "certified C > W": 5,
+      "certified equality": 2,
+      "certified W > C": 6,
+      "unresolved": 2
+    }
+  },
+  "table2_prefix_vs_uniform": {
+    "W|certified uniform > prefix": 17,
+    "C|certified prefix > uniform": 28,
+    "W|certified equality": 8,
+    "W|certified prefix > uniform": 2,
+    "C|certified uniform > prefix": 2,
+    "W|unresolved": 3
+  },
+  "table2_detail": [
+    {
+      "instance_id": "p32_a2.5_f0",
+      "budget": 5.0,
+      "solver": "W",
+      "prefix": [
+        11,
+        11
+      ],
+      "uniform": [
+        12,
+        12
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 1,
+      "diff_hi": 1
+    },
+    {
+      "instance_id": "p32_a2.5_f0",
+      "budget": 5.0,
+      "solver": "C",
+      "prefix": [
+        16,
+        16
+      ],
+      "uniform": [
+        11,
+        11
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -5,
+      "diff_hi": -5
+    },
+    {
+      "instance_id": "p32_a2.5_f1",
+      "budget": 5.0,
+      "solver": "W",
+      "prefix": [
+        12,
+        12
+      ],
+      "uniform": [
+        12,
+        12
+      ],
+      "verdict": "certified equality",
+      "diff_lo": 0,
+      "diff_hi": 0
+    },
+    {
+      "instance_id": "p32_a2.5_f1",
+      "budget": 5.0,
+      "solver": "C",
+      "prefix": [
+        18,
+        18
+      ],
+      "uniform": [
+        12,
+        12
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -6,
+      "diff_hi": -6
+    },
+    {
+      "instance_id": "p32_a3.5_f0",
+      "budget": 5.0,
+      "solver": "W",
+      "prefix": [
+        7,
+        7
+      ],
+      "uniform": [
+        8,
+        8
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 1,
+      "diff_hi": 1
+    },
+    {
+      "instance_id": "p32_a3.5_f0",
+      "budget": 5.0,
+      "solver": "C",
+      "prefix": [
+        10,
+        10
+      ],
+      "uniform": [
+        7,
+        7
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -3,
+      "diff_hi": -3
+    },
+    {
+      "instance_id": "p32_a3.5_f1",
+      "budget": 5.0,
+      "solver": "W",
+      "prefix": [
+        2,
+        2
+      ],
+      "uniform": [
+        2,
+        2
+      ],
+      "verdict": "certified equality",
+      "diff_lo": 0,
+      "diff_hi": 0
+    },
+    {
+      "instance_id": "p32_a3.5_f1",
+      "budget": 5.0,
+      "solver": "C",
+      "prefix": [
+        3,
+        3
+      ],
+      "uniform": [
+        2,
+        2
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -1,
+      "diff_hi": -1
+    },
+    {
+      "instance_id": "p48_a2.5_f0",
+      "budget": 5.0,
+      "solver": "W",
+      "prefix": [
+        19,
+        19
+      ],
+      "uniform": [
+        20,
+        20
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 1,
+      "diff_hi": 1
+    },
+    {
+      "instance_id": "p48_a2.5_f0",
+      "budget": 5.0,
+      "solver": "C",
+      "prefix": [
+        25,
+        25
+      ],
+      "uniform": [
+        19,
+        19
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -6,
+      "diff_hi": -6
+    },
+    {
+      "instance_id": "p48_a2.5_f1",
+      "budget": 5.0,
+      "solver": "W",
+      "prefix": [
+        20,
+        20
+      ],
+      "uniform": [
+        19,
+        19
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -1,
+      "diff_hi": -1
+    },
+    {
+      "instance_id": "p48_a2.5_f1",
+      "budget": 5.0,
+      "solver": "C",
+      "prefix": [
+        26,
+        26
+      ],
+      "uniform": [
+        19,
+        19
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -7,
+      "diff_hi": -7
+    },
+    {
+      "instance_id": "p48_a3.5_f0",
+      "budget": 5.0,
+      "solver": "W",
+      "prefix": [
+        14,
+        14
+      ],
+      "uniform": [
+        13,
+        13
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -1,
+      "diff_hi": -1
+    },
+    {
+      "instance_id": "p48_a3.5_f0",
+      "budget": 5.0,
+      "solver": "C",
+      "prefix": [
+        22,
+        22
+      ],
+      "uniform": [
+        16,
+        16
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -6,
+      "diff_hi": -6
+    },
+    {
+      "instance_id": "p48_a3.5_f1",
+      "budget": 5.0,
+      "solver": "W",
+      "prefix": [
+        6,
+        6
+      ],
+      "uniform": [
+        17,
+        17
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 11,
+      "diff_hi": 11
+    },
+    {
+      "instance_id": "p48_a3.5_f1",
+      "budget": 5.0,
+      "solver": "C",
+      "prefix": [
+        16,
+        16
+      ],
+      "uniform": [
+        19,
+        19
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 3,
+      "diff_hi": 3
+    },
+    {
+      "instance_id": "p48_a4.2_f0",
+      "budget": 5.0,
+      "solver": "W",
+      "prefix": [
+        7,
+        7
+      ],
+      "uniform": [
+        8,
+        8
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 1,
+      "diff_hi": 1
+    },
+    {
+      "instance_id": "p48_a4.2_f0",
+      "budget": 5.0,
+      "solver": "C",
+      "prefix": [
+        10,
+        10
+      ],
+      "uniform": [
+        7,
+        7
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -3,
+      "diff_hi": -3
+    },
+    {
+      "instance_id": "p48_a4.2_f1",
+      "budget": 5.0,
+      "solver": "W",
+      "prefix": [
+        4,
+        4
+      ],
+      "uniform": [
+        5,
+        5
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 1,
+      "diff_hi": 1
+    },
+    {
+      "instance_id": "p48_a4.2_f1",
+      "budget": 5.0,
+      "solver": "C",
+      "prefix": [
+        15,
+        15
+      ],
+      "uniform": [
+        16,
+        16
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 1,
+      "diff_hi": 1
+    },
+    {
+      "instance_id": "p64_a2.5_f0",
+      "budget": 5.0,
+      "solver": "W",
+      "prefix": [
+        25,
+        32
+      ],
+      "uniform": [
+        27,
+        32
+      ],
+      "verdict": "unresolved",
+      "diff_lo": -5,
+      "diff_hi": 7
+    },
+    {
+      "instance_id": "p64_a2.5_f0",
+      "budget": 5.0,
+      "solver": "C",
+      "prefix": [
+        37,
+        37
+      ],
+      "uniform": [
+        25,
+        32
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -12,
+      "diff_hi": -5
+    },
+    {
+      "instance_id": "p64_a2.5_f1",
+      "budget": 5.0,
+      "solver": "W",
+      "prefix": [
+        27,
+        28
+      ],
+      "uniform": [
+        30,
+        30
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 2,
+      "diff_hi": 3
+    },
+    {
+      "instance_id": "p64_a2.5_f1",
+      "budget": 5.0,
+      "solver": "C",
+      "prefix": [
+        35,
+        35
+      ],
+      "uniform": [
+        27,
+        28
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -8,
+      "diff_hi": -7
+    },
+    {
+      "instance_id": "p64_a3.5_f0",
+      "budget": 5.0,
+      "solver": "W",
+      "prefix": [
+        22,
+        22
+      ],
+      "uniform": [
+        22,
+        22
+      ],
+      "verdict": "certified equality",
+      "diff_lo": 0,
+      "diff_hi": 0
+    },
+    {
+      "instance_id": "p64_a3.5_f0",
+      "budget": 5.0,
+      "solver": "C",
+      "prefix": [
+        32,
+        32
+      ],
+      "uniform": [
+        20,
+        20
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -12,
+      "diff_hi": -12
+    },
+    {
+      "instance_id": "p64_a3.5_f1",
+      "budget": 5.0,
+      "solver": "W",
+      "prefix": [
+        21,
+        21
+      ],
+      "uniform": [
+        22,
+        22
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 1,
+      "diff_hi": 1
+    },
+    {
+      "instance_id": "p64_a3.5_f1",
+      "budget": 5.0,
+      "solver": "C",
+      "prefix": [
+        31,
+        31
+      ],
+      "uniform": [
+        23,
+        23
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -8,
+      "diff_hi": -8
+    },
+    {
+      "instance_id": "p64_a4.2_f1",
+      "budget": 5.0,
+      "solver": "W",
+      "prefix": [
+        6,
+        6
+      ],
+      "uniform": [
+        7,
+        7
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 1,
+      "diff_hi": 1
+    },
+    {
+      "instance_id": "p64_a4.2_f1",
+      "budget": 5.0,
+      "solver": "C",
+      "prefix": [
+        25,
+        25
+      ],
+      "uniform": [
+        18,
+        18
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -7,
+      "diff_hi": -7
+    },
+    {
+      "instance_id": "p32_a2.5_f0",
+      "budget": 30.0,
+      "solver": "W",
+      "prefix": [
+        11,
+        11
+      ],
+      "uniform": [
+        11,
+        11
+      ],
+      "verdict": "certified equality",
+      "diff_lo": 0,
+      "diff_hi": 0
+    },
+    {
+      "instance_id": "p32_a2.5_f0",
+      "budget": 30.0,
+      "solver": "C",
+      "prefix": [
+        16,
+        16
+      ],
+      "uniform": [
+        12,
+        12
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -4,
+      "diff_hi": -4
+    },
+    {
+      "instance_id": "p32_a2.5_f1",
+      "budget": 30.0,
+      "solver": "W",
+      "prefix": [
+        12,
+        12
+      ],
+      "uniform": [
+        13,
+        13
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 1,
+      "diff_hi": 1
+    },
+    {
+      "instance_id": "p32_a2.5_f1",
+      "budget": 30.0,
+      "solver": "C",
+      "prefix": [
+        18,
+        18
+      ],
+      "uniform": [
+        14,
+        14
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -4,
+      "diff_hi": -4
+    },
+    {
+      "instance_id": "p32_a3.5_f0",
+      "budget": 30.0,
+      "solver": "W",
+      "prefix": [
+        7,
+        7
+      ],
+      "uniform": [
+        8,
+        8
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 1,
+      "diff_hi": 1
+    },
+    {
+      "instance_id": "p32_a3.5_f0",
+      "budget": 30.0,
+      "solver": "C",
+      "prefix": [
+        10,
+        10
+      ],
+      "uniform": [
+        8,
+        8
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -2,
+      "diff_hi": -2
+    },
+    {
+      "instance_id": "p32_a3.5_f1",
+      "budget": 30.0,
+      "solver": "W",
+      "prefix": [
+        2,
+        2
+      ],
+      "uniform": [
+        3,
+        3
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 1,
+      "diff_hi": 1
+    },
+    {
+      "instance_id": "p32_a3.5_f1",
+      "budget": 30.0,
+      "solver": "C",
+      "prefix": [
+        3,
+        3
+      ],
+      "uniform": [
+        1,
+        1
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -2,
+      "diff_hi": -2
+    },
+    {
+      "instance_id": "p48_a2.5_f0",
+      "budget": 30.0,
+      "solver": "W",
+      "prefix": [
+        19,
+        19
+      ],
+      "uniform": [
+        22,
+        22
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 3,
+      "diff_hi": 3
+    },
+    {
+      "instance_id": "p48_a2.5_f0",
+      "budget": 30.0,
+      "solver": "C",
+      "prefix": [
+        25,
+        25
+      ],
+      "uniform": [
+        20,
+        20
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -5,
+      "diff_hi": -5
+    },
+    {
+      "instance_id": "p48_a2.5_f1",
+      "budget": 30.0,
+      "solver": "W",
+      "prefix": [
+        20,
+        20
+      ],
+      "uniform": [
+        20,
+        20
+      ],
+      "verdict": "certified equality",
+      "diff_lo": 0,
+      "diff_hi": 0
+    },
+    {
+      "instance_id": "p48_a2.5_f1",
+      "budget": 30.0,
+      "solver": "C",
+      "prefix": [
+        26,
+        26
+      ],
+      "uniform": [
+        19,
+        19
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -7,
+      "diff_hi": -7
+    },
+    {
+      "instance_id": "p48_a3.5_f0",
+      "budget": 30.0,
+      "solver": "W",
+      "prefix": [
+        14,
+        14
+      ],
+      "uniform": [
+        18,
+        18
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 4,
+      "diff_hi": 4
+    },
+    {
+      "instance_id": "p48_a3.5_f0",
+      "budget": 30.0,
+      "solver": "C",
+      "prefix": [
+        22,
+        22
+      ],
+      "uniform": [
+        17,
+        17
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -5,
+      "diff_hi": -5
+    },
+    {
+      "instance_id": "p48_a3.5_f1",
+      "budget": 30.0,
+      "solver": "W",
+      "prefix": [
+        6,
+        6
+      ],
+      "uniform": [
+        17,
+        17
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 11,
+      "diff_hi": 11
+    },
+    {
+      "instance_id": "p48_a3.5_f1",
+      "budget": 30.0,
+      "solver": "C",
+      "prefix": [
+        16,
+        16
+      ],
+      "uniform": [
+        14,
+        14
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -2,
+      "diff_hi": -2
+    },
+    {
+      "instance_id": "p48_a4.2_f0",
+      "budget": 30.0,
+      "solver": "W",
+      "prefix": [
+        7,
+        7
+      ],
+      "uniform": [
+        7,
+        7
+      ],
+      "verdict": "certified equality",
+      "diff_lo": 0,
+      "diff_hi": 0
+    },
+    {
+      "instance_id": "p48_a4.2_f0",
+      "budget": 30.0,
+      "solver": "C",
+      "prefix": [
+        10,
+        10
+      ],
+      "uniform": [
+        7,
+        7
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -3,
+      "diff_hi": -3
+    },
+    {
+      "instance_id": "p48_a4.2_f1",
+      "budget": 30.0,
+      "solver": "W",
+      "prefix": [
+        4,
+        4
+      ],
+      "uniform": [
+        15,
+        15
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 11,
+      "diff_hi": 11
+    },
+    {
+      "instance_id": "p48_a4.2_f1",
+      "budget": 30.0,
+      "solver": "C",
+      "prefix": [
+        15,
+        15
+      ],
+      "uniform": [
+        10,
+        10
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -5,
+      "diff_hi": -5
+    },
+    {
+      "instance_id": "p64_a2.5_f0",
+      "budget": 30.0,
+      "solver": "W",
+      "prefix": [
+        25,
+        32
+      ],
+      "uniform": [
+        29,
+        30
+      ],
+      "verdict": "unresolved",
+      "diff_lo": -3,
+      "diff_hi": 5
+    },
+    {
+      "instance_id": "p64_a2.5_f0",
+      "budget": 30.0,
+      "solver": "C",
+      "prefix": [
+        37,
+        37
+      ],
+      "uniform": [
+        25,
+        32
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -12,
+      "diff_hi": -5
+    },
+    {
+      "instance_id": "p64_a2.5_f1",
+      "budget": 30.0,
+      "solver": "W",
+      "prefix": [
+        27,
+        28
+      ],
+      "uniform": [
+        27,
+        28
+      ],
+      "verdict": "unresolved",
+      "diff_lo": -1,
+      "diff_hi": 1
+    },
+    {
+      "instance_id": "p64_a2.5_f1",
+      "budget": 30.0,
+      "solver": "C",
+      "prefix": [
+        35,
+        35
+      ],
+      "uniform": [
+        27,
+        28
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -8,
+      "diff_hi": -7
+    },
+    {
+      "instance_id": "p64_a3.5_f0",
+      "budget": 30.0,
+      "solver": "W",
+      "prefix": [
+        22,
+        22
+      ],
+      "uniform": [
+        22,
+        22
+      ],
+      "verdict": "certified equality",
+      "diff_lo": 0,
+      "diff_hi": 0
+    },
+    {
+      "instance_id": "p64_a3.5_f0",
+      "budget": 30.0,
+      "solver": "C",
+      "prefix": [
+        32,
+        32
+      ],
+      "uniform": [
+        23,
+        23
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -9,
+      "diff_hi": -9
+    },
+    {
+      "instance_id": "p64_a3.5_f1",
+      "budget": 30.0,
+      "solver": "W",
+      "prefix": [
+        21,
+        21
+      ],
+      "uniform": [
+        21,
+        21
+      ],
+      "verdict": "certified equality",
+      "diff_lo": 0,
+      "diff_hi": 0
+    },
+    {
+      "instance_id": "p64_a3.5_f1",
+      "budget": 30.0,
+      "solver": "C",
+      "prefix": [
+        31,
+        31
+      ],
+      "uniform": [
+        23,
+        23
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -8,
+      "diff_hi": -8
+    },
+    {
+      "instance_id": "p64_a4.2_f1",
+      "budget": 30.0,
+      "solver": "W",
+      "prefix": [
+        6,
+        6
+      ],
+      "uniform": [
+        7,
+        7
+      ],
+      "verdict": "certified uniform > prefix",
+      "diff_lo": 1,
+      "diff_hi": 1
+    },
+    {
+      "instance_id": "p64_a4.2_f1",
+      "budget": 30.0,
+      "solver": "C",
+      "prefix": [
+        25,
+        25
+      ],
+      "uniform": [
+        19,
+        19
+      ],
+      "verdict": "certified prefix > uniform",
+      "diff_lo": -6,
+      "diff_hi": -6
+    }
+  ],
+  "table3_short_vs_long": {
+    "W|prefix|certified equality": 13,
+    "C|prefix|certified equality": 15,
+    "W|uniform0|certified short > long": 4,
+    "C|uniform0|certified long > short": 7,
+    "W|uniform0|certified long > short": 6,
+    "W|uniform0|certified equality": 4,
+    "C|uniform0|certified short > long": 3,
+    "C|uniform0|certified equality": 3,
+    "W|prefix|unresolved": 2,
+    "W|uniform0|unresolved": 1,
+    "C|uniform0|unresolved": 2
+  },
+  "table3_detail": [
+    {
+      "instance_id": "p32_a2.5_f0",
+      "solver": "W",
+      "scheme": "prefix",
+      "short": [
+        11,
+        11
+      ],
+      "long": [
+        11,
+        11
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p32_a2.5_f0",
+      "solver": "C",
+      "scheme": "prefix",
+      "short": [
+        16,
+        16
+      ],
+      "long": [
+        16,
+        16
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p32_a2.5_f0",
+      "solver": "W",
+      "scheme": "uniform0",
+      "short": [
+        12,
+        12
+      ],
+      "long": [
+        11,
+        11
+      ],
+      "verdict": "certified short > long"
+    },
+    {
+      "instance_id": "p32_a2.5_f0",
+      "solver": "C",
+      "scheme": "uniform0",
+      "short": [
+        11,
+        11
+      ],
+      "long": [
+        12,
+        12
+      ],
+      "verdict": "certified long > short"
+    },
+    {
+      "instance_id": "p32_a2.5_f1",
+      "solver": "W",
+      "scheme": "prefix",
+      "short": [
+        12,
+        12
+      ],
+      "long": [
+        12,
+        12
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p32_a2.5_f1",
+      "solver": "C",
+      "scheme": "prefix",
+      "short": [
+        18,
+        18
+      ],
+      "long": [
+        18,
+        18
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p32_a2.5_f1",
+      "solver": "W",
+      "scheme": "uniform0",
+      "short": [
+        12,
+        12
+      ],
+      "long": [
+        13,
+        13
+      ],
+      "verdict": "certified long > short"
+    },
+    {
+      "instance_id": "p32_a2.5_f1",
+      "solver": "C",
+      "scheme": "uniform0",
+      "short": [
+        12,
+        12
+      ],
+      "long": [
+        14,
+        14
+      ],
+      "verdict": "certified long > short"
+    },
+    {
+      "instance_id": "p32_a3.5_f0",
+      "solver": "W",
+      "scheme": "prefix",
+      "short": [
+        7,
+        7
+      ],
+      "long": [
+        7,
+        7
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p32_a3.5_f0",
+      "solver": "C",
+      "scheme": "prefix",
+      "short": [
+        10,
+        10
+      ],
+      "long": [
+        10,
+        10
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p32_a3.5_f0",
+      "solver": "W",
+      "scheme": "uniform0",
+      "short": [
+        8,
+        8
+      ],
+      "long": [
+        8,
+        8
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p32_a3.5_f0",
+      "solver": "C",
+      "scheme": "uniform0",
+      "short": [
+        7,
+        7
+      ],
+      "long": [
+        8,
+        8
+      ],
+      "verdict": "certified long > short"
+    },
+    {
+      "instance_id": "p32_a3.5_f1",
+      "solver": "W",
+      "scheme": "prefix",
+      "short": [
+        2,
+        2
+      ],
+      "long": [
+        2,
+        2
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p32_a3.5_f1",
+      "solver": "C",
+      "scheme": "prefix",
+      "short": [
+        3,
+        3
+      ],
+      "long": [
+        3,
+        3
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p32_a3.5_f1",
+      "solver": "W",
+      "scheme": "uniform0",
+      "short": [
+        2,
+        2
+      ],
+      "long": [
+        3,
+        3
+      ],
+      "verdict": "certified long > short"
+    },
+    {
+      "instance_id": "p32_a3.5_f1",
+      "solver": "C",
+      "scheme": "uniform0",
+      "short": [
+        2,
+        2
+      ],
+      "long": [
+        1,
+        1
+      ],
+      "verdict": "certified short > long"
+    },
+    {
+      "instance_id": "p48_a2.5_f0",
+      "solver": "W",
+      "scheme": "prefix",
+      "short": [
+        19,
+        19
+      ],
+      "long": [
+        19,
+        19
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p48_a2.5_f0",
+      "solver": "C",
+      "scheme": "prefix",
+      "short": [
+        25,
+        25
+      ],
+      "long": [
+        25,
+        25
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p48_a2.5_f0",
+      "solver": "W",
+      "scheme": "uniform0",
+      "short": [
+        20,
+        20
+      ],
+      "long": [
+        22,
+        22
+      ],
+      "verdict": "certified long > short"
+    },
+    {
+      "instance_id": "p48_a2.5_f0",
+      "solver": "C",
+      "scheme": "uniform0",
+      "short": [
+        19,
+        19
+      ],
+      "long": [
+        20,
+        20
+      ],
+      "verdict": "certified long > short"
+    },
+    {
+      "instance_id": "p48_a2.5_f1",
+      "solver": "W",
+      "scheme": "prefix",
+      "short": [
+        20,
+        20
+      ],
+      "long": [
+        20,
+        20
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p48_a2.5_f1",
+      "solver": "C",
+      "scheme": "prefix",
+      "short": [
+        26,
+        26
+      ],
+      "long": [
+        26,
+        26
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p48_a2.5_f1",
+      "solver": "W",
+      "scheme": "uniform0",
+      "short": [
+        19,
+        19
+      ],
+      "long": [
+        20,
+        20
+      ],
+      "verdict": "certified long > short"
+    },
+    {
+      "instance_id": "p48_a2.5_f1",
+      "solver": "C",
+      "scheme": "uniform0",
+      "short": [
+        19,
+        19
+      ],
+      "long": [
+        19,
+        19
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p48_a3.5_f0",
+      "solver": "W",
+      "scheme": "prefix",
+      "short": [
+        14,
+        14
+      ],
+      "long": [
+        14,
+        14
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p48_a3.5_f0",
+      "solver": "C",
+      "scheme": "prefix",
+      "short": [
+        22,
+        22
+      ],
+      "long": [
+        22,
+        22
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p48_a3.5_f0",
+      "solver": "W",
+      "scheme": "uniform0",
+      "short": [
+        13,
+        13
+      ],
+      "long": [
+        18,
+        18
+      ],
+      "verdict": "certified long > short"
+    },
+    {
+      "instance_id": "p48_a3.5_f0",
+      "solver": "C",
+      "scheme": "uniform0",
+      "short": [
+        16,
+        16
+      ],
+      "long": [
+        17,
+        17
+      ],
+      "verdict": "certified long > short"
+    },
+    {
+      "instance_id": "p48_a3.5_f1",
+      "solver": "W",
+      "scheme": "prefix",
+      "short": [
+        6,
+        6
+      ],
+      "long": [
+        6,
+        6
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p48_a3.5_f1",
+      "solver": "C",
+      "scheme": "prefix",
+      "short": [
+        16,
+        16
+      ],
+      "long": [
+        16,
+        16
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p48_a3.5_f1",
+      "solver": "W",
+      "scheme": "uniform0",
+      "short": [
+        17,
+        17
+      ],
+      "long": [
+        17,
+        17
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p48_a3.5_f1",
+      "solver": "C",
+      "scheme": "uniform0",
+      "short": [
+        19,
+        19
+      ],
+      "long": [
+        14,
+        14
+      ],
+      "verdict": "certified short > long"
+    },
+    {
+      "instance_id": "p48_a4.2_f0",
+      "solver": "W",
+      "scheme": "prefix",
+      "short": [
+        7,
+        7
+      ],
+      "long": [
+        7,
+        7
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p48_a4.2_f0",
+      "solver": "C",
+      "scheme": "prefix",
+      "short": [
+        10,
+        10
+      ],
+      "long": [
+        10,
+        10
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p48_a4.2_f0",
+      "solver": "W",
+      "scheme": "uniform0",
+      "short": [
+        8,
+        8
+      ],
+      "long": [
+        7,
+        7
+      ],
+      "verdict": "certified short > long"
+    },
+    {
+      "instance_id": "p48_a4.2_f0",
+      "solver": "C",
+      "scheme": "uniform0",
+      "short": [
+        7,
+        7
+      ],
+      "long": [
+        7,
+        7
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p48_a4.2_f1",
+      "solver": "W",
+      "scheme": "prefix",
+      "short": [
+        4,
+        4
+      ],
+      "long": [
+        4,
+        4
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p48_a4.2_f1",
+      "solver": "C",
+      "scheme": "prefix",
+      "short": [
+        15,
+        15
+      ],
+      "long": [
+        15,
+        15
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p48_a4.2_f1",
+      "solver": "W",
+      "scheme": "uniform0",
+      "short": [
+        5,
+        5
+      ],
+      "long": [
+        15,
+        15
+      ],
+      "verdict": "certified long > short"
+    },
+    {
+      "instance_id": "p48_a4.2_f1",
+      "solver": "C",
+      "scheme": "uniform0",
+      "short": [
+        16,
+        16
+      ],
+      "long": [
+        10,
+        10
+      ],
+      "verdict": "certified short > long"
+    },
+    {
+      "instance_id": "p64_a2.5_f0",
+      "solver": "W",
+      "scheme": "prefix",
+      "short": [
+        25,
+        32
+      ],
+      "long": [
+        25,
+        32
+      ],
+      "verdict": "unresolved"
+    },
+    {
+      "instance_id": "p64_a2.5_f0",
+      "solver": "C",
+      "scheme": "prefix",
+      "short": [
+        37,
+        37
+      ],
+      "long": [
+        37,
+        37
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p64_a2.5_f0",
+      "solver": "W",
+      "scheme": "uniform0",
+      "short": [
+        27,
+        32
+      ],
+      "long": [
+        29,
+        30
+      ],
+      "verdict": "unresolved"
+    },
+    {
+      "instance_id": "p64_a2.5_f0",
+      "solver": "C",
+      "scheme": "uniform0",
+      "short": [
+        25,
+        32
+      ],
+      "long": [
+        25,
+        32
+      ],
+      "verdict": "unresolved"
+    },
+    {
+      "instance_id": "p64_a2.5_f1",
+      "solver": "W",
+      "scheme": "prefix",
+      "short": [
+        27,
+        28
+      ],
+      "long": [
+        27,
+        28
+      ],
+      "verdict": "unresolved"
+    },
+    {
+      "instance_id": "p64_a2.5_f1",
+      "solver": "C",
+      "scheme": "prefix",
+      "short": [
+        35,
+        35
+      ],
+      "long": [
+        35,
+        35
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p64_a2.5_f1",
+      "solver": "W",
+      "scheme": "uniform0",
+      "short": [
+        30,
+        30
+      ],
+      "long": [
+        27,
+        28
+      ],
+      "verdict": "certified short > long"
+    },
+    {
+      "instance_id": "p64_a2.5_f1",
+      "solver": "C",
+      "scheme": "uniform0",
+      "short": [
+        27,
+        28
+      ],
+      "long": [
+        27,
+        28
+      ],
+      "verdict": "unresolved"
+    },
+    {
+      "instance_id": "p64_a3.5_f0",
+      "solver": "W",
+      "scheme": "prefix",
+      "short": [
+        22,
+        22
+      ],
+      "long": [
+        22,
+        22
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p64_a3.5_f0",
+      "solver": "C",
+      "scheme": "prefix",
+      "short": [
+        32,
+        32
+      ],
+      "long": [
+        32,
+        32
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p64_a3.5_f0",
+      "solver": "W",
+      "scheme": "uniform0",
+      "short": [
+        22,
+        22
+      ],
+      "long": [
+        22,
+        22
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p64_a3.5_f0",
+      "solver": "C",
+      "scheme": "uniform0",
+      "short": [
+        20,
+        20
+      ],
+      "long": [
+        23,
+        23
+      ],
+      "verdict": "certified long > short"
+    },
+    {
+      "instance_id": "p64_a3.5_f1",
+      "solver": "W",
+      "scheme": "prefix",
+      "short": [
+        21,
+        21
+      ],
+      "long": [
+        21,
+        21
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p64_a3.5_f1",
+      "solver": "C",
+      "scheme": "prefix",
+      "short": [
+        31,
+        31
+      ],
+      "long": [
+        31,
+        31
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p64_a3.5_f1",
+      "solver": "W",
+      "scheme": "uniform0",
+      "short": [
+        22,
+        22
+      ],
+      "long": [
+        21,
+        21
+      ],
+      "verdict": "certified short > long"
+    },
+    {
+      "instance_id": "p64_a3.5_f1",
+      "solver": "C",
+      "scheme": "uniform0",
+      "short": [
+        23,
+        23
+      ],
+      "long": [
+        23,
+        23
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p64_a4.2_f1",
+      "solver": "W",
+      "scheme": "prefix",
+      "short": [
+        6,
+        6
+      ],
+      "long": [
+        6,
+        6
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p64_a4.2_f1",
+      "solver": "C",
+      "scheme": "prefix",
+      "short": [
+        25,
+        25
+      ],
+      "long": [
+        25,
+        25
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p64_a4.2_f1",
+      "solver": "W",
+      "scheme": "uniform0",
+      "short": [
+        7,
+        7
+      ],
+      "long": [
+        7,
+        7
+      ],
+      "verdict": "certified equality"
+    },
+    {
+      "instance_id": "p64_a4.2_f1",
+      "solver": "C",
+      "scheme": "uniform0",
+      "short": [
+        18,
+        18
+      ],
+      "long": [
+        19,
+        19
+      ],
+      "verdict": "certified long > short"
+    }
+  ],
+  "table4_collection": {
+    "cells": 36,
+    "fail_k_5s": 5,
+    "fail_k_30s": 5,
+    "resource_limited": 0
+  },
+  "replicate_sensitivity": {
+    "cells": 30,
+    "varied": 20,
+    "varied_cells": [
+      [
+        "p32_a2.5_f0",
+        "5.0"
+      ],
+      [
+        "p32_a2.5_f0",
+        "30.0"
+      ],
+      [
+        "p32_a2.5_f1",
+        "5.0"
+      ],
+      [
+        "p32_a2.5_f1",
+        "30.0"
+      ],
+      [
+        "p32_a3.5_f0",
+        "5.0"
+      ],
+      [
+        "p32_a3.5_f0",
+        "30.0"
+      ],
+      [
+        "p32_a3.5_f1",
+        "5.0"
+      ],
+      [
+        "p32_a3.5_f1",
+        "30.0"
+      ],
+      [
+        "p48_a2.5_f0",
+        "5.0"
+      ],
+      [
+        "p48_a2.5_f0",
+        "30.0"
+      ],
+      [
+        "p48_a2.5_f1",
+        "5.0"
+      ],
+      [
+        "p48_a3.5_f0",
+        "30.0"
+      ],
+      [
+        "p48_a3.5_f1",
+        "30.0"
+      ],
+      [
+        "p48_a4.2_f0",
+        "5.0"
+      ],
+      [
+        "p48_a4.2_f0",
+        "30.0"
+      ],
+      [
+        "p48_a4.2_f1",
+        "30.0"
+      ],
+      [
+        "p64_a2.5_f1",
+        "5.0"
+      ],
+      [
+        "p64_a3.5_f0",
+        "5.0"
+      ],
+      [
+        "p64_a3.5_f1",
+        "30.0"
+      ],
+      [
+        "p64_a4.2_f1",
+        "30.0"
+      ]
+    ]
+  }
+}
