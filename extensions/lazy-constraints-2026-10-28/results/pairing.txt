@@ -1,0 +1,31 @@
+============================================================================================
+VERIFYING THE PAIRED-PER-QUERY CLAIM (timings NOT taken from this run)
+============================================================================================
+
+       units exact under both methods: ['n64_a2.5_k0_W', 'n64_a3.5_k0_W', 'n64_a3.5_k1_W', 'n64_a4.2_k0_W']
+
+       n64_a2.5_k0_W  (|A|=150, hashes OK)
+         S radii [24, 28, 26]  ['SAT', 'UNSAT', 'UNSAT']  -> [25, 28]  [budget]
+         L radii [24, 28, 26, 25]  ['SAT', 'UNSAT', 'UNSAT', 'SAT']  -> [26, 26]  [exact]
+         identical radii: False   identical outcomes: False   reproduces stage 2: False
+
+       n64_a3.5_k0_W  (|A|=150, hashes OK)
+         S radii [12, 14, 15]  ['SAT', 'SAT', 'SAT']  -> [16, 16]  [exact]
+         L radii [12, 14, 15]  ['SAT', 'SAT', 'SAT']  -> [16, 16]  [exact]
+         identical radii: True   identical outcomes: True   reproduces stage 2: True
+
+       n64_a4.2_k0_W  (|A|=144, hashes OK)
+         S radii [12, 10, 9]  ['UNSAT', 'UNSAT', 'UNSAT']  -> [9, 9]  [exact]
+         L radii [12, 10, 9]  ['UNSAT', 'UNSAT', 'UNSAT']  -> [9, 9]  [exact]
+         identical radii: True   identical outcomes: True   reproduces stage 2: True
+
+       n64_a3.5_k1_W  (|A|=150, hashes OK)
+         S radii [24, 20, 18, 17]  ['UNSAT', 'UNSAT', 'UNSAT', 'SAT']  -> [18, 18]  [exact]
+         L radii [24, 20, 18, 17]  ['UNSAT', 'UNSAT', 'UNSAT', 'SAT']  -> [18, 18]  [exact]
+         identical radii: True   identical outcomes: True   reproduces stage 2: True
+  [PASS] every unit was recovered with BOTH the formula hash and the observed-set hash matching the recorded values  -- 4 units, mismatches []
+  [PASS] a nonempty subset of the units exact under both methods is VERIFIED paired: identical radius sequence, identical per-query outcomes, and the instrumented re-run reproduces stage 2's certified interval  -- verified paired: ['n64_a3.5_k0_W', 'n64_a4.2_k0_W', 'n64_a3.5_k1_W']
+  [PASS] and the units that are NOT verified paired are identified and must be excluded from any paired claim -- equal query counts alone would have hidden this  -- not verified paired: ['n64_a2.5_k0_W']; budget-limited under at least one method: ['n64_a2.5_k0_W']
+  [PASS] every non-paired unit here is one whose static ladder hit the measurement budget and did NOT reproduce its stage-2 exact answer, so its stage-2 "exact" outcome sits on the budget boundary and is not reproducible  -- ['n64_a2.5_k0_W']: stage 2 reported exact under S at the budget boundary; the re-run stopped on budget short of an exact answer
+
+  ALL PASS

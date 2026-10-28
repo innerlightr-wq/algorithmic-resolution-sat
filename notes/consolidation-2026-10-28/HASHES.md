@@ -1,0 +1,9 @@
+# SHA-256 checksums
+
+```
+19e167e56275476e468a76ffb06efb5b53f6f7177d45ca4ef22e2daed04f4d82  certified-covering-radius-measurement-2026-10-28.pdf
+f901ce607af9177546f68cf9bddbf2ddb297d7f48d51ff4941838a932e31e88a  main.tex
+69de3fdfe809fef243d6a6fe62c9fa2045f6cdacdd8e459234c9881238f958d0  README.md
+0a638b8580f456da28e0443df9c50017cda62f507e65e8bef9d88162298cc9f5  references.bib
+35864be6145fc4c22ff1925c378c1b2cf71e1d0158ff26f781b35d67e35f1c20  tables_generated.tex
+```
