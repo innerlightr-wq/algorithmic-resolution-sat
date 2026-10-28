@@ -1,0 +1,29 @@
+============================================================================================
+ETH INTERFACE SIZE FOR THE RADIUS-QUERY FAMILY
+============================================================================================
+
+                  n |           BAR 1: E < n |    BAR 2: E < n/sqrt(log2 n)
+                    |  best r  max |A| |  best r  max |A|        bar
+                 64 |       3        1 |    None        0       26.1
+               1000 |       4       12 |       9        1        317
+              10000 |       4       94 |      14        8   2.74e+03
+             100000 |       4      752 |      16       51   2.45e+04
+            1000000 |       4     6271 |      18      353   2.24e+05
+         1000000000 |       4  4180972 |      22   152374   1.83e+08
+       1000000000000 |       31000000000 |      26 84309108   1.58e+11
+
+  [PASS] at the variable count actually measured in the repository (n = 64) the interface admits an observed set of size at most 1 under the weak bar, and none at all under the paper-saving bar  -- max |A| = 1 (bar 1), 0 (bar 2)
+       crossover for the repository cohort size |A| = 40:
+         bar 1 (beat 2^n)                : n >= 3,807
+         bar 2 (keep the paper's saving) : n >= 72,932
+  [PASS] the repository cohort size |A| = 40 becomes admissible only far above the measured regime: about 60x the measured variable count under the weak bar and about 1100x under the bar that preserves the paper's own saving  -- n >= 3,807 (bar 1, 59x) and n >= 72,932 (bar 2, 1140x), against measured n <= 64
+
+       asymptotic check of max |A| under bar 2 against n/(log2 n)^2:
+                    n     max |A|      n/(log2 n)^2    ratio
+              1000000         353              2517    0.140
+            100000000       19443         1.416e+05    0.137
+          10000000000     1226413         9.062e+06    0.135
+        1000000000000    84309108         6.293e+08    0.134
+  [PASS] the admissible observed-set size under the paper-saving bar grows like n / (log2 n)^2 -- unbounded but sublinear; the fitted constant is stable where a (log n)^{3/2} fit drifted  -- ratio 0.134 to 0.140 across six decades of n
+
+  ALL PASS

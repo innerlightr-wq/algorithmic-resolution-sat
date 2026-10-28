@@ -1,0 +1,50 @@
+============================================================================================
+THEOREM D AS A DIAGNOSTIC ON THE CERTIFIED MARGINS
+============================================================================================
+
+       equal-size
+         rows with a parsed difference interval : 21
+         certified strict ordering (|M| >= 1)   : 18
+           of which EXACT margin (singleton)    : 0   -> both halves of the threshold apply
+           of which LOWER BOUND only            : 18   -> only the safe half applies
+         certified tie (margin exactly 0)       : 3
+         interval straddles 0 (no ordering)     : 0
+         margin |M| range                       : 1 .. 10
+         tolerance p_max = |M| - 1              : 0 .. 9
+           |M|  rows  p_max  guaranteed for
+             1    14      0  every extension with p <= 0 auxiliary variables   <-- no nonzero-p guarantee
+             2     1      1  every extension with p <= 1 auxiliary variables
+             7     1      6  every extension with p <= 6 auxiliary variables
+             8     1      7  every extension with p <= 7 auxiliary variables
+            10     1      9  every extension with p <= 9 auxiliary variables
+
+       budget/selection pilot
+         rows with a parsed difference interval : 120
+         certified strict ordering (|M| >= 1)   : 98
+           of which EXACT margin (singleton)    : 92   -> both halves of the threshold apply
+           of which LOWER BOUND only            : 6   -> only the safe half applies
+         certified tie (margin exactly 0)       : 12
+         interval straddles 0 (no ordering)     : 10
+         margin |M| range                       : 1 .. 19
+         tolerance p_max = |M| - 1              : 0 .. 18
+           |M|  rows  p_max  guaranteed for
+             1    29      0  every extension with p <= 0 auxiliary variables   <-- no nonzero-p guarantee
+             2    15      1  every extension with p <= 1 auxiliary variables
+             3    13      2  every extension with p <= 2 auxiliary variables
+             4     1      3  every extension with p <= 3 auxiliary variables
+             5     6      4  every extension with p <= 4 auxiliary variables
+             6     7      5  every extension with p <= 5 auxiliary variables
+             7     2      6  every extension with p <= 6 auxiliary variables
+             8     3      7  every extension with p <= 7 auxiliary variables
+             9     2      8  every extension with p <= 8 auxiliary variables
+            10     7      9  every extension with p <= 9 auxiliary variables
+            11     5     10  every extension with p <= 10 auxiliary variables
+            12     3     11  every extension with p <= 11 auxiliary variables
+            13     2     12  every extension with p <= 12 auxiliary variables
+            14     1     13  every extension with p <= 13 auxiliary variables
+            19     2     18  every extension with p <= 18 auxiliary variables
+  [PASS] Theorem D applies to every certified strict ordering, with the exact and lower-bound rows kept separate; these are COMPARISONS with replicates nested, not independent instances  -- 116 certified strict comparisons across both integrated stages; margins 1 .. 19
+  [PASS] a nonempty set of certified orderings has margin 1, so Theorem D gives them NO nonzero-p guarantee: if distances were measured on all coordinates, some solution-preserving extension with one auxiliary variable would tie them. It does not follow that any particular re-encoding reverses them, nor that the repository results change -- the repository measures on the original variables, where Lemma 1 gives exact invariance  -- 43 of 116 comparisons have |M| = 1 (p_max = 0)
+  [PASS] while the largest certified margins carry a guarantee against every solution-preserving extension adding up to |M| - 1 auxiliary variables  -- 21 comparisons with |M| >= 10; largest margin 19 is guaranteed for p <= 18
+
+  ALL PASS
