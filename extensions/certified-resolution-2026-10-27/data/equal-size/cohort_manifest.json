@@ -1,0 +1,175 @@
+{
+  "rule": "RULE R-EQ (frozen before any new measurement):\n\nFrom the certified W-vs-C pairs, group by (n, density).  Within each\nnonempty stratum, order the cells by sha256 of the ORIGINAL FORMULA\n(ascending, hex string order) and take the first.  Ties -- impossible for\ndistinct formulas -- would break on the cell id.  Strata are visited in\nascending (n, density).  If more than `max_instances` strata existed, the\nfirst `max_instances` in that order would be taken; here 7 <= 9, so all\nstrata are represented.\n\nThe ordering key is the formula hash, which is fixed by (n, alpha, k) and\nis independent of every outcome: of the size of the existing advantage, of\nexpected runtime, and of any previous equal-size attempt.\n",
+  "study_seed": 20261027,
+  "selected": [
+    {
+      "stratum": "n32_a2.5",
+      "cell": "n32_a2.5_k4",
+      "formula_hash": "b9b65084cc19a86ef74c27eb156706f89231ae0c261d14123cc9cb9e5576378e",
+      "stratum_size": 3
+    },
+    {
+      "stratum": "n48_a2.5",
+      "cell": "n48_a2.5_k0",
+      "formula_hash": "364c8c6b14540c34c5721d6328a5980b46a2c8aee7045249b0feb1f772a8c851",
+      "stratum_size": 5
+    },
+    {
+      "stratum": "n48_a3.5",
+      "cell": "n48_a3.5_k0",
+      "formula_hash": "03f215283a667ff26d0847337687d57d67d5bf77ba54a42ee23e0942adaf44cd",
+      "stratum_size": 5
+    },
+    {
+      "stratum": "n48_a4.2",
+      "cell": "n48_a4.2_k1",
+      "formula_hash": "2dd448b98891e48f30d129b570f71a266c476baed5a6e8f303dbe7b0bfa6a286",
+      "stratum_size": 4
+    },
+    {
+      "stratum": "n64_a2.5",
+      "cell": "n64_a2.5_k4",
+      "formula_hash": "0ad6252e5cb2ccde39cdec3e661f98088f7fcb361452672401a1ef72606d3475",
+      "stratum_size": 5
+    },
+    {
+      "stratum": "n64_a3.5",
+      "cell": "n64_a3.5_k3",
+      "formula_hash": "02cba22532a7a7ba73876bbdf89bc148820ea9a78ae8297b5b5efec19525a1b5",
+      "stratum_size": 5
+    },
+    {
+      "stratum": "n64_a4.2",
+      "cell": "n64_a4.2_k1",
+      "formula_hash": "06151167e21926d335f30bce1a991dcfb2faea859329e0e07c0bb9302e6fcaa9",
+      "stratum_size": 5
+    }
+  ],
+  "unselected": [
+    {
+      "stratum": "n32_a2.5",
+      "cell": "n32_a2.5_k2",
+      "formula_hash": "c729d444ed6af1797a6485b4f7e61991357fbf68c2c431f71a8392b358a1a1c5"
+    },
+    {
+      "stratum": "n32_a2.5",
+      "cell": "n32_a2.5_k0",
+      "formula_hash": "fb696953f7a503e568905a1e31c86609697eeca58727dfa605b664e30c493217"
+    },
+    {
+      "stratum": "n48_a2.5",
+      "cell": "n48_a2.5_k1",
+      "formula_hash": "5a0287260e4394e30a2b874a6cd440f6824693bd200e1d2300a4a2be0dc225b1"
+    },
+    {
+      "stratum": "n48_a2.5",
+      "cell": "n48_a2.5_k4",
+      "formula_hash": "a843a46d143522725f8b7a0fb8b505325052fa293811d179b49745dc1b67efa8"
+    },
+    {
+      "stratum": "n48_a2.5",
+      "cell": "n48_a2.5_k3",
+      "formula_hash": "bea7537c25db8071da28f30f26d2aecc3e6ed17dfd55c0f2f1c07e7a3651992a"
+    },
+    {
+      "stratum": "n48_a2.5",
+      "cell": "n48_a2.5_k2",
+      "formula_hash": "c17607503fc6eb5d2c106311a4c958f9e23abc31eec80803955fa60e4df57988"
+    },
+    {
+      "stratum": "n48_a3.5",
+      "cell": "n48_a3.5_k2",
+      "formula_hash": "5500d427aba8fd7b8f031e0633fb2887ee0e3255be02fa55e5716cafa3353864"
+    },
+    {
+      "stratum": "n48_a3.5",
+      "cell": "n48_a3.5_k4",
+      "formula_hash": "5c8793224c2f7f0104e48f54735ad06ec212e4e8af63e24fc2b54a9a2d15c00a"
+    },
+    {
+      "stratum": "n48_a3.5",
+      "cell": "n48_a3.5_k1",
+      "formula_hash": "61c65da0b3ceb04438ed95cd1382bb3f9d13aedfcf556913094fbed3a03e7a7e"
+    },
+    {
+      "stratum": "n48_a3.5",
+      "cell": "n48_a3.5_k3",
+      "formula_hash": "792c96fa128393ed0960ad1b472922e7deb69edec603405bcf50339b465940ee"
+    },
+    {
+      "stratum": "n48_a4.2",
+      "cell": "n48_a4.2_k2",
+      "formula_hash": "7c833db559aec1b569aa302d75686af96c7a34f1c95731c87948209dd5efbba4"
+    },
+    {
+      "stratum": "n48_a4.2",
+      "cell": "n48_a4.2_k4",
+      "formula_hash": "8320ca40cb5a7f075d597d1407db2d1fdab3d1e824f6f6f5a788e0b934ab2d38"
+    },
+    {
+      "stratum": "n48_a4.2",
+      "cell": "n48_a4.2_k3",
+      "formula_hash": "dfefda01fc9340dbac63e2eff8e6a0bfbc21abff60bfe105102678ae20e64a07"
+    },
+    {
+      "stratum": "n64_a2.5",
+      "cell": "n64_a2.5_k0",
+      "formula_hash": "6549f4f7a3858f4b8163f3448418fa098fb66367fb09919128688a9d9d65fcc1"
+    },
+    {
+      "stratum": "n64_a2.5",
+      "cell": "n64_a2.5_k3",
+      "formula_hash": "71a3e03ee7660682898e5beeb19b421e8eb2518216838ea60f691013372ff809"
+    },
+    {
+      "stratum": "n64_a2.5",
+      "cell": "n64_a2.5_k1",
+      "formula_hash": "b74f3d9f937cdd8d8db4cc4dcfaf3a3b321b4b9534220ac2e16c772187c265b9"
+    },
+    {
+      "stratum": "n64_a2.5",
+      "cell": "n64_a2.5_k2",
+      "formula_hash": "c552955fd99a0a49a1c3e4c671e717c77b79f892f2b185c583bb860d5b510cab"
+    },
+    {
+      "stratum": "n64_a3.5",
+      "cell": "n64_a3.5_k1",
+      "formula_hash": "05b2b9144a4dafeae9619fc4da17144dd2c0f3aa9ec127b909896e8e80afafcb"
+    },
+    {
+      "stratum": "n64_a3.5",
+      "cell": "n64_a3.5_k0",
+      "formula_hash": "37f272c177f1ae0de1549803d1f4b272fc3497585fa7d20c794dda54efd8ff0f"
+    },
+    {
+      "stratum": "n64_a3.5",
+      "cell": "n64_a3.5_k4",
+      "formula_hash": "3bc9d3902f36fac3f9d55cc6c11e2870d1b15a5089cc1a124e9af6401c234166"
+    },
+    {
+      "stratum": "n64_a3.5",
+      "cell": "n64_a3.5_k2",
+      "formula_hash": "bdd08bc32f8100421064c4490865b0ef47dd1a758a11b34a6c8360c7299b815f"
+    },
+    {
+      "stratum": "n64_a4.2",
+      "cell": "n64_a4.2_k3",
+      "formula_hash": "914561482f463bde2dc9e2089cd368ec104eb30a2b77cc343c5c06906ba5d500"
+    },
+    {
+      "stratum": "n64_a4.2",
+      "cell": "n64_a4.2_k0",
+      "formula_hash": "a056875ec86ddc0ff6ad6a64b5088d4e238c97a3212fd28ee53d7e7096b5ac03"
+    },
+    {
+      "stratum": "n64_a4.2",
+      "cell": "n64_a4.2_k4",
+      "formula_hash": "ae059cd5fd0cdbeef6dfb59a647572abace6dbad31f1d00effa2bb239a9c59ad"
+    },
+    {
+      "stratum": "n64_a4.2",
+      "cell": "n64_a4.2_k2",
+      "formula_hash": "e9d9e4724071c1e9c8d90386327d85d83e2a83548a5b713d209df6754fad5546"
+    }
+  ]
+}

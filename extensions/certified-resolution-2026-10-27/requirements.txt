@@ -1,0 +1,16 @@
+# Exact versions used to produce every certified result in this extension,
+# recorded from the live environment.  Python 3.13.9.
+#
+# python-sat is the SAME pin as the September paper (requirements.txt at the
+# repository root), so the solver behaviour is unchanged.
+python-sat==1.9.dev15
+numpy==2.5.4
+
+# NOTE on numpy: the paper pinned numpy==1.26.4; this extension ran 2.5.4.
+# The only dependence is the PCG64 stream used to regenerate observed sets,
+# and stability across those two versions was verified by reproducing every
+# recorded observed-set hash and size (see reports/01-continuation/).
+#
+# The proof checker is NOT a Python dependency.  It is drat-trim pinned at
+# commit 2e3b2dc0ecf938addbd779d42877b6ed69d9a985; build it with
+#   sh tools/build_drat_trim.sh

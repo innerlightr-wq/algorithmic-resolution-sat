@@ -1,0 +1,216 @@
+% Bibliography for the consolidation note.
+% Every entry below was verified in this session: DOIs resolved via
+% content-negotiated BibTeX (doi.org), or the primary PDF was read directly.
+% Verification notes are recorded in each entry.
+
+% ---------------------------------------------------------- prior work by the author
+@misc{dejesus2026sat,
+  author       = {De Jesus, Elias},
+  title        = {Algorithmic Resolution and Geometric Distinguishability in {SAT} Solution Spaces},
+  year         = {2026},
+  month        = sep,
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.23038050},
+  url          = {https://doi.org/10.5281/zenodo.23038050},
+  note         = {Version DOI \url{https://doi.org/10.5281/zenodo.23038050};
+                  concept DOI 10.5281/zenodo.18216781.
+                  Verified against the Zenodo API on 2026-10-28: creator
+                  ``De Jesus, Elias'' (ORCID 0009-0007-0190-9143), published
+                  2026-09-29, resource type ``Technical note / publication'',
+                  licence CC BY 4.0, single file
+                  algorithmic\_resolution\_sat\_v2.pdf (646\,145 bytes), which is
+                  byte-identical (sha256) to the copy read here. The record
+                  carries no version label and no related identifiers.}
+}
+
+@misc{dejesus2026erv,
+  author       = {De Jesus, Elias},
+  title        = {Encoding-Relative Variance ({ERV}) Barrier},
+  year         = {2026},
+  month        = jan,
+  publisher    = {Zenodo},
+  doi          = {10.5281/zenodo.18269283},
+  url          = {https://doi.org/10.5281/zenodo.18269283},
+  note         = {Version DOI \url{https://doi.org/10.5281/zenodo.18269283};
+                  concept DOI 10.5281/zenodo.18236865.
+                  Verified against the Zenodo API on 2026-10-28: creator
+                  ``De Jesus, Elias'' (ORCID 0009-0007-0190-9143), published
+                  2026-01-16, resource type ``Technical note / publication'',
+                  licence CC BY 4.0, single file
+                  EncodingRelativeVarianceBarrier.pdf (367\,386 bytes),
+                  byte-identical (sha256) to the copy read here.}
+}
+
+% ------------------------------------------------------------------- covering radius
+@article{cohen1985covering,
+  author  = {Cohen, G{\'e}rard D. and Karpovsky, Mark G. and Mattson, Jr., H. F.
+             and Schatz, James R.},
+  title   = {Covering Radius---Survey and Recent Results},
+  journal = {IEEE Transactions on Information Theory},
+  volume  = {31},
+  number  = {3},
+  pages   = {328--343},
+  month   = may,
+  year    = {1985},
+  doi     = {10.1109/TIT.1985.1057043},
+  note    = {DOI: \url{https://doi.org/10.1109/TIT.1985.1057043}. Primary source read directly. Corollary~1 (p.~330, following
+             Lemma~1) states: ``Appending an overall parity check or the zero
+             parity check increases the covering radius by one (cf.~[2]).
+             Puncturing a code on $p$ coordinates reduces the covering radius
+             by at most $p$.'' The covering radius there is
+             $t(C)=\max\{\mathrm{wt}(y+C) : y \in \mathbb{Z}_2^n\}$, a maximum
+             over the whole Hamming space. The PDF's text layer is OCR, so the
+             quoted sentence was checked against its surrounding paragraph.}
+}
+
+@book{cohen1997covering,
+  author    = {Cohen, G{\'e}rard and Honkala, Iiro and Litsyn, Simon and
+               Lobstein, Antoine},
+  title     = {Covering Codes},
+  series    = {North-Holland Mathematical Library},
+  volume    = {54},
+  publisher = {Elsevier},
+  year      = {1997},
+  note      = {Standard monograph; cited for context only. Not re-verified in
+               this session.}
+}
+
+% ------------------------------------------------- projection and certified counting
+@inproceedings{bryant2025certifying,
+  author    = {Bryant, Randal E. and Tan, Yong Kiam and Heule, Marijn J. H.},
+  title     = {Certifying Projected Knowledge Compilation},
+  booktitle = {28th International Conference on Theory and Applications of
+               Satisfiability Testing (SAT 2025)},
+  series    = {LIPIcs},
+  volume    = {341},
+  pages     = {8:1--8:22},
+  publisher = {Schloss Dagstuhl -- Leibniz-Zentrum f{\"u}r Informatik},
+  year      = {2025},
+  doi       = {10.4230/LIPIcs.SAT.2025.8},
+  note      = {DOI: \url{https://doi.org/10.4230/LIPIcs.SAT.2025.8}. Primary source read directly. Variables are partitioned into
+               \emph{data} variables and existentially quantified variables;
+               the certifier establishes that the compiler output is logically
+               equivalent to the quantified input formula, with soundness
+               validated in HOL4 and checkers in C and CakeML. Skolem
+               assignments represent how the quantified variables may be
+               assigned given an assignment to the data variables. A full-text
+               search of the paper for ``Hamming'', ``distance'', ``covering
+               radius'', ``diameter'' and ``metric'' returns no occurrence.}
+}
+
+% --------------------------------------------------- encodings, solvers, proof checking
+@inproceedings{sinz2005towards,
+  author    = {Sinz, Carsten},
+  title     = {Towards an Optimal {CNF} Encoding of {B}oolean Cardinality
+               Constraints},
+  booktitle = {Principles and Practice of Constraint Programming (CP 2005)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {3709},
+  pages     = {827--831},
+  publisher = {Springer},
+  year      = {2005},
+  doi       = {10.1007/11564751_73},
+  note      = {DOI: \url{https://doi.org/10.1007/11564751_73}. Source of the sequential-counter cardinality encoding used here
+               via PySAT's \texttt{EncType.seqcounter}.}
+}
+
+@inproceedings{ignatiev2018pysat,
+  author    = {Ignatiev, Alexey and Morgado, Antonio and Marques-Silva, Joao},
+  title     = {{PySAT}: A {P}ython Toolkit for Prototyping with {SAT} Oracles},
+  booktitle = {Theory and Applications of Satisfiability Testing (SAT 2018)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {10929},
+  pages     = {428--437},
+  publisher = {Springer},
+  year      = {2018},
+  doi       = {10.1007/978-3-319-94144-8_26},
+  note      = {DOI: \url{https://doi.org/10.1007/978-3-319-94144-8_26}. Version actually used: python-sat 1.9.dev15 on CPython 3.14.7.}
+}
+
+@inproceedings{audemard2009predicting,
+  author    = {Audemard, Gilles and Simon, Laurent},
+  title     = {Predicting Learnt Clauses Quality in Modern {SAT} Solvers},
+  booktitle = {Proceedings of the 21st International Joint Conference on
+               Artificial Intelligence (IJCAI)},
+  pages     = {399--404},
+  year      = {2009},
+  note      = {Glucose. The solver used here is Glucose~3 through PySAT.}
+}
+
+@inproceedings{wetzler2014dratrim,
+  author    = {Wetzler, Nathan and Heule, Marijn J. H. and Hunt, Jr., Warren A.},
+  title     = {{DRAT-trim}: Efficient Checking and Trimming Using Expressive
+               Clausal Proofs},
+  booktitle = {Theory and Applications of Satisfiability Testing (SAT 2014)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {8561},
+  pages     = {422--429},
+  publisher = {Springer},
+  year      = {2014},
+  doi       = {10.1007/978-3-319-09284-3_31},
+  note      = {DOI: \url{https://doi.org/10.1007/978-3-319-09284-3_31}. Checker actually used: \texttt{drat-trim} from
+               \url{https://github.com/marijnheule/drat-trim} at commit
+               \texttt{2e3b2dc0ecf938addbd779d42877b6ed69d9a985} (2024-11-25),
+               source sha256 \texttt{d834b649...a1a1a0c2ee}, built with
+               gcc 16.2.1. Refutations are emitted by Glucose~3 in DRUP form
+               and checked by drat-trim.}
+}
+
+% ------------------------------------------- abstraction refinement / constraint generation
+@inproceedings{clarke2000cegar,
+  author    = {Clarke, Edmund and Grumberg, Orna and Jha, Somesh and Lu, Yuan
+               and Veith, Helmut},
+  title     = {Counterexample-Guided Abstraction Refinement},
+  booktitle = {Computer Aided Verification (CAV 2000)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {1855},
+  pages     = {154--169},
+  publisher = {Springer},
+  year      = {2000},
+  doi       = {10.1007/10722167_15},
+  note    = {DOI: \url{https://doi.org/10.1007/10722167_15}}
+}
+
+@inproceedings{clarke2002satcegar,
+  author    = {Clarke, Edmund and Gupta, Anubhav and Kukula, James and
+               Strichman, Ofer},
+  title     = {{SAT} Based Abstraction-Refinement Using {ILP} and Machine
+               Learning Techniques},
+  booktitle = {Computer Aided Verification (CAV 2002)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {2404},
+  pages     = {265--279},
+  publisher = {Springer},
+  year      = {2002},
+  doi       = {10.1007/3-540-45657-0_20},
+  note    = {DOI: \url{https://doi.org/10.1007/3-540-45657-0_20}}
+}
+
+@article{dantzig1954tsp,
+  author  = {Dantzig, G. and Fulkerson, R. and Johnson, S.},
+  title   = {Solution of a Large-Scale Traveling-Salesman Problem},
+  journal = {Journal of the Operations Research Society of America},
+  volume  = {2},
+  number  = {4},
+  pages   = {393--410},
+  year    = {1954},
+  doi     = {10.1287/opre.2.4.393},
+  note    = {DOI: \url{https://doi.org/10.1287/opre.2.4.393}. The constraint-generation pattern used here --- solve a
+             relaxation, check the solution against the full constraint
+             family, add a violated constraint, repeat --- is this classical
+             row-generation loop.}
+}
+
+% --------------------------------------------------------------- interleaving context
+@article{harker2019comparison,
+  author  = {Harker, Shaun and Kram{\'a}r, Miroslav and Levanger, Rachel and
+             Mischaikow, Konstantin},
+  title   = {A Comparison Framework for Interleaved Persistence Modules},
+  journal = {Journal of Applied and Computational Topology},
+  volume  = {3},
+  pages   = {85--118},
+  year    = {2019},
+  doi     = {10.1007/s41468-019-00026-x},
+  note    = {DOI: \url{https://doi.org/10.1007/s41468-019-00026-x}. Proposition 5.6(i) underlies the connectivity-recovery bound of
+             the antecedent paper. Not re-derived in this note.}
+}

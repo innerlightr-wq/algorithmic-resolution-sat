@@ -1,0 +1,62 @@
+[
+  {
+    "tag": "n48_a3.5_k0_eqW_r0",
+    "verdict": "certified C > W",
+    "W": [
+      8,
+      14
+    ],
+    "C": [
+      22,
+      22
+    ]
+  },
+  {
+    "tag": "n48_a3.5_k0_eqW_r1",
+    "verdict": "certified C > W",
+    "W": [
+      6,
+      15
+    ],
+    "C": [
+      22,
+      22
+    ]
+  },
+  {
+    "tag": "n48_a3.5_k0_eqW_r2",
+    "verdict": "certified C > W",
+    "W": [
+      6,
+      12
+    ],
+    "C": [
+      22,
+      22
+    ]
+  },
+  {
+    "tag": "n64_a4.2_k1_eqW_r0",
+    "verdict": "certified C > W",
+    "W": [
+      7,
+      16
+    ],
+    "C": [
+      18,
+      18
+    ]
+  },
+  {
+    "tag": "n64_a4.2_k1_eqW_r1",
+    "verdict": "certified C > W",
+    "W": [
+      7,
+      17
+    ],
+    "C": [
+      18,
+      18
+    ]
+  }
+]

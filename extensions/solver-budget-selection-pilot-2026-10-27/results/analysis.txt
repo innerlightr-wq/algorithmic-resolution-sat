@@ -1,0 +1,154 @@
+==============================================================================================================
+DENOMINATORS (the statistical unit is the INSTANCE)
+==============================================================================================================
+  attempted instances                 : 18
+  instances with both collections done: 18
+  instance-budget groups              : 36
+    eligible (both solvers >= k=40)   : 30
+    ineligible (insufficient sample)  : 6
+    not attempted (overall cap)       : 0
+  scheme-level comparisons            : 144
+    certified                         : 110
+    unresolved                        : 10
+    ineligible                        : 24
+
+==============================================================================================================
+TABLE 1 — EQUAL-SIZE SOLVER COMPARISON, per common time budget
+==============================================================================================================
+  budget    5s  prefix    n=15  certified C > W=15  certified W > C=0  certified equality=0  unresolved=0
+  budget    5s  uniform0  n=15  certified C > W=5  certified W > C=6  certified equality=3  unresolved=1
+  budget   30s  prefix    n=15  certified C > W=15  certified W > C=0  certified equality=0  unresolved=0
+  budget   30s  uniform0  n=15  certified C > W=5  certified W > C=6  certified equality=2  unresolved=2
+
+  per-instance detail (primary scheme uniform0, and prefix):
+  instance          bud    scheme           W           C        diff  verdict
+  p32_a2.5_f0         5    prefix     [11,11]     [16,16]       [5,5]  certified C > W
+  p32_a2.5_f0         5  uniform0     [12,12]     [11,11]     [-1,-1]  certified W > C
+  p32_a2.5_f0        30    prefix     [11,11]     [16,16]       [5,5]  certified C > W
+  p32_a2.5_f0        30  uniform0     [11,11]     [12,12]       [1,1]  certified C > W
+  p32_a2.5_f1         5    prefix     [12,12]     [18,18]       [6,6]  certified C > W
+  p32_a2.5_f1         5  uniform0     [12,12]     [12,12]       [0,0]  certified equality
+  p32_a2.5_f1        30    prefix     [12,12]     [18,18]       [6,6]  certified C > W
+  p32_a2.5_f1        30  uniform0     [13,13]     [14,14]       [1,1]  certified C > W
+  p32_a3.5_f0         5    prefix       [7,7]     [10,10]       [3,3]  certified C > W
+  p32_a3.5_f0         5  uniform0       [8,8]       [7,7]     [-1,-1]  certified W > C
+  p32_a3.5_f0        30    prefix       [7,7]     [10,10]       [3,3]  certified C > W
+  p32_a3.5_f0        30  uniform0       [8,8]       [8,8]       [0,0]  certified equality
+  p32_a3.5_f1         5    prefix       [2,2]       [3,3]       [1,1]  certified C > W
+  p32_a3.5_f1         5  uniform0       [2,2]       [2,2]       [0,0]  certified equality
+  p32_a3.5_f1        30    prefix       [2,2]       [3,3]       [1,1]  certified C > W
+  p32_a3.5_f1        30  uniform0       [3,3]       [1,1]     [-2,-2]  certified W > C
+  p48_a2.5_f0         5    prefix     [19,19]     [25,25]       [6,6]  certified C > W
+  p48_a2.5_f0         5  uniform0     [20,20]     [19,19]     [-1,-1]  certified W > C
+  p48_a2.5_f0        30    prefix     [19,19]     [25,25]       [6,6]  certified C > W
+  p48_a2.5_f0        30  uniform0     [22,22]     [20,20]     [-2,-2]  certified W > C
+  p48_a2.5_f1         5    prefix     [20,20]     [26,26]       [6,6]  certified C > W
+  p48_a2.5_f1         5  uniform0     [19,19]     [19,19]       [0,0]  certified equality
+  p48_a2.5_f1        30    prefix     [20,20]     [26,26]       [6,6]  certified C > W
+  p48_a2.5_f1        30  uniform0     [20,20]     [19,19]     [-1,-1]  certified W > C
+  p48_a3.5_f0         5    prefix     [14,14]     [22,22]       [8,8]  certified C > W
+  p48_a3.5_f0         5  uniform0     [13,13]     [16,16]       [3,3]  certified C > W
+  p48_a3.5_f0        30    prefix     [14,14]     [22,22]       [8,8]  certified C > W
+  p48_a3.5_f0        30  uniform0     [18,18]     [17,17]     [-1,-1]  certified W > C
+  p48_a3.5_f1         5    prefix       [6,6]     [16,16]     [10,10]  certified C > W
+  p48_a3.5_f1         5  uniform0     [17,17]     [19,19]       [2,2]  certified C > W
+  p48_a3.5_f1        30    prefix       [6,6]     [16,16]     [10,10]  certified C > W
+  p48_a3.5_f1        30  uniform0     [17,17]     [14,14]     [-3,-3]  certified W > C
+  p48_a4.2_f0         5    prefix       [7,7]     [10,10]       [3,3]  certified C > W
+  p48_a4.2_f0         5  uniform0       [8,8]       [7,7]     [-1,-1]  certified W > C
+  p48_a4.2_f0        30    prefix       [7,7]     [10,10]       [3,3]  certified C > W
+  p48_a4.2_f0        30  uniform0       [7,7]       [7,7]       [0,0]  certified equality
+  p48_a4.2_f1         5    prefix       [4,4]     [15,15]     [11,11]  certified C > W
+  p48_a4.2_f1         5  uniform0       [5,5]     [16,16]     [11,11]  certified C > W
+  p48_a4.2_f1        30    prefix       [4,4]     [15,15]     [11,11]  certified C > W
+  p48_a4.2_f1        30  uniform0     [15,15]     [10,10]     [-5,-5]  certified W > C
+  p64_a2.5_f0         5    prefix     [25,32]     [37,37]      [5,12]  certified C > W
+  p64_a2.5_f0         5  uniform0     [27,32]     [25,32]      [-7,5]  unresolved
+  p64_a2.5_f0        30    prefix     [25,32]     [37,37]      [5,12]  certified C > W
+  p64_a2.5_f0        30  uniform0     [29,30]     [25,32]      [-5,3]  unresolved
+  p64_a2.5_f1         5    prefix     [27,28]     [35,35]       [7,8]  certified C > W
+  p64_a2.5_f1         5  uniform0     [30,30]     [27,28]     [-3,-2]  certified W > C
+  p64_a2.5_f1        30    prefix     [27,28]     [35,35]       [7,8]  certified C > W
+  p64_a2.5_f1        30  uniform0     [27,28]     [27,28]      [-1,1]  unresolved
+  p64_a3.5_f0         5    prefix     [22,22]     [32,32]     [10,10]  certified C > W
+  p64_a3.5_f0         5  uniform0     [22,22]     [20,20]     [-2,-2]  certified W > C
+  p64_a3.5_f0        30    prefix     [22,22]     [32,32]     [10,10]  certified C > W
+  p64_a3.5_f0        30  uniform0     [22,22]     [23,23]       [1,1]  certified C > W
+  p64_a3.5_f1         5    prefix     [21,21]     [31,31]     [10,10]  certified C > W
+  p64_a3.5_f1         5  uniform0     [22,22]     [23,23]       [1,1]  certified C > W
+  p64_a3.5_f1        30    prefix     [21,21]     [31,31]     [10,10]  certified C > W
+  p64_a3.5_f1        30  uniform0     [21,21]     [23,23]       [2,2]  certified C > W
+  p64_a4.2_f1         5    prefix       [6,6]     [25,25]     [19,19]  certified C > W
+  p64_a4.2_f1         5  uniform0       [7,7]     [18,18]     [11,11]  certified C > W
+  p64_a4.2_f1        30    prefix       [6,6]     [25,25]     [19,19]  certified C > W
+  p64_a4.2_f1        30  uniform0       [7,7]     [19,19]     [12,12]  certified C > W
+
+==============================================================================================================
+TABLE 2 — PREFIX vs UNIFORM, within each solver (same instance, same budget)
+==============================================================================================================
+  solver W  n=30:  certified equality=8  certified prefix > uniform=2  certified uniform > prefix=17  unresolved=3
+  solver C  n=30:  certified prefix > uniform=28  certified uniform > prefix=2
+
+==============================================================================================================
+TABLE 3 — SHORT vs LONG BUDGET, within each solver and scheme
+==============================================================================================================
+  solver W  prefix    n=15:  certified equality=13  unresolved=2
+  solver W  uniform0  n=15:  certified equality=4  certified long > short=6  certified short > long=4  unresolved=1
+  solver C  prefix    n=15:  certified equality=15
+  solver C  uniform0  n=15:  certified equality=3  certified long > short=7  certified short > long=3  unresolved=2
+
+==============================================================================================================
+TABLE 4 — COLLECTION SUCCESS AND INSUFFICIENT SAMPLES
+==============================================================================================================
+  instance         slv   bank 5s  bank 30s      dups  attempts  elig5 elig30
+  p32_a2.5_f0        W      2831      9780      9465     19246    yes    yes
+  p32_a2.5_f0        C     18143     19702    642618     82791    yes    yes
+  p32_a2.5_f1        C     43561     75044    583212     82283    yes    yes
+  p32_a2.5_f1        W      4413     19595      9295     28891    yes    yes
+  p32_a3.5_f0        W       643      1290      6231      7522    yes    yes
+  p32_a3.5_f0        C      1567      1567    530889     66558    yes    yes
+  p32_a3.5_f1        C        66        66    506294     63296    yes    yes
+  p32_a3.5_f1        W        63        66      3858      3925    yes    yes
+  p32_a4.2_f0        W         0         0         0       108     NO     NO
+  p32_a4.2_f0        C         0         0         0    131168     NO     NO
+  p32_a4.2_f1        C         2         2    189306     94655     NO     NO
+  p32_a4.2_f1        W         2         2       350       376     NO     NO
+  p48_a2.5_f0        W      1539      9204        21      9226    yes    yes
+  p48_a2.5_f0        C     75549    408220     65060     59161    yes    yes
+  p48_a2.5_f1        C     75381    377090     95841     59117    yes    yes
+  p48_a2.5_f1        W      1477      9063        52      9116    yes    yes
+  p48_a3.5_f0        W       342      1610       729      2340    yes    yes
+  p48_a3.5_f0        C      6592      7675    323396     41384    yes    yes
+  p48_a3.5_f1        C      1129      1139    334597     41968    yes    yes
+  p48_a3.5_f1        W        85       278       351       630    yes    yes
+  p48_a4.2_f0        W       195       729       590      1320    yes    yes
+  p48_a4.2_f0        C      2459      2585    293517     37013    yes    yes
+  p48_a4.2_f1        C       472       472    302440     37865    yes    yes
+  p48_a4.2_f1        W        60       198       357       557    yes    yes
+  p64_a2.5_f0        W      1250      7045         0      7046    yes    yes
+  p64_a2.5_f0        C     57220    333414       418     41730    yes    yes
+  p64_a2.5_f1        C     51144    314986      1366     39545    yes    yes
+  p64_a2.5_f1        W       831      5029         0      5030    yes    yes
+  p64_a3.5_f0        W       164       979         7       987    yes    yes
+  p64_a3.5_f0        C     31860    112627    156781     33677    yes    yes
+  p64_a3.5_f1        C     28740    120602    146406     33377    yes    yes
+  p64_a3.5_f1        W       141       851        15       867    yes    yes
+  p64_a4.2_f0        W        11        27        91       133     NO     NO
+  p64_a4.2_f0        C        68        68    222948     27878    yes    yes
+  p64_a4.2_f1        C      1154      1156    225801     28370    yes    yes
+  p64_a4.2_f1        W        47       209        87       299    yes    yes
+
+  solver-instance cells failing to reach k=40: 5 s 5/36, 30 s 5/36
+  resource-limited collections: 0
+
+  An insufficient sample is NOT evidence of poor geometric resolution:
+  the formula may simply have fewer than k solutions, which is not
+  established here and is not claimed.
+
+==============================================================================================================
+REPLICATE SENSITIVITY (uniform0 is primary; 1 and 2 are checks, NOT extra instances)
+==============================================================================================================
+  instance-budget cells with all three replicates: 30
+  cells whose verdict VARIES across replicates: 20 -> [('p32_a2.5_f0', '5.0'), ('p32_a2.5_f0', '30.0'), ('p32_a2.5_f1', '5.0'), ('p32_a2.5_f1', '30.0'), ('p32_a3.5_f0', '5.0')]
+
+  wrote data/analysis_summary.json

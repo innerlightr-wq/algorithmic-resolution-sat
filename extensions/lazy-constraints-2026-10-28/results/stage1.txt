@@ -1,0 +1,35 @@
+============================================================================================
+STAGE 1 -- WITNESS TIGHTENING, REPLAYED (no solver)
+============================================================================================
+
+       optimization units recovered with verified hashes: 9
+  [PASS] every optimization unit was recovered through the stage's own hash-verifying recover(), and any mismatch is excluded and reported  -- 9 units recovered, 0 excluded
+
+       optimization-2026-10-27: 37 witnesses replayed, 0 unmatched to an observed set
+       optimization: 0 of 37 witnesses are LOOSE (actual distance exceeds the requested threshold)
+         gain distribution: {0: 37}
+         max gain 0, mean gain 0.000
+
+       optimization: 17 measurements reconstructed from stored witnesses
+         measurements whose certified LOWER BOUND improves: 0
+
+       pilot observed sets recovered: 248
+
+       repository pilot: 557 witnesses replayed, 0 unmatched to an observed set
+       pilot: 79 of 557 witnesses are LOOSE (actual distance exceeds the requested threshold)
+         gain distribution: {0: 478, 1: 38, 2: 10, 3: 13, 4: 12, 5: 5, 6: 1}
+         max gain 6, mean gain 0.316
+
+       pilot: 240 measurements reconstructed from stored witnesses
+         measurements whose certified LOWER BOUND improves: 0
+  [PASS] no replayed witness yields a SMALLER bound than the r+1 update, so the tightening is sound on every stored witness  -- 594 witnesses, min gain 0
+  [PASS] a nonzero fraction of stored witnesses are LOOSE: their actual distance to the observed set exceeds the threshold that was asked for, so the r+1 update discarded certified information  -- 79 of 594 witnesses (13.3%), max gain 6
+  [PASS] BUT the recovery does NOT survive aggregation to the per-measurement best lower bound, which is the quantity the reported intervals use: the radius ladder already drives lo past what a loose witness at a lower radius proves, so every loose witness here is dominated by a later successful query  -- 0 of 257 reconstructed measurements would have a strictly better certified lower bound
+
+       SAT queries the tightened rule would have skipped as already implied (a LOWER bound on the saving -- the policy would diverge after the first skip):
+         optimization : 0 of 37 recorded SAT queries
+         pilot        : 21 of 557 recorded SAT queries
+         examples: [('p32_a3.5_f0_b30_C_uniform0', 1, 3), ('p32_a3.5_f0_b30_C_uniform2', 1, 2), ('p32_a3.5_f0_b5_W_uniform2', 1, 2)]
+  [PASS] the tightening does buy something measurable, but it is SAT QUERIES SKIPPED rather than better final bounds -- and this is a lower bound on the saving, not a runtime claim  -- 21 of 594 recorded SAT queries would have been redundant under the tightened rule
+
+  ALL PASS

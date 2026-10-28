@@ -1,0 +1,91 @@
+{
+  "measurements": 21,
+  "instances": 7,
+  "replicates": 3,
+  "distinct_subsets": 21,
+  "duplicate_subsets": 0,
+  "measurement_level_verdicts": {
+    "certified C > W": 18,
+    "certified W > C": 0,
+    "certified equality": 3,
+    "unresolved": 0
+  },
+  "instance_level_consistency": {
+    "certified consistently": 7
+  },
+  "direction_among_consistent": {
+    "certified C > W": 6,
+    "certified equality": 1
+  },
+  "per_instance": {
+    "n32_a2.5_k4": {
+      "verdicts": [
+        "certified C > W",
+        "certified C > W",
+        "certified C > W"
+      ],
+      "consistency": "certified consistently",
+      "orig_verdict": "certified C > W"
+    },
+    "n48_a2.5_k0": {
+      "verdicts": [
+        "certified C > W",
+        "certified C > W",
+        "certified C > W"
+      ],
+      "consistency": "certified consistently",
+      "orig_verdict": "certified C > W"
+    },
+    "n48_a3.5_k0": {
+      "verdicts": [
+        "certified C > W",
+        "certified C > W",
+        "certified C > W"
+      ],
+      "consistency": "certified consistently",
+      "orig_verdict": "certified C > W"
+    },
+    "n48_a4.2_k1": {
+      "verdicts": [
+        "certified equality",
+        "certified equality",
+        "certified equality"
+      ],
+      "consistency": "certified consistently",
+      "orig_verdict": "certified equality"
+    },
+    "n64_a2.5_k4": {
+      "verdicts": [
+        "certified C > W",
+        "certified C > W",
+        "certified C > W"
+      ],
+      "consistency": "certified consistently",
+      "orig_verdict": "certified C > W"
+    },
+    "n64_a3.5_k3": {
+      "verdicts": [
+        "certified C > W",
+        "certified C > W",
+        "certified C > W"
+      ],
+      "consistency": "certified consistently",
+      "orig_verdict": "certified C > W"
+    },
+    "n64_a4.2_k1": {
+      "verdicts": [
+        "certified C > W",
+        "certified C > W",
+        "certified C > W"
+      ],
+      "consistency": "certified consistently",
+      "orig_verdict": "certified C > W"
+    }
+  },
+  "transfer_only_certified": 5,
+  "needing_new_sat_work": 16,
+  "original_vs_equalsize": {
+    "certified C > W -> certified consistently": 6,
+    "certified equality -> certified consistently": 1
+  }
+}

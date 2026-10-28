@@ -1,0 +1,133 @@
+protocol commit b0c7a79b2a6eb20f7c58c599407112096d1764be
+group budget 300s, slice 30s, overall cap 4h (35 min already spent)
+
+instance          bud    scheme   W interval   C interval        diff      s  verdict
+p32_a2.5_f0         5    prefix      [11,11]      [16,16]       [5,5]    4.2  certified C > W
+p32_a2.5_f0         5  uniform0      [12,12]      [11,11]     [-1,-1]    4.2  certified W > C
+p32_a2.5_f0         5  uniform1      [13,13]      [13,13]       [0,0]    4.2  certified equality
+p32_a2.5_f0         5  uniform2      [14,14]      [11,11]     [-3,-3]    4.2  certified W > C
+p32_a2.5_f0        30    prefix      [11,11]      [16,16]       [5,5]    4.2  certified C > W
+p32_a2.5_f0        30  uniform0      [11,11]      [12,12]       [1,1]    4.2  certified C > W
+p32_a2.5_f0        30  uniform1      [13,13]      [13,13]       [0,0]    4.2  certified equality
+p32_a2.5_f0        30  uniform2      [13,13]      [12,12]     [-1,-1]    4.2  certified W > C
+p32_a2.5_f1         5    prefix      [12,12]      [18,18]       [6,6]    4.7  certified C > W
+p32_a2.5_f1         5  uniform0      [12,12]      [12,12]       [0,0]    4.7  certified equality
+p32_a2.5_f1         5  uniform1      [11,11]      [12,12]       [1,1]    4.7  certified C > W
+p32_a2.5_f1         5  uniform2      [12,12]      [13,13]       [1,1]    4.7  certified C > W
+p32_a2.5_f1        30    prefix      [12,12]      [18,18]       [6,6]    4.6  certified C > W
+p32_a2.5_f1        30  uniform0      [13,13]      [14,14]       [1,1]    4.6  certified C > W
+p32_a2.5_f1        30  uniform1      [13,13]      [13,13]       [0,0]    4.6  certified equality
+p32_a2.5_f1        30  uniform2      [12,12]      [14,14]       [2,2]    4.6  certified C > W
+p32_a3.5_f0         5    prefix        [7,7]      [10,10]       [3,3]    3.8  certified C > W
+p32_a3.5_f0         5  uniform0        [8,8]        [7,7]     [-1,-1]    3.8  certified W > C
+p32_a3.5_f0         5  uniform1        [9,9]      [11,11]       [2,2]    3.8  certified C > W
+p32_a3.5_f0         5  uniform2        [6,6]      [10,10]       [4,4]    3.8  certified C > W
+p32_a3.5_f0        30    prefix        [7,7]      [10,10]       [3,3]    3.6  certified C > W
+p32_a3.5_f0        30  uniform0        [8,8]        [8,8]       [0,0]    3.6  certified equality
+p32_a3.5_f0        30  uniform1        [8,8]        [7,7]     [-1,-1]    3.6  certified W > C
+p32_a3.5_f0        30  uniform2      [10,10]        [7,7]     [-3,-3]    3.6  certified W > C
+p32_a3.5_f1         5    prefix        [2,2]        [3,3]       [1,1]    3.7  certified C > W
+p32_a3.5_f1         5  uniform0        [2,2]        [2,2]       [0,0]    3.7  certified equality
+p32_a3.5_f1         5  uniform1        [1,1]        [2,2]       [1,1]    3.7  certified C > W
+p32_a3.5_f1         5  uniform2        [2,2]        [1,1]     [-1,-1]    3.7  certified W > C
+p32_a3.5_f1        30    prefix        [2,2]        [3,3]       [1,1]    3.7  certified C > W
+p32_a3.5_f1        30  uniform0        [3,3]        [1,1]     [-2,-2]    3.7  certified W > C
+p32_a3.5_f1        30  uniform1        [2,2]        [2,2]       [0,0]    3.7  certified equality
+p32_a3.5_f1        30  uniform2        [1,1]        [1,1]       [0,0]    3.7  certified equality
+p32_a4.2_f0         5     (all)            -            -           -    0.0  INELIGIBLE (banks W=0 C=0, k=40)
+p32_a4.2_f0        30     (all)            -            -           -    0.0  INELIGIBLE (banks W=0 C=0, k=40)
+p32_a4.2_f1         5     (all)            -            -           -    0.0  INELIGIBLE (banks W=2 C=2, k=40)
+p32_a4.2_f1        30     (all)            -            -           -    0.0  INELIGIBLE (banks W=2 C=2, k=40)
+p48_a2.5_f0         5    prefix      [19,19]      [25,25]       [6,6]   20.8  certified C > W
+p48_a2.5_f0         5  uniform0      [20,20]      [19,19]     [-1,-1]   20.8  certified W > C
+p48_a2.5_f0         5  uniform1      [20,20]      [21,21]       [1,1]   20.8  certified C > W
+p48_a2.5_f0         5  uniform2      [21,21]      [20,20]     [-1,-1]   20.8  certified W > C
+p48_a2.5_f0        30    prefix      [19,19]      [25,25]       [6,6]   21.9  certified C > W
+p48_a2.5_f0        30  uniform0      [22,22]      [20,20]     [-2,-2]   21.9  certified W > C
+p48_a2.5_f0        30  uniform1      [19,19]      [20,20]       [1,1]   21.9  certified C > W
+p48_a2.5_f0        30  uniform2      [20,20]      [19,19]     [-1,-1]   21.9  certified W > C
+p48_a2.5_f1         5    prefix      [20,20]      [26,26]       [6,6]   32.8  certified C > W
+p48_a2.5_f1         5  uniform0      [19,19]      [19,19]       [0,0]   32.8  certified equality
+p48_a2.5_f1         5  uniform1      [22,22]      [19,19]     [-3,-3]   32.8  certified W > C
+p48_a2.5_f1         5  uniform2      [20,20]      [19,19]     [-1,-1]   32.8  certified W > C
+p48_a2.5_f1        30    prefix      [20,20]      [26,26]       [6,6]   27.3  certified C > W
+p48_a2.5_f1        30  uniform0      [20,20]      [19,19]     [-1,-1]   27.3  certified W > C
+p48_a2.5_f1        30  uniform1      [21,21]      [20,20]     [-1,-1]   27.3  certified W > C
+p48_a2.5_f1        30  uniform2      [21,21]      [20,20]     [-1,-1]   27.3  certified W > C
+p48_a3.5_f0         5    prefix      [14,14]      [22,22]       [8,8]    8.1  certified C > W
+p48_a3.5_f0         5  uniform0      [13,13]      [16,16]       [3,3]    8.1  certified C > W
+p48_a3.5_f0         5  uniform1      [16,16]      [18,18]       [2,2]    8.1  certified C > W
+p48_a3.5_f0         5  uniform2      [14,14]      [17,17]       [3,3]    8.1  certified C > W
+p48_a3.5_f0        30    prefix      [14,14]      [22,22]       [8,8]    7.5  certified C > W
+p48_a3.5_f0        30  uniform0      [18,18]      [17,17]     [-1,-1]    7.5  certified W > C
+p48_a3.5_f0        30  uniform1      [14,14]      [16,16]       [2,2]    7.5  certified C > W
+p48_a3.5_f0        30  uniform2      [12,12]      [17,17]       [5,5]    7.5  certified C > W
+p48_a3.5_f1         5    prefix        [6,6]      [16,16]     [10,10]    7.2  certified C > W
+p48_a3.5_f1         5  uniform0      [17,17]      [19,19]       [2,2]    7.2  certified C > W
+p48_a3.5_f1         5  uniform1      [17,17]      [20,20]       [3,3]    7.2  certified C > W
+p48_a3.5_f1         5  uniform2        [7,7]      [17,17]     [10,10]    7.2  certified C > W
+p48_a3.5_f1        30    prefix        [6,6]      [16,16]     [10,10]    6.7  certified C > W
+p48_a3.5_f1        30  uniform0      [17,17]      [14,14]     [-3,-3]    6.7  certified W > C
+p48_a3.5_f1        30  uniform1        [5,5]      [19,19]     [14,14]    6.7  certified C > W
+p48_a3.5_f1        30  uniform2        [9,9]      [18,18]       [9,9]    6.7  certified C > W
+p48_a4.2_f0         5    prefix        [7,7]      [10,10]       [3,3]    6.8  certified C > W
+p48_a4.2_f0         5  uniform0        [8,8]        [7,7]     [-1,-1]    6.8  certified W > C
+p48_a4.2_f0         5  uniform1        [7,7]        [8,8]       [1,1]    6.8  certified C > W
+p48_a4.2_f0         5  uniform2        [6,6]        [7,7]       [1,1]    6.8  certified C > W
+p48_a4.2_f0        30    prefix        [7,7]      [10,10]       [3,3]    6.5  certified C > W
+p48_a4.2_f0        30  uniform0        [7,7]        [7,7]       [0,0]    6.5  certified equality
+p48_a4.2_f0        30  uniform1        [8,8]        [9,9]       [1,1]    6.5  certified C > W
+p48_a4.2_f0        30  uniform2        [6,6]        [8,8]       [2,2]    6.5  certified C > W
+p48_a4.2_f1         5    prefix        [4,4]      [15,15]     [11,11]    6.3  certified C > W
+p48_a4.2_f1         5  uniform0        [5,5]      [16,16]     [11,11]    6.3  certified C > W
+p48_a4.2_f1         5  uniform1        [5,5]      [13,13]       [8,8]    6.3  certified C > W
+p48_a4.2_f1         5  uniform2        [5,5]      [18,18]     [13,13]    6.3  certified C > W
+p48_a4.2_f1        30    prefix        [4,4]      [15,15]     [11,11]    6.1  certified C > W
+p48_a4.2_f1        30  uniform0      [15,15]      [10,10]     [-5,-5]    6.1  certified W > C
+p48_a4.2_f1        30  uniform1        [5,5]      [17,17]     [12,12]    6.1  certified C > W
+p48_a4.2_f1        30  uniform2      [10,10]      [12,12]       [2,2]    6.1  certified C > W
+p64_a2.5_f0         5    prefix      [25,32]      [37,37]      [5,12]  300.3  certified C > W
+p64_a2.5_f0         5  uniform0      [27,32]      [25,32]      [-7,5]  300.3  unresolved
+p64_a2.5_f0         5  uniform1      [25,32]      [29,30]      [-3,5]  300.3  unresolved
+p64_a2.5_f0         5  uniform2      [25,32]      [25,32]      [-7,7]  300.3  unresolved
+p64_a2.5_f0        30    prefix      [25,32]      [37,37]      [5,12]  300.0  certified C > W
+p64_a2.5_f0        30  uniform0      [29,30]      [25,32]      [-5,3]  300.0  unresolved
+p64_a2.5_f0        30  uniform1      [25,32]      [25,32]      [-7,7]  300.0  unresolved
+p64_a2.5_f0        30  uniform2      [25,32]      [25,32]      [-7,7]  300.0  unresolved
+p64_a2.5_f1         5    prefix      [27,28]      [35,35]       [7,8]  285.9  certified C > W
+p64_a2.5_f1         5  uniform0      [30,30]      [27,28]     [-3,-2]  285.9  certified W > C
+p64_a2.5_f1         5  uniform1      [29,30]      [29,30]      [-1,1]  285.9  unresolved
+p64_a2.5_f1         5  uniform2      [29,30]      [27,28]     [-3,-1]  285.9  certified W > C
+p64_a2.5_f1        30    prefix      [27,28]      [35,35]       [7,8]  300.1  certified C > W
+p64_a2.5_f1        30  uniform0      [27,28]      [27,28]      [-1,1]  300.1  unresolved
+p64_a2.5_f1        30  uniform1      [27,28]      [28,28]       [0,1]  300.1  unresolved
+p64_a2.5_f1        30  uniform2      [28,28]      [28,32]       [0,4]  300.1  unresolved
+p64_a3.5_f0         5    prefix      [22,22]      [32,32]     [10,10]   19.1  certified C > W
+p64_a3.5_f0         5  uniform0      [22,22]      [20,20]     [-2,-2]   19.1  certified W > C
+p64_a3.5_f0         5  uniform1      [20,20]      [22,22]       [2,2]   19.1  certified C > W
+p64_a3.5_f0         5  uniform2      [25,25]      [22,22]     [-3,-3]   19.1  certified W > C
+p64_a3.5_f0        30    prefix      [22,22]      [32,32]     [10,10]   18.6  certified C > W
+p64_a3.5_f0        30  uniform0      [22,22]      [23,23]       [1,1]   18.6  certified C > W
+p64_a3.5_f0        30  uniform1      [23,23]      [25,25]       [2,2]   18.6  certified C > W
+p64_a3.5_f0        30  uniform2      [20,20]      [26,26]       [6,6]   18.6  certified C > W
+p64_a3.5_f1         5    prefix      [21,21]      [31,31]     [10,10]   24.4  certified C > W
+p64_a3.5_f1         5  uniform0      [22,22]      [23,23]       [1,1]   24.4  certified C > W
+p64_a3.5_f1         5  uniform1      [20,20]      [23,23]       [3,3]   24.4  certified C > W
+p64_a3.5_f1         5  uniform2      [20,20]      [22,22]       [2,2]   24.4  certified C > W
+p64_a3.5_f1        30    prefix      [21,21]      [31,31]     [10,10]   26.3  certified C > W
+p64_a3.5_f1        30  uniform0      [21,21]      [23,23]       [2,2]   26.3  certified C > W
+p64_a3.5_f1        30  uniform1      [22,22]      [22,22]       [0,0]   26.3  certified equality
+p64_a3.5_f1        30  uniform2      [21,21]      [21,21]       [0,0]   26.3  certified equality
+p64_a4.2_f0         5     (all)            -            -           -    0.0  INELIGIBLE (banks W=11 C=68, k=40)
+p64_a4.2_f0        30     (all)            -            -           -    0.0  INELIGIBLE (banks W=27 C=68, k=40)
+p64_a4.2_f1         5    prefix        [6,6]      [25,25]     [19,19]   10.4  certified C > W
+p64_a4.2_f1         5  uniform0        [7,7]      [18,18]     [11,11]   10.4  certified C > W
+p64_a4.2_f1         5  uniform1        [6,6]      [19,19]     [13,13]   10.4  certified C > W
+p64_a4.2_f1         5  uniform2        [6,6]      [18,18]     [12,12]   10.4  certified C > W
+p64_a4.2_f1        30    prefix        [6,6]      [25,25]     [19,19]   10.4  certified C > W
+p64_a4.2_f1        30  uniform0        [7,7]      [19,19]     [12,12]   10.4  certified C > W
+p64_a4.2_f1        30  uniform1        [8,8]      [19,19]     [11,11]   10.4  certified C > W
+p64_a4.2_f1        30  uniform2      [17,17]        [8,8]     [-9,-9]   10.4  certified W > C
+
+  certification wall 1487s
+  wrote data/paired_results.csv, data/groups.json

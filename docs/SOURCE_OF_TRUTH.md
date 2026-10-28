@@ -56,3 +56,56 @@ Final accepted result set for the V2 manuscript, synthesized from the frozen Pha
 ## F. The central empirical finding (B5+B6 combined) — this is the manuscript's spine
 
 At matched or near-matched coverage, on the **identical** solution space `S_I`, WalkSAT and CDCL trade off in **opposite directions** on two logically-independent geometric diagnostics: WalkSAT achieves significantly better `ε̂` (covering-radius resolution) but dramatically worse apparent connectivity (fragmentation); CDCL achieves worse `ε̂` but dramatically better apparent connectivity. This is a direct, "in the wild" empirical realization of the worst-case logical-independence theorem (A6), produced by two real, unmodified, off-the-shelf solvers, not hand-constructed. Per `PAIRED_OBSERVER_TEST.md`: *"arguably the single strongest, most defensible empirical result to come out of the entire four-phase project."*
+
+---
+
+# Appendix D — October 2026 consolidation (added 2026-10-28)
+
+This appendix extends `SOURCE_OF_TRUTH.md` with the results of the October 2026
+follow-up work. **Sections A–C above remain authoritative for the V2
+manuscript.** Nothing here reinstates a retracted claim: `C1` (cross-solver
+predictive transfer) and `C7` (solver-portfolio performance superiority) stay
+retracted and are not used anywhere in the consolidation.
+
+The current source of truth for the October work is:
+
+| topic | authoritative document |
+|---|---|
+| representation invariance, margins | `extensions/representation-invariance-2026-10-28/NOTE.md` |
+| lazy constraints, witness tightening | `extensions/lazy-constraints-2026-10-28/REPORT.md` |
+| both, consolidated and citable | `notes/consolidation-2026-10-28/` (PDF) |
+| claim-to-evidence mapping | `CLAIM_EVIDENCE_MAP.md` |
+
+## D. October 2026 results
+
+| # | Statement | Status | Source |
+|---|---|---|---|
+| D1 | Under (H1) `π(S_G)=S_F` and (H2) `π(A')=A`, `ε` measured on the original variables is exactly invariant | Proved; elementary restatement of a standard projection fact | `representation-invariance-2026-10-28/NOTE.md` §2 |
+| D2 | `ε ≤ ε_full ≤ ε + p` on all `n+p` coordinates, both bounds attained | Proved. **The additive-`p` inequality is CLASSICAL** — Cohen, Karpovsky, Mattson & Schatz, IEEE Trans. IT-31(3), 1985, Corollary 1 (covering radius over the whole Hamming space). Solution-relative form only is ours | same, §3; `LITERATURE.md` §1 |
+| D3 | Certified margin `M ∈ [ℓ,u]`: preserved for `p<ℓ`, unsettled for `ℓ≤p<u`, some extension ties/reverses for `p≥u` | Proved. Existence half quantifies over **unrestricted** permitted lifts; under matched lifted cardinalities or unique extensions it is **open** | same, §4 |
+| D4 | (H2) is a set equality: non-injectivity of `π` on `A'` does not violate it | Proved by witness `A'={(0,0),(0,1)}`, `A={0}` | same, §2 |
+| D5 | 116 certified comparisons (92 exact margins, 24 intervals) over ≤ 25 instances with replicates nested; 43 carry no guarantee beyond `p=0` | Measured | `representation-invariance-2026-10-28/results/diagnostic.txt` |
+| D6 | Witness tightening (`lo ← max(lo, d)`) is sound on all 594 stored witnesses; 79 loose, max gain 6 | Measured | `lazy-constraints-2026-10-28/results/stage1.txt` |
+| D7 | The tightening improves **0 of 257** reconstructed measurements; retrospective query saving 21/557 pilot and **0/37** hard units | Measured. **Not** an online runtime measurement | same |
+| D8 | Lazy distance-constraint generation is exact and terminates on 3–43 % of the constraints | Proved (subset-inclusion) + measured | `lazy-constraints-2026-10-28/REPORT.md` |
+| D9 | On the **3 verified-paired** units: 46.0 s → 18.9 s (2.43×), checker time 23.2 s → 3.2 s. On the 4 units exact under both in the original run: 165.3 s → 99.5 s (1.66×) | Measured | `data/pairing.json`, `data/stage2.json` |
+| D10 | `n64_a2.5_k0_W` is **not** verified paired and its stage-2 exact answer did not reproduce (static ladder budget-limited) | Measured; excluded from all paired claims | `results/pairing.txt` |
+| D11 | On the 5 unresolved units the lazy method is worse: summed widths 46 (static) vs 60 (lazy) | Measured | `data/stage2.json` |
+| D12 | ERV scope: it varies an **observable**, not a decision; `LINSAT ∈ P` under both encodings; closure size is `2^rank[A|b]` (augmented rank) | Proved + measured | `representation-invariance-2026-10-28/results/premises.txt` |
+
+## D-C. Corrections and retractions from this round
+
+| # | Claim | Status |
+|---|---|---|
+| DC1 | "Small-margin comparisons are destroyed by a single auxiliary variable" | **Corrected.** The void half is an existence statement over permitted lifts, not a claim about a given encoding |
+| DC2 | "The void half is unavailable for intervals bounded only below" | **Corrected.** The upper endpoint is informative: `p ≥ u` does give a void verdict |
+| DC3 | "Lemma 1 explains why re-encoding cannot help" | **Retracted.** Preserving a quantity does not imply its computation cannot be cheapened. This work establishes no computational improvement from projection |
+| DC4 | "Removing constraints makes proofs longer in general" | **Retracted.** Logical strength does not determine proof length; the study's own data refutes it |
+| DC5 | "`|Closure(A,b)| = 2^rank(A)`" | **Corrected** to the augmented rank `2^rank[A\|b]` |
+| DC6 | "Equal query counts show the comparison is paired per query" | **Corrected.** Verified by radius sequence instead; one of four units failed |
+
+## D-N. Not established
+
+No general speedup for lazy constraints, no asymptotic improvement, no solver
+ranking, no complexity-class consequence, no claim that `B ⊆ A` from a lazy
+refutation is minimal or preserves `ε`, and no priority claim from any PDF date.

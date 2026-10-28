@@ -7,8 +7,8 @@ authors:
     given-names: "Elias"
     orcid: "https://orcid.org/0009-0007-0190-9143"
     affiliation: "Independent Researcher"
-date-released: 2026-09-29
-version: "0.2.0"
+date-released: 2026-10-28
+version: "0.3.0"
 repository-code: "https://github.com/innerlightr-wq/algorithmic-resolution-sat"
 license: Apache-2.0
 abstract: >-
@@ -30,6 +30,25 @@ keywords:
   - WalkSAT
   - CDCL
   - Glucose
+references:
+  - type: article
+    title: "Algorithmic Resolution and Geometric Distinguishability in SAT Solution Spaces"
+    authors:
+      - family-names: "De Jesus"
+        given-names: "Elias"
+        orcid: "https://orcid.org/0009-0007-0190-9143"
+    year: 2026
+    doi: "10.5281/zenodo.23038050"
+    notes: "Antecedent paper. Version DOI; concept DOI 10.5281/zenodo.18216781."
+  - type: article
+    title: "Encoding-Relative Variance (ERV) Barrier"
+    authors:
+      - family-names: "De Jesus"
+        given-names: "Elias"
+        orcid: "https://orcid.org/0009-0007-0190-9143"
+    year: 2026
+    doi: "10.5281/zenodo.18269283"
+    notes: "Version DOI; concept DOI 10.5281/zenodo.18236865."
 preferred-citation:
   type: article
   title: "Algorithmic Resolution and Solver-Dependent Observational Geometry in SAT Solution Spaces"
@@ -39,4 +58,5 @@ preferred-citation:
       orcid: "https://orcid.org/0009-0007-0190-9143"
       affiliation: "Independent Researcher"
   year: 2026
-  # No DOI yet -- to be added after Zenodo deposition.
+  # No DOI yet -- to be added after Zenodo deposition of this repository.
+  # The antecedent paper and the ERV note have their own DOIs; see "references".

@@ -16,7 +16,7 @@ Three quantities are kept explicitly separate:
 
 ## Central finding
 
-On 349 paired held-out random-3-SAT instances, comparing WalkSAT (stochastic local search) against a CDCL solver (Glucose3) at matched or near-matched coverage on the **same** solution space: WalkSAT achieves significantly better resolution ($\hat\varepsilon$; paired $p=5.1\times10^{-38}$) while showing a median $11.6\times$ (95% CI $[9.6,13.3]$) greater apparent connectivity fragmentation than CDCL. Neither solver is geometrically superior in an unqualified sense — each better preserves a different, logically independent aspect of the true solution-space geometry. This is reported conservatively; see the paper's Discussion section for exact scope limits.
+On 349 paired held-out random-3-SAT instances, comparing WalkSAT (stochastic local search) against a CDCL solver (Glucose3) on the **same** solution space, each at its own standard budget: WalkSAT achieves significantly better resolution ($\hat\varepsilon$; paired $p=5.1\times10^{-38}$) while showing a median $11.6\times$ (95% CI $[9.6,13.3]$) greater apparent connectivity fragmentation than CDCL. Both effects **survive restricting to the approximately coverage-matched subset** of $160$ instances (coverage within 10 percentage points): resolution $p=2.5\times10^{-8}$, fragmentation $p=2.4\times10^{-7}$. The $349$-instance figures are *not* themselves coverage-matched — see [`docs/ADDENDUM_2026-10-27.md`](docs/ADDENDUM_2026-10-27.md). Neither solver is geometrically superior in an unqualified sense — each better preserves a different, logically independent aspect of the true solution-space geometry. This is reported conservatively; see the paper's Discussion section for exact scope limits.
 
 This repository also reports, in full and without rescue, an initially promising cross-solver predictive-transfer finding that did **not** survive confound analysis and is explicitly retracted in the manuscript (Section 9).
 
@@ -38,6 +38,13 @@ algorithmic-resolution-sat/
 │   ├── phase3/     CDCL (Glucose3) experiment, cross-solver geometry, sharpness proof
 │   ├── phase4/     Confound audit, fragmentation replication (the paper's central result)
 │   └── figures/    generate_figures.py
+├── extensions/                 Post-publication work. Additive; the manuscript is unchanged.
+│   ├── certified-resolution-2026-10-27/
+│   │                Certified resolution past the n<=20 enumeration ceiling
+│   │                (n = 32, 48, 64) + an equal-size control on the central ordering
+│   └── solver-budget-selection-pilot-2026-10-27/
+│                    Prospective pilot: common time budget, equal retained size,
+│                    prefix vs uniform-subsample selection
 ├── data/
 │   ├── phase2/     Frozen WalkSAT results and verification logs
 │   ├── phase3/     Frozen CDCL results and verification logs
@@ -53,6 +60,64 @@ algorithmic-resolution-sat/
     ├── LICENSE_NOTE.md             licensing decision record
     └── validation/                 the full narrative audit trail (Phases 1-4, 48 documents)
 ```
+
+## Post-publication extensions
+
+`extensions/` holds work done after the September 2026 manuscript. It is
+**additive**: the paper, its figures and the frozen Phase 1–4 record are
+unchanged, and nothing in `extensions/` revises a published claim.
+
+### `certified-resolution-2026-10-27/`
+
+The manuscript measures resolution by **enumerating** `S_I`, which caps its
+experiments at `n ≤ 20`. This extension replaces the enumeration with `O(log n)`
+SAT queries, each carrying an independently checkable certificate — a satisfying
+assignment re-checked on the original variables for a lower bound, a DRUP
+refutation accepted by a pinned [drat-trim](https://github.com/marijnheule/drat-trim)
+for an upper bound. `UNKNOWN` tightens nothing and a bare solver `UNSAT` is
+never treated as certified.
+
+That makes resolution measurable at `n = 32, 48, 64`, and makes the paper's
+central ordering testable under a control it did not have. In the larger-`n`
+data WalkSAT's recorded set is also *larger* in 31 of 32 instances (typically
+150 vs 40), and a smaller observed set mechanically admits a larger covering
+radius — so the ordering was confounded with set size. Uniformly subsampling
+the larger set down to the smaller one's cardinality, across 7 instances
+covering every `(n, density)` stratum with 3 replicates each:
+**6 of 7 instances certified `ε_C > ε_W`** (WalkSAT better), **1 certified
+equality** — the one that was already an equality at unequal sizes — and
+**0 reversals, 0 unresolved**, with the same verdict in all three replicates on
+all seven.
+
+### `solver-budget-selection-pilot-2026-10-27/`
+
+A fresh prospective pilot, not a confirmation study: under a **common
+implementation-level time budget** and equal retained sample size, how do the
+two solvers compare when observed sets are built from first discoveries versus
+from a uniform subsample of everything recorded in the budget?
+
+### Scope limits that apply to both
+
+- **Equal cardinality on the same formula implies exactly equal coverage
+  fractions**, because `|A|/|S_I|` shares one constant denominator — but the
+  numerical fraction remains **unknown**, since `|S_I|` is not computed beyond
+  `n ≤ 20`. No coverage value is reported.
+- **Random subsampling is uniform within a recorded set, not within `S_I`.** It
+  cannot repair a recorded set that was unevenly spread.
+- **A higher lower bound alone does not prove one true resolution exceeds
+  another.** With interval-valued measurements an ordering is certified only
+  when the intervals are disjoint; overlapping intervals establish nothing, not
+  even equality.
+- **The seven-instance equal-size study does not establish a universal solver
+  ranking.** No p-value is computed for it.
+- **These extensions measure resolution only.** The connectivity and
+  fragmentation findings are **not** extended past `n ≤ 20`.
+- **Equal wall-clock time does not equalise abstract algorithmic work**, and
+  Python-versus-compiled implementation costs remain relevant throughout.
+
+See also [`docs/ADDENDUM_2026-10-27.md`](docs/ADDENDUM_2026-10-27.md), which
+corrects a coverage-matching labelling error in this README and in
+`docs/SOURCE_OF_TRUTH.md` without editing the frozen reports.
 
 ## Reproducibility
 
