@@ -1,0 +1,26 @@
+{
+ "protocol_sha": "c2047518cf88033a70f23c5be8951caa",
+ "opt": {
+  "n": 37,
+  "loose": 0,
+  "neg": 0,
+  "max_gain": 0,
+  "mean_gain": 0.0
+ },
+ "pilot": {
+  "n": 557,
+  "loose": 79,
+  "neg": 0,
+  "max_gain": 6,
+  "mean_gain": 0.31597845601436264
+ },
+ "opt_improved": 0,
+ "opt_measurements": 17,
+ "pilot_improved": 0,
+ "pilot_measurements": 240,
+ "opt_deltas": [],
+ "pilot_deltas": [],
+ "unmatched_opt": 0,
+ "unmatched_pilot": 0,
+ "excluded": []
+}

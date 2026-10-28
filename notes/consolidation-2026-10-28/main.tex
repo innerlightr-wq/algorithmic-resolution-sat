@@ -1,0 +1,576 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage[hidelinks,breaklinks]{hyperref}
+\usepackage{url}
+\usepackage{enumitem}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{observation}[theorem]{Finite validation}
+\newtheorem{conjecture}[theorem]{Open question}
+
+\newcommand{\epshat}{\hat{\varepsilon}}
+\newcommand{\dH}{d_{\mathrm{H}}}
+\newcommand{\SF}{S_F}
+\newcommand{\Qr}{Q_r}
+
+\title{Certified SAT Covering-Radius Measurement:\\
+Representation Invariance and Lazy-Constraint Experiments}
+\author{Elias De Jesus\\[2pt]
+\small Independent Researcher\\
+\small ORCID: \href{https://orcid.org/0009-0007-0190-9143}{0009-0007-0190-9143}}
+\date{28 October 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This technical report consolidates two follow-up studies to
+\emph{Algorithmic Resolution and Geometric Distinguishability in SAT Solution
+Spaces}~\cite{dejesus2026sat}. Both concern the \emph{covering-radius
+resolution} $\epshat(A,F)$ of a recorded sample $A$ of satisfying assignments:
+how far the worst solution of $F$ sits from the nearest recorded one. First, we
+record exactly how $\epshat$ behaves when a formula is re-encoded with auxiliary
+variables. Measured on the original variables it is exactly invariant; measured
+on all variables it can move, by at most the number of auxiliary variables, and
+that bound is attained. The additive inequality is classical, appearing for
+codes in Cohen, Karpovsky, Mattson and Schatz~\cite{cohen1985covering}; what we
+add is the solution-relative form, with both projection hypotheses stated
+explicitly, and a margin criterion telling which certified comparisons survive a
+re-encoding. Applied to our own certified data, 43 of 116 comparisons carry no
+guarantee beyond zero auxiliary variables. Second, we report a small paired
+implementation study of two changes to the measurement procedure itself:
+tightening a lower bound to a witness's actual distance, and generating distance
+constraints lazily. The tightening is sound but recovers nothing on any of 257
+reconstructed measurements. Lazy constraint generation is exact and needs only
+3--43\,\% of the distance constraints. On the three units whose radius
+sequences we verified identical it reduces total time including certification
+from $46.0$\,s to $18.9$\,s; a fourth unit was exact under both methods in the
+original run but sits on the measurement budget and did not reproduce, so it is
+excluded from paired claims. On the five units that do not resolve, the lazy
+method is worse. We claim no
+general speedup, no asymptotic improvement, no solver ranking, and no
+complexity-class consequence.
+\end{abstract}
+
+\section{Scope, and what is new}
+
+This is a consolidation report, not a new theory. It is written to be read
+alongside the antecedent paper~\cite{dejesus2026sat}, which introduced the
+observable, the experimental programme, and the solver comparisons that
+motivated everything here. Three things in it are new relative to that paper:
+
+\begin{enumerate}[nosep]
+\item an explicit statement of the two hypotheses under which $\epshat$ is
+      preserved by re-encoding, and of the sharp additive bound when it is not
+      (\S\ref{sec:invariance});
+\item a margin criterion for certified \emph{comparisons} of two samples, and
+      its measured distribution over our own certified data
+      (\S\ref{sec:margins});
+\item a paired implementation study of two changes to the measurement
+      procedure (\S\ref{sec:stage1}--\S\ref{sec:stage2}).
+\end{enumerate}
+
+Two things in it \emph{qualify} earlier interpretations. The antecedent paper
+reported a solver ordering on $\epshat$; a later budget-and-selection control
+found that ordering to depend on the selection rule as much as on the solver,
+and the cross-solver predictive claim of the earlier work has been retracted in
+the repository's claim ledger. Nothing in this report reinstates either.
+
+Throughout we keep four categories visibly distinct: \textbf{theorems} (proved
+here or quoted with attribution), \textbf{finite validation} (exhaustive checks
+over small instances), \textbf{measured results} (this study's runs), and
+\textbf{open questions}. Passing a finite test does not prove a universal claim,
+and we never present one as if it did.
+
+\begin{remark}[A naming caution]
+``Covering-radius resolution'' is a \emph{geometric observable}: a distance in
+the Hamming cube. It has nothing to do with \emph{resolution} as a propositional
+proof system. We use the longer phrase, or simply $\epshat$, wherever confusion
+is possible, and we never abbreviate it to ``resolution'' alone.
+\end{remark}
+
+\section{The observable and the exact query}
+
+Let $F$ be a CNF formula on $n$ variables with satisfying set
+$\SF = \mathrm{sat}(F) \neq \emptyset$, and let $A \subseteq \SF$ be a nonempty
+\emph{recorded sample}: the distinct solutions some procedure actually wrote
+down. Write $\dH$ for Hamming distance.
+
+\begin{definition}[Covering-radius resolution]
+\[
+  \varepsilon(A,\SF) \;=\; \max_{x \in \SF}\ \min_{a \in A}\ \dH(x,a).
+\]
+\end{definition}
+
+This is the smallest $\rho$ for which balls of radius $\rho$ around the recorded
+sample cover every solution. It measures \emph{how well $A$ covers $\SF$
+geometrically}, which is a different question from \emph{what fraction of $\SF$
+lies in $A$}: a sample can have tiny coverage and small $\varepsilon$, or large
+coverage and large $\varepsilon$. Coverage and covering-radius resolution are
+logically independent, as established in the antecedent
+work~\cite{dejesus2026sat}. For a code $C \subseteq \{0,1\}^n$ and
+$\SF = \{0,1\}^n$ this is exactly the covering radius of coding
+theory~\cite{cohen1997covering}.
+
+\paragraph{The exact threshold query.}
+$\varepsilon$ is computed, not estimated, through a family of SAT queries:
+\begin{equation}\label{eq:query}
+  \Qr(x) \;\equiv\; F(x) \;\wedge\; \bigwedge_{a \in A} \dH(x,a) \ge r+1 .
+\end{equation}
+Each distance constraint is a cardinality constraint over all $n$ variables,
+encoded with the sequential counter of Sinz~\cite{sinz2005towards} via
+PySAT~\cite{ignatiev2018pysat}. The query family is monotone in $r$, and
+\[
+  \Qr \text{ satisfiable} \Rightarrow \varepsilon \ge r+1,
+  \qquad
+  \Qr \text{ unsatisfiable} \Rightarrow \varepsilon \le r .
+\]
+
+\begin{observation}[Boundaries, exhaustively checked]\label{obs:oracle}
+Over all $3\,679$ pairs $(A,\SF)$ arising from $n=4$: the ladder reconstructs
+$\varepsilon$ exactly and is monotone in $r$ in every case; $Q_0$ is
+unsatisfiable exactly when $A = \SF$, i.e.\ exactly when $\varepsilon = 0$; and
+$Q_n$ demands distance $\ge n+1$ in an $n$-cube, so it is unsatisfiable
+unconditionally and yields the sound but vacuous $\varepsilon \le n$. This is a
+finite check at one small $n$, not a proof for all $n$; the $r=0$ and $r=n$
+statements are immediate from the definitions.
+\end{observation}
+
+\paragraph{What makes a bound certified.}
+A \emph{lower} bound requires a satisfying assignment that is independently
+re-checked against $F$ and against the \emph{entire} recorded sample $A$. An
+\emph{upper} bound requires a refutation: Glucose~3~\cite{audemard2009predicting}
+emits a clausal proof in DRUP form, which is checked by
+\texttt{drat-trim}~\cite{wetzler2014dratrim} at a pinned commit. An
+\texttt{UNKNOWN} result, or an UNSAT whose proof was not checked, tightens
+\emph{no} certified bound and is reported as such. Every interval in this report
+is bracketed by evidence of these two kinds.
+
+\section{Representation invariance}\label{sec:invariance}
+
+Let $G$ be a formula on $n+p$ variables and let
+$\pi : \{0,1\}^{n+p} \to \{0,1\}^n$ drop the auxiliary block. Two hypotheses are
+used throughout; \emph{both} are required and neither implies the other.
+
+\begin{description}[nosep]
+\item[(H1) the solution set projects:] $\pi(S_G) = \SF$.
+\item[(H2) the recorded sample projects:] $\pi(A') = A$ for the lifted sample
+      $A' \subseteq S_G$.
+\end{description}
+
+(H1) is projected logical equivalence, which is exactly what projected knowledge
+compilation certifies: Bryant, Tan and Heule~\cite{bryant2025certifying} partition
+variables into data and existentially quantified ones and certify, with
+HOL4-validated soundness, that a compiled representation is logically equivalent
+to the quantified input. Their \emph{Skolem assignments} \emph{construct} a lift
+satisfying (H2) for a sample one chooses --- which covers every lift used below
+--- but they do not certify (H2) for an \emph{arbitrary recorded} sample. When
+$A'$ is whatever a solver happened to record, (H2) is an assumption about the
+recording procedure.
+
+\begin{remark}[(H2) is set equality, not injectivity]\label{rem:inj}
+Failure of injectivity of $\pi$ on $A'$ does \emph{not} violate (H2). Take
+$A' = \{(0,0),(0,1)\}$ and $A = \{0\}$: then $\pi(A') = \{0\} = A$, so (H2)
+holds while $\pi$ collapses two members. (H2) fails exactly when the projected
+set \emph{omits or adds} an assignment relative to $A$. Non-injectivity is a
+separate matter: it changes distinct-sample counts and can change sampling
+weights, which affects cardinality-matched comparisons but not $\varepsilon$.
+\end{remark}
+
+\begin{lemma}[Invariance on the original coordinates]\label{lem:inv}
+Assume \textup{(H1)} and \textup{(H2)}. Then
+\[
+  \varepsilon_x(A',G) \;:=\;
+  \max_{v \in S_G}\ \min_{w \in A'}\ \dH(\pi v, \pi w)
+  \;=\; \varepsilon(A,\SF).
+\]
+\end{lemma}
+\begin{proof}
+$\dH(\pi v, \pi w)$ depends on $w$ only through $\pi w$, and $\pi$ maps $A'$
+onto $A$ by (H2), so the inner minimum equals
+$\min_{a \in A}\dH(\pi v, a)$. By (H1) the outer maximum ranges over exactly
+$\SF$.
+\end{proof}
+
+This is a restatement in metric language of the standard projection fact, and we
+claim no novelty for it. Its practical content is that a measurement taken on
+the original variables is untouched by auxiliary ones.
+
+\begin{theorem}[Auxiliary-coordinate bound]\label{thm:D}
+Assume \textup{(H1)} and \textup{(H2)}, and measure on all $n+p$ coordinates.
+Then
+\[
+  \varepsilon(A,\SF) \;\le\; \varepsilon_{\mathrm{full}}(A',G)
+  \;\le\; \varepsilon(A,\SF) + p ,
+\]
+and both bounds are attained.
+\end{theorem}
+\begin{proof}
+Since $\dH(v,w) = \dH(\pi v,\pi w) + \dH(v|_{\mathrm{aux}}, w|_{\mathrm{aux}})
+\ge \dH(\pi v,\pi w)$, the lower bound follows from Lemma~\ref{lem:inv}. For the
+upper bound fix $v \in S_G$, put $x = \pi v \in \SF$, choose $a^\ast$ attaining
+$\min_a \dH(x,a) \le \varepsilon$, and take $w \in A'$ with $\pi w = a^\ast$,
+available by (H2); then
+$\min_{w'} \dH(v,w') \le \dH(x,a^\ast) + \dH(v|_{\mathrm{aux}},w|_{\mathrm{aux}})
+\le \varepsilon + p$. For attainment take free padding,
+$S_G = \SF \times \{0,1\}^p$: lifting every $a \in A$ to every auxiliary value
+gives $\varepsilon_{\mathrm{full}} = \varepsilon$, and placing all lifts at one
+auxiliary value gives $\varepsilon + p$.
+\end{proof}
+
+\paragraph{Attribution.}
+The additive-$p$ inequality is \textbf{classical}. Cohen, Karpovsky, Mattson and
+Schatz~\cite{cohen1985covering}, Corollary~1, state that puncturing a code on
+$p$ coordinates reduces its covering radius by at most $p$ --- the same
+phenomenon read in the opposite direction. There the maximum defining the
+covering radius runs over the \emph{whole} Hamming space; Theorem~\ref{thm:D} is
+the solution-relative form, where it runs over $\SF$ and the ambient set is
+coupled to the extension by (H1), and its proof is the classical one.
+Theorem~\ref{thm:D} specialises to their statement when $\SF = \{0,1\}^n$. We
+emphasise that a limited literature search does not establish priority; we
+searched the covering-code and projected-counting literatures and report what we
+found, not an exhaustive survey.
+
+\begin{observation}[Sharpness and controls, exhaustively checked]\label{obs:controls}
+Over small instances with exact integer arithmetic: variable permutations
+composed with coordinate complementations preserve $\varepsilon$,
+$\varepsilon_{\mathrm{full}}$ and $|A|$ exactly ($153\,600$ (isometry, instance)
+pairs, no discrepancy); a uniquely determined duplicate variable $z = x_0$ adds
+no solution and leaves $\varepsilon_x$ untouched on all $120$ tested pairs, yet
+moves $\varepsilon_{\mathrm{full}}$ on $80$ of them, because the all-coordinate
+metric silently gives one original coordinate weight $2$; free padding attains
+both ends of Theorem~\ref{thm:D} ($360$ instances each); and uniform sampling of
+$S_G$ projects to the multiplicity-weighted law, with exact total variation $0$
+for constant multiplicity and $1/6$ for $\mathrm{mult}(x)=1+[x_0{=}1]$ at $n=3$.
+\end{observation}
+
+\begin{remark}[What invariance does not say]\label{rem:cost}
+Lemma~\ref{lem:inv} says a re-encoding cannot change the \emph{value} of
+$\epshat$ measured on the original variables. It does \textbf{not} say that a
+re-encoding cannot reduce the \emph{cost} of computing that value. Preserving a
+quantity and cheapening its computation are compatible, and
+\S\ref{sec:stage2} measures a case where a changed representation is in fact
+cheaper. This report establishes no computational improvement from
+\emph{projection} specifically; that is a gap in our evidence, not a theorem.
+\end{remark}
+
+\section{Comparison margins}\label{sec:margins}
+
+Experiments compare two recorded samples on the same formula. Suppose
+$A_1, A_2 \subseteq \SF$ with a certified strict margin
+$M = \varepsilon(A_1,\SF) - \varepsilon(A_2,\SF) \ge 1$.
+
+\begin{corollary}\label{cor:D1}
+Measuring on all coordinates, under any extension by $p$ auxiliary variables
+with lifts of both samples satisfying \textup{(H1)} and \textup{(H2)}:
+if $M \ge p+1$ then
+$\varepsilon_{\mathrm{full}}(A_1') > \varepsilon_{\mathrm{full}}(A_2')$ for
+\emph{every} such extension and lift; if $M \le p$ then \emph{some} extension
+and lift ties the comparison \textup{(}at $M = p$\textup{)} or strictly reverses
+it \textup{(}at $M \le p-1$\textup{)}.
+\end{corollary}
+\begin{proof}
+If $M \ge p+1$ then by Theorem~\ref{thm:D},
+$\varepsilon_{\mathrm{full}}(A_1') \ge \varepsilon(A_1)
+ = \varepsilon(A_2) + M > \varepsilon(A_2) + p
+ \ge \varepsilon_{\mathrm{full}}(A_2')$.
+For the second part use free padding with $A_2$ lifted to one auxiliary value
+and $A_1$ to all, giving $\varepsilon_{\mathrm{full}}(A_2') = \varepsilon(A_2)+p$
+and $\varepsilon_{\mathrm{full}}(A_1') = \varepsilon(A_2)+M$ exactly.
+\end{proof}
+
+\begin{corollary}[What a certified \emph{interval} establishes]\label{cor:D2}
+In practice $M$ is certified only as $M \in [\ell,u]$ with $\ell \ge 1$.
+Combining Corollary~\ref{cor:D1} with the interval gives three regimes:
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+auxiliary variables & what the interval establishes \\
+\midrule
+$p < \ell$          & $M \ge \ell > p$: every allowed extension preserves the ordering \\
+$\ell \le p < u$    & neither half applies: the interval alone does not settle it \\
+$p \ge u$           & $M \le u \le p$: some allowed extension ties or reverses it \\
+\bottomrule
+\end{tabular}
+\end{center}
+An exact margin is the degenerate case $\ell = u$, where the middle regime is
+empty and the interval settles every $p$.
+\end{corollary}
+
+\begin{remark}[Two cautions]
+First, the second regime is an \emph{existence} statement over the theorem's
+unrestricted permitted lifts. It does not say that a given encoding reverses a
+given comparison, and adding auxiliary variables does not automatically reverse
+anything. Second, the witnesses realising it use free padding with lifts of
+unequal cardinality. If one additionally \emph{requires} matched lifted
+cardinalities or unique extensions, the sharpness claim is not established by
+the argument above and would need a separate proof; we do not claim it.
+\end{remark}
+
+\paragraph{Measured distribution.}
+Applying Corollary~\ref{cor:D2} to the certified comparisons recorded in this
+repository --- $92$ with an exact margin and $24$ certified only as an interval,
+$116$ in total --- gives: $43$ carry no guarantee beyond $p = 0$, of which $28$
+have an exact margin of $1$ (so some single-auxiliary-variable extension ties
+them) and $15$ are certified only as $M \ge 1$ with $u$ as large as $13$ (so
+nothing follows at $p=1$, but a void verdict does follow at $p \ge u$). These are
+\emph{comparisons}, with budgets, selection schemes and replicates nested within
+at most $25$ instances; they are not $116$ independent observations. The
+practical recommendation is one sentence: \emph{measure Hamming distance on the
+original variables, and report the margin beside the verdict.} The repository
+already does the former.
+
+\section{Encoding-dependent observables}\label{sec:erv}
+
+The antecedent note on encoding-relative variance~\cite{dejesus2026erv}
+considers a language $\mathrm{LINSAT}$ of satisfiable GF(2) linear systems and
+two polynomial-time encodings, and shows that a constraint-count observable has
+different gradient signs under them. Three scope points matter when citing it
+alongside $\epshat$, and all three were checked directly:
+
+\begin{enumerate}[nosep]
+\item \textbf{It varies an observable, not a decision.} $\mathrm{LINSAT} \in P$
+      under both encodings. On $300$ random systems the decision agreed between
+      Gaussian elimination and brute force $300/300$, while the observable
+      differed on $295/300$. Changing what a statistic reports is not changing
+      what the problem decides.
+\item \textbf{The closure encoding is exponential off a log-rank family.}
+      The closure is spanned by whole equations, so
+      $|\mathrm{Closure}(A,b)| = 2^{\operatorname{rank}[A \mid b]}$, the
+      \emph{augmented} rank. $2^{\operatorname{rank}A}$ is wrong in general:
+      the inconsistent pair $x=0$, $x=1$ has $|\mathrm{Closure}|=4$ while
+      $2^{\operatorname{rank}A}=2$. The two ranks coincide exactly on consistent
+      systems (Rouch\'e--Capelli). Since
+      $\operatorname{rank}[A\mid b] \le \operatorname{rank}A + 1$, the
+      log-rank polynomiality conclusion is unaffected.
+\item \textbf{GF(2) results do not transfer to CNF-SAT by renaming.}
+      $|\mathrm{sat}(\mathrm{OR}_k)| = 2^k-1 \neq 2^{k-1} =
+      |\mathrm{sat}(\mathrm{XOR}_k)|$ for every $k \ge 2$.
+\end{enumerate}
+
+We therefore cite~\cite{dejesus2026erv} only for the point that
+\emph{constraint-count} observables are encoding-relative. We do \textbf{not}
+treat it as an established barrier to resolving P versus NP, and we do not treat
+it as having predicted any subsequent result. Note also that $\epshat$ lies
+outside its mechanism: $\epshat$ is a function of the solution set, invariant by
+Lemma~\ref{lem:inv}, and its encoding dependence (\S\ref{sec:invariance}) comes
+from a different source --- which coordinates the metric is taken over.
+
+\input{tables_generated}
+
+\section{Study 1: witness tightening}\label{sec:stage1}
+
+Both measurement loops compute a witness's actual distance to the recorded
+sample and then update the lower bound only to the requested threshold $r+1$.
+Since a witness $x \in \SF$ with $\min_{a \in A}\dH(x,a) = d$ proves
+$\varepsilon \ge d$, the sound update is $\mathrm{lo} \leftarrow \max(\mathrm{lo}, d)$.
+
+We replayed every stored witness against the recorded sample for its
+measurement, recovering samples through each stage's own hash-verifying loader
+(both the formula hash and the sample hash were required to match; nothing was
+repaired). Table~\ref{tab:stage1} reports the result: of $594$ witnesses, $79$ are
+\emph{loose}, with maximum gain $6$; no witness produced a smaller bound, so the
+tightening is sound on every one. The hard $n=64$ units contribute $0$ loose
+witnesses out of $37$.
+
+Table~\ref{tab:stage1agg} reports the quantity that matters. \textbf{No reconstructed measurement
+would have obtained a better certified lower bound.} The reason is the radius
+ladder: a loose witness at radius $r$ proves $\varepsilon \ge r+1+g$, but the
+search then issues a query at a higher radius that also succeeds, and the final
+bound is set by the highest successful radius.
+
+Replaying each recorded radius sequence under the tightened rule, $21$ of $557$
+pilot SAT queries and $0$ of $37$ hard-unit SAT queries would have been
+redundant. This is a \emph{retrospective} count and a \emph{lower bound}: after
+the first skip the policy would choose different radii, whose answers the replay
+cannot know. \textbf{It is not a measurement of online runtime saving, and we do
+not report one.}
+
+\paragraph{Verdict.} Adopt the tightening: it is a one-line change, sound on all
+$594$ stored witnesses, and it cannot lose. Do not expect a speedup from it.
+
+\begin{conjecture}
+Every one of the $37$ hard-unit witnesses has gain exactly $0$. A plausible
+mechanism is that the cardinality constraint is binding --- the solver satisfies
+$\dH \ge r+1$ tightly and has no pressure to exceed it --- but we did not test
+this, and state it as an open question rather than an explanation.
+\end{conjecture}
+
+\section{Study 2: lazy distance-constraint generation}\label{sec:stage2}
+
+\paragraph{The method.} Query~\eqref{eq:query} carries one distance constraint
+per recorded solution. Write $Q_r^B$ for the query carrying constraints only for
+$B \subseteq A$. The lazy method starts from a small $B$, solves $Q_r^B$, checks
+any candidate against the \emph{whole} of $A$, and on failure adds the nearest
+violated $a \in A$ and re-solves. This is the classical constraint-generation
+loop of Dantzig, Fulkerson and Johnson~\cite{dantzig1954tsp}, and the
+counterexample-guided abstraction refinement pattern of Clarke et
+al.~\cite{clarke2000cegar,clarke2002satcegar} in its SAT-based
+form~\cite{clarke2002satcegar}.
+
+\paragraph{Exactness, stated before measuring.}
+$\mathrm{sat}(Q_r^A) \subseteq \mathrm{sat}(Q_r^B)$ for $B \subseteq A$, since
+$Q_r^B$ is a conjunction over a sub-family. Hence a \emph{checked} refutation of
+$Q_r^B$ certifies $Q_r^A$ unsatisfiable, and a candidate satisfying $F$ with
+$\min_{a \in A}\dH(x,a) \ge r+1$ is a valid witness for $Q_r^A$ whatever $B$
+produced it. Verification is always against the full $A$. Refinement adds the
+argmin, which the candidate violates, so no candidate recurs.
+
+\begin{remark}[What a lazy refutation establishes, exactly]\label{rem:subset}
+When $Q_r^B$ is refuted and the proof checks, what has been established is:
+\emph{the subset $B \subseteq A$ already suffices to exclude every satisfying
+assignment of $F$ at distance $> r$ from all of $B$} --- equivalently, balls of
+radius $r$ about $B$ already cover $\SF$. It does \textbf{not} establish that
+$B$ is minimal with this property, that it suffices at any smaller radius, or
+that $\varepsilon(B,\SF) = \varepsilon(A,\SF)$. Each would need separate
+evidence, and we claim none of them. The identifiers of each $B$ and its
+relation to the full $A$ are archived with the run.
+\end{remark}
+
+\paragraph{Design.} Nine experimental units, each recovered with both hashes
+verified; two methods, static (S) and lazy (L), interleaved per unit with S
+first; identical radius policy, encoder, solver and checker; a $120$\,s
+per-measurement budget (reduced from the antecedent stage's $240$\,s, and stated
+in the protocol frozen before measurement), a $60$\,s per-invocation solver
+limit and a $120$\,s checker cap; initial $|B| = 4$ chosen by a deterministic
+greedy farthest-point pass; refinement capped at $60$ iterations per query.
+Timing covers encoding, solving, proof checking and refinement overhead, and the
+budget is enforced on the measurement as a whole. Ratios are computed from
+unrounded seconds. All $18$ measurements are reported; none was excluded.
+
+\paragraph{Results.} Tables~\ref{tab:perunit}--\ref{tab:integrity} give per-unit figures, paired totals and
+certification integrity. The pattern is a dichotomy:
+
+\begin{itemize}[nosep]
+\item \textbf{Four units reached an exact answer under both methods} in the
+      original run, agreeing with each other and with the historical exact
+      values. On these, total time including certification falls from
+      $165.3$\,s to $99.5$\,s --- though only three of the four survive the
+      pairing check below. The gain is
+      \emph{mainly} certification-driven --- checker time $82.7$\,s versus
+      $18.6$\,s --- though not only: solve time also falls slightly, and
+      encoding time rises, since each refinement re-encodes.
+\item \textbf{Five units did not resolve under either method.} On four of them
+      the lazy method ends with a \emph{wider} certified interval, and on one it
+      ties; summed final widths are $46$ for static against $60$ for lazy. The
+      cause is visible in the iteration counts: the lazy loop spent $48$--$59$
+      refinements inside a \emph{single} radius query on three units, completing
+      one query where the static method completed three.
+\end{itemize}
+
+Table~\ref{tab:totals} also reports the all-units aggregate, ratio $\approx 1.13$. \textbf{We do
+not offer this as a headline.} It mixes units where both methods finished with
+units where both merely exhausted the budget having completed different amounts
+of work; where neither finished, the meaningful comparison is interval width,
+and there the static method leads.
+
+\paragraph{Pairing, verified rather than assumed --- and one unit fails it.}
+Equal query counts do not show that two methods asked the same questions, so we
+instrumented a re-run of the four units exact under both methods, recording the
+radius sequence and per-query outcome with the formula and sample hashes
+re-verified. Timings are \emph{not} taken from that run; the reported seconds
+remain those of the original. Table~\ref{tab:pairing} gives the result, and it is not uniform:
+
+\begin{itemize}[nosep]
+\item \textbf{Three units are verified paired} --- identical radius sequences,
+      identical per-query outcomes, and the re-run reproduces the stage's
+      certified interval, with both ladders terminating on their own rather than
+      on the budget. On these three, total time falls from $46.0$\,s to
+      $18.9$\,s (ratio $2.43$), with checker time $23.2$\,s against $3.2$\,s.
+\item \textbf{One unit, \texttt{n64\_a2.5\_k0\_W}, is not.} Its static ladder hit
+      the measurement budget. In the original run it returned an exact answer
+      $\varepsilon = 26$ at the budget boundary; in the re-run it stopped on the
+      budget at $[25,28]$ without reaching one, and the two methods asked
+      different radius sequences ($[24,28,26]$ against $[24,28,26,25]$). Its
+      stage-2 ``exact'' outcome under the static method is therefore
+      \textbf{not reproducible}, and the unit is excluded from every paired
+      claim.
+\end{itemize}
+
+We report both groupings in Table~\ref{tab:totals} and let the reader see the difference. The
+four-unit figure of $165.3$\,s against $99.5$\,s is what was measured in the
+original run; the three-unit figure is what survives pairing verification. We do
+\emph{not} promote the three-unit ratio as a better headline merely because it is
+larger: it rests on three units, and the excluded unit is excluded for a stated
+reason, not for its number.
+
+\paragraph{Constraints actually needed.} The lazy method terminated using
+$3$--$43\,\%$ of the recorded sample's distance constraints. \emph{Fewer
+constraints do suffice.} The obstacle on hard units is the number of refinement
+iterations, not the final constraint count.
+
+\begin{remark}[A non-sequitur we had to retract]
+Removing constraints makes a refutation a logically \emph{stronger} statement,
+since $\mathrm{sat}(Q_r^A) \subseteq \mathrm{sat}(Q_r^B)$. That is a statement
+about logical strength only: \textbf{it does not force proof length or runtime
+to increase.} On one unit the lazy proofs were indeed larger ($524\,081$ versus
+$245\,460$ lines at $r=31$, with a $3.3\times$ smaller CNF), and we briefly
+inferred that this was the general direction. The study's own data refutes that:
+on the four resolved units the subset proofs are smaller and checker time falls
+by a factor exceeding four. That unit is a measured counter-case, not a law.
+\end{remark}
+
+\section{Limitations, and the remaining question}
+
+\begin{itemize}[nosep]
+\item This is a \textbf{small exploratory implementation study}: nine units at
+      $n = 64$, one formula family, one solver, one encoding, one machine, no
+      repetitions. It supports no population-wide claim, no asymptotic
+      statement, no solver ranking, and no complexity-class consequence.
+\item The $120$\,s budget is half the antecedent stage's. Three of the four
+      resolved units finished well inside it; the fourth,
+      \texttt{n64\_a2.5\_k0\_W}, sat on the budget boundary and did not
+      reproduce. The five unresolved comparisons are budget-sensitive, and the
+      widths quoted for them are specific to this budget.
+\item Study~1's query saving is retrospective, not an online runtime
+      measurement.
+\item Theorem~\ref{thm:D}'s sharpness is established for unrestricted permitted
+      lifts; under matched lifted cardinalities or unique extensions it is open.
+\item Wall-clock time does not equalise algorithmic work across tools of
+      different implementation maturity, and instances here were not
+      independently selected.
+\end{itemize}
+
+\begin{conjecture}[The remaining question]
+The two regimes are cleanly separated by one observable we already record: the
+refinement count. A method that begins lazily and reverts to the full encoding
+once refinements exceed a threshold would, on this data, keep the certification
+saving on the units that resolve and avoid the lost queries on the units that do
+not. Whether that holds beyond these nine units is untested, and we deliberately
+did not run it.
+\end{conjecture}
+
+\section*{Reproduction and evidence}
+\addcontentsline{toc}{section}{Reproduction and evidence}
+
+All tables in this report are regenerated from the recorded data by
+\texttt{src/maketables.py}; none is typed by hand. The repository records the
+frozen protocol, the scripts, the per-measurement data, a claim-to-evidence map,
+environment and tool-version pins, and SHA-256 checksums for every artifact.
+Software versions actually used: CPython~3.14.7, python-sat~1.9.dev15,
+Glucose~3 via PySAT, and \texttt{drat-trim} at commit
+\texttt{2e3b2dc0ecf938addbd779d42877b6ed69d9a985}.
+
+A distinction worth stating plainly: the materials in the repository
+\emph{regenerate the tables} from recorded measurements. Independently
+\emph{re-verifying the numerical certificates} additionally requires the CNFs
+and clausal proofs, which are bulky; where those are not shipped in the Git
+tree, the report says so rather than implying full independent reproducibility.
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

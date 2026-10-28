@@ -1,0 +1,236 @@
+{
+ "paired": [
+  "n64_a3.5_k0_W",
+  "n64_a4.2_k0_W",
+  "n64_a3.5_k1_W"
+ ],
+ "unpaired": [
+  "n64_a2.5_k0_W"
+ ],
+ "budget_sensitive": [
+  "n64_a2.5_k0_W"
+ ],
+ "units": {
+  "n64_a2.5_k0_W": {
+   "formula_hash": "6549f4f7a3858f4b8163f3448418fa098fb66367fb09919128688a9d9d65fcc1",
+   "A_hash": "c7166394751ff71800cab2b2c30e085b8c627c01f9faa9e416608cbc52c2c840",
+   "hashes_ok": true,
+   "A_size": 150,
+   "S": {
+    "radii": [
+     24,
+     28,
+     26
+    ],
+    "outcomes": [
+     "SAT",
+     "UNSAT",
+     "UNSAT"
+    ],
+    "verdicts": [
+     null,
+     "VERIFIED",
+     "TIMEOUT"
+    ],
+    "stop": "budget",
+    "final": [
+     25,
+     28
+    ]
+   },
+   "L": {
+    "radii": [
+     24,
+     28,
+     26,
+     25
+    ],
+    "outcomes": [
+     "SAT",
+     "UNSAT",
+     "UNSAT",
+     "SAT"
+    ],
+    "verdicts": [
+     null,
+     "VERIFIED",
+     "VERIFIED",
+     null
+    ],
+    "stop": "exact",
+    "final": [
+     26,
+     26
+    ]
+   },
+   "same_radii": false,
+   "same_outcomes": false,
+   "agrees_with_stage2": false
+  },
+  "n64_a3.5_k0_W": {
+   "formula_hash": "37f272c177f1ae0de1549803d1f4b272fc3497585fa7d20c794dda54efd8ff0f",
+   "A_hash": "93670fd927c1b3c35c7e36a454b3495fa233915087a711728841b1491f5a2b3a",
+   "hashes_ok": true,
+   "A_size": 150,
+   "S": {
+    "radii": [
+     12,
+     14,
+     15
+    ],
+    "outcomes": [
+     "SAT",
+     "SAT",
+     "SAT"
+    ],
+    "verdicts": [
+     null,
+     null,
+     null
+    ],
+    "stop": "exact",
+    "final": [
+     16,
+     16
+    ]
+   },
+   "L": {
+    "radii": [
+     12,
+     14,
+     15
+    ],
+    "outcomes": [
+     "SAT",
+     "SAT",
+     "SAT"
+    ],
+    "verdicts": [
+     null,
+     null,
+     null
+    ],
+    "stop": "exact",
+    "final": [
+     16,
+     16
+    ]
+   },
+   "same_radii": true,
+   "same_outcomes": true,
+   "agrees_with_stage2": true
+  },
+  "n64_a4.2_k0_W": {
+   "formula_hash": "a056875ec86ddc0ff6ad6a64b5088d4e238c97a3212fd28ee53d7e7096b5ac03",
+   "A_hash": "8c64aa57b4346ab0f0359d1ec00c7f99476ba471e0bdd124f3b1a847162c91cd",
+   "hashes_ok": true,
+   "A_size": 144,
+   "S": {
+    "radii": [
+     12,
+     10,
+     9
+    ],
+    "outcomes": [
+     "UNSAT",
+     "UNSAT",
+     "UNSAT"
+    ],
+    "verdicts": [
+     "VERIFIED",
+     "VERIFIED",
+     "VERIFIED"
+    ],
+    "stop": "exact",
+    "final": [
+     9,
+     9
+    ]
+   },
+   "L": {
+    "radii": [
+     12,
+     10,
+     9
+    ],
+    "outcomes": [
+     "UNSAT",
+     "UNSAT",
+     "UNSAT"
+    ],
+    "verdicts": [
+     "VERIFIED",
+     "VERIFIED",
+     "VERIFIED"
+    ],
+    "stop": "exact",
+    "final": [
+     9,
+     9
+    ]
+   },
+   "same_radii": true,
+   "same_outcomes": true,
+   "agrees_with_stage2": true
+  },
+  "n64_a3.5_k1_W": {
+   "formula_hash": "05b2b9144a4dafeae9619fc4da17144dd2c0f3aa9ec127b909896e8e80afafcb",
+   "A_hash": "904b3ccd396b53f24124a5e84a90ed88cd25ee379b764c6d4f3d32d585bff2dd",
+   "hashes_ok": true,
+   "A_size": 150,
+   "S": {
+    "radii": [
+     24,
+     20,
+     18,
+     17
+    ],
+    "outcomes": [
+     "UNSAT",
+     "UNSAT",
+     "UNSAT",
+     "SAT"
+    ],
+    "verdicts": [
+     "VERIFIED",
+     "VERIFIED",
+     "VERIFIED",
+     null
+    ],
+    "stop": "exact",
+    "final": [
+     18,
+     18
+    ]
+   },
+   "L": {
+    "radii": [
+     24,
+     20,
+     18,
+     17
+    ],
+    "outcomes": [
+     "UNSAT",
+     "UNSAT",
+     "UNSAT",
+     "SAT"
+    ],
+    "verdicts": [
+     "VERIFIED",
+     "VERIFIED",
+     "VERIFIED",
+     null
+    ],
+    "stop": "exact",
+    "final": [
+     18,
+     18
+    ]
+   },
+   "same_radii": true,
+   "same_outcomes": true,
+   "agrees_with_stage2": true
+  }
+ }
+}

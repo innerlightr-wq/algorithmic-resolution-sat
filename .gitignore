@@ -36,3 +36,13 @@ extensions/*/tests/fx-*/
 # Pilot: per-query certification artifacts (1.2 GB of CNFs/proofs/witnesses).
 # Regenerable from the frozen selected sets; see the pilot's REPRODUCE notes.
 extensions/*/artifacts/
+
+# Consolidation note LaTeX auxiliary files (the tracked artifact is the PDF)
+notes/*/*.aux
+notes/*/*.bbl
+notes/*/*.blg
+notes/*/*.log
+notes/*/*.out
+notes/*/*.fls
+notes/*/*.fdb_latexmk
+notes/*/main.pdf

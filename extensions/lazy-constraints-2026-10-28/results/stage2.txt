@@ -1,0 +1,23 @@
+====================================================================================================
+STAGE 2 -- LAZY DISTANCE CONSTRAINTS versus the STATIC baseline
+====================================================================================================
+  n64_a2.5_k1_W      S  [17,32] -> [21,32]  w=11  exact=False q=3  it=3   cons=150..150/150  t= 134.6s (enc 0.5 solve 133.6 chk 0.0) budget
+  n64_a2.5_k1_W      L  [17,32] -> [21,32]  w=11  exact=False q=3  it=111 cons=23..64/150  t= 120.2s (enc 4.0 solve 113.5 chk 0.0) budget
+  n64_a2.5_k1_eqW    S  [29,64] -> [29,31]  w=2   exact=False q=5  it=5   cons=40..40/40   t= 121.8s (enc 0.2 solve 76.4 chk 44.4) budget
+  n64_a2.5_k1_eqW    L  [29,64] -> [29,33]  w=4   exact=False q=4  it=17  cons=4..12/40   t= 120.8s (enc 0.2 solve 73.4 chk 46.5) budget
+  n64_a2.5_k2_W      S  [17,32] -> [21,32]  w=11  exact=False q=3  it=3   cons=150..150/150  t= 121.2s (enc 0.6 solve 120.2 chk 0.0) budget
+  n64_a2.5_k2_W      L  [17,32] -> [17,32]  w=15  exact=False q=1  it=59  cons=62..62/150  t= 121.2s (enc 2.7 solve 116.6 chk 0.0) budget
+  n64_a2.5_k3_W      S  [17,32] -> [21,32]  w=11  exact=False q=3  it=3   cons=150..150/150  t= 127.8s (enc 0.6 solve 126.8 chk 0.0) budget
+  n64_a2.5_k3_W      L  [17,32] -> [17,32]  w=15  exact=False q=1  it=48  cons=51..51/150  t= 119.2s (enc 1.8 solve 116.0 chk 0.0) budget
+  n64_a2.5_k4_W      S  [17,32] -> [21,32]  w=11  exact=False q=3  it=3   cons=150..150/150  t= 119.5s (enc 0.6 solve 105.1 chk 13.0) budget
+  n64_a2.5_k4_W      L  [17,32] -> [17,32]  w=15  exact=False q=1  it=59  cons=62..62/150  t= 120.7s (enc 2.9 solve 115.8 chk 0.0) budget
+  n64_a2.5_k0_W      S  [17,32] -> [26,26]  w=0   exact=True  q=4  it=4   cons=150..150/150  t= 119.3s (enc 0.7 solve 58.0 chk 59.5) budget
+  n64_a2.5_k0_W      L  [17,32] -> [26,26]  w=0   exact=True  q=4  it=116 cons=18..44/150  t=  80.6s (enc 3.1 solve 59.5 chk 15.5) exact
+  n64_a3.5_k0_W      S  [9,16] -> [16,16]  w=0   exact=True  q=3  it=3   cons=150..150/150  t=   1.4s (enc 0.4 solve 0.6 chk 0.0) exact
+  n64_a3.5_k0_W      L  [9,16] -> [16,16]  w=0   exact=True  q=3  it=43  cons=4..25/150  t=   1.2s (enc 0.6 solve 0.1 chk 0.0) exact
+  n64_a4.2_k0_W      S  [9,16] -> [9,9]  w=0   exact=True  q=3  it=3   cons=144..144/144  t=   2.6s (enc 0.3 solve 0.5 chk 1.1) exact
+  n64_a4.2_k0_W      L  [9,16] -> [9,9]  w=0   exact=True  q=3  it=58  cons=15..30/144  t=   1.7s (enc 0.7 solve 0.2 chk 0.2) exact
+  n64_a3.5_k1_W      S  [17,32] -> [18,18]  w=0   exact=True  q=4  it=4   cons=150..150/150  t=  42.0s (enc 0.7 solve 18.1 chk 22.1) exact
+  n64_a3.5_k1_W      L  [17,32] -> [18,18]  w=0   exact=True  q=4  it=112 cons=14..48/150  t=  16.0s (enc 2.7 solve 8.1 chk 2.9) exact
+
+  total 1508.6s against a 4500s cap; excluded []
