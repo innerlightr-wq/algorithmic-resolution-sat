@@ -9,9 +9,9 @@ NOTE.md           the contribution
 LITERATURE.md     claim-by-claim prior-art comparison, read before assigning novelty
 MANIFEST.md       this file: ledger, costs, hashes, corrections
 src/preservation.py  13 checks  Lemma 1, Theorem D, Corollary D1, 5 controls, oracle ladder
-src/premises.py       9 checks  Appendix A, incl. the inconsistent-system regression
+src/premises.py      10 checks  Appendix A, incl. the inconsistent-system regression
 src/interface.py      3 checks  Appendix B
-src/diagnostic.py     5 checks  NOTE.md §6, incl. the uncertain-margin regression
+src/diagnostic.py     4 checks  NOTE.md §6; the regression runs over the production classifier
 results/*.txt         verbatim output of each
 ```
 
@@ -31,13 +31,14 @@ from data on disk), **CLASSICAL** (established prior art, restated),
 |---|---|---|
 | L1 | under (H1)+(H2), `ε_x(A',G) = ε(A,S_F)` | **CLASSICAL** as a projection fact; PROVED as restated. 600 extension instances, 0 discrepancies |
 | D | under (H1)+(H2), `ε ≤ ε_full ≤ ε + p`, both bounds attained | **CLASSICAL** inequality (Cohen–Karpovsky–Mattson–Schatz 1985, Cor. 1); PROVED in solution-relative form. 720 triples, 0 violations; each bound attained 360× |
-| D1 | `M ≥ p+1` ⟹ ordering guaranteed; `M ≤ p` ⟹ guarantee void, witnessed | **PROVED**, sharp; not found in either literature (one search round) |
+| D1 | `M ≥ p+1` ⟹ ordering guaranteed; `M ≤ p` ⟹ some extension ties or reverses it, witnessed | **PROVED**, sharp; not found in either literature (one search round) |
+| D2 | a certified interval `M ∈ [ℓ,u]` gives three regimes: preserved for `p ≤ ℓ−1`, unsettled for `ℓ ≤ p ≤ u−1`, void for `p ≥ u`; exact margins are `ℓ = u` | **PROVED**; implemented as the single shared classifier `regimes()` |
 | C1 | Hamming isometries preserve `ε`, `ε_full`, `|A|` exactly | **PROVED**; 153 600 pairs, 0 discrepancies |
 | C2 | a uniquely determined duplicate variable fixes `ε_x` but moves `ε_full` | **PROVED**; 0/120 move `ε_x`, **80/120** move `ε_full` |
 | C3 | uniform sampling of `S_G` projects uniformly **iff** multiplicity is constant | **PROVED**; exact TV `0, 0, 1/6` |
-| C4 | `π` need not be injective on `A'`, so `|π(A')| ≤ |A'|` | **PROVED**, by construction |
+| C4 | `π` need not be injective on `A'`, so `|π(A')| ≤ |A'|`; this affects distinct-sample counts and sampling weights but does **not** violate (H2), which is a set equality — `A' = {(0,0),(0,1)}` over `A = {0}` satisfies it | **PROVED**, by construction |
 | O1 | the radius ladder reconstructs `ε` exactly; `Q₀` UNSAT ⟺ `A = S_F` ⟺ `ε = 0`; `Q_n` UNSAT unconditionally | **PROVED**; 3 679 pairs, no exception |
-| A1 | `LINSAT ∈ P` under both encodings; decision invariant, `O(E)` not | **PROVED**; 300/300 agreement, 295/300 observable disagreement |
+| A1 | `LINSAT ∈ P` under both encodings; decision invariant, `O(E)` not | **PROVED**; 300/300 agreement, 295/300 observable disagreement (closure sized by augmented rank; the headline is 295/300 either way, so it could not have caught the stale sizing — 151/300 systems are inconsistent) |
 | A2 | `|Closure(A,b)| = 2^{rank[A\|b]}` — the **augmented** rank; `2^{rank(A)}` holds only on consistent systems | **PROVED**; 200 systems, 0 mismatches; 157 inconsistent, all with `rank[A\|b] = rank(A)+1`; regression case `x=0, x=1` |
 | A3 | `|sat(OR)| = 2^k − 1 ≠ 2^{k−1} = |sat(XOR)|` for `k ≥ 2` | **PROVED** |
 | A4 | a CNF with `|Aut(φ)| = 1` whose solution set is complement-closed | **PROVED** by witness `[(-4,1), (-4,1,3), (-2,-1,4), (-1,4)]` |
@@ -45,7 +46,7 @@ from data on disk), **CLASSICAL** (established prior art, restated),
 | B1 | the radius-query interface costs `|A|·r` additive rows with `D ≤ 2n/r`; exponent `E = |A| r log₂(4n/r+1) + 2n/r` | **SCOPED** derivation |
 | B2 | admissible `|A| = 1` at `n = 64` (bar `E<n`), `0` under the paper-saving bar; `|A| = 40` needs `n ≥ 3 807` resp. `n ≥ 72 932` | **MEASURED** |
 | B3 | admissible `|A| = Θ(n/(log₂ n)²)`, constant `0.134–0.140` | **MEASURED** over `10⁶…10¹²` |
-| M1 | 116 certified strict comparisons: **92 exact** (28 at `M=1`, 20 at `M≥10`, max 19) and **24 lower-bound only** (15 at `M≥1`, intervals up to `[1,13]`). Never pooled: the void half of D1 applies to the exact rows only | **MEASURED** |
+| M1 | 116 certified strict comparisons: **92 exact** (`ℓ = u`; 28 at `M = 1`, 20 at `M ≥ 10`, max 19) and **24 intervals** (`ℓ < u`; 15 with `ℓ = 1`, widest `[1,13]`). Never pooled; both endpoints used per D2 | **MEASURED** |
 | M2 | these are comparisons over ≤ 25 instances with replicates nested, not independent observations | **MEASURED** |
 | N1 | any new inequality | **NOT ESTABLISHED** — see `LITERATURE.md` |
 | N2 | any improvement to computing or certifying `ε̂` | **NOT ESTABLISHED** — this investigation establishes no computational improvement. Note L1 does **not** imply that re-encoding cannot help: preserving the answer and reducing the cost of computing it are compatible |
@@ -60,10 +61,10 @@ from data on disk), **CLASSICAL** (established prior art, restated),
 | script | wall time | solver calls |
 |---|---|---|
 | `src/preservation.py` | 3.9 s | 0 |
-| `src/premises.py` | 0.1 s | 0 |
-| `src/interface.py` | 19.7 s | 0 |
+| `src/premises.py` | 0.2 s | 0 |
+| `src/interface.py` | 20.9 s | 0 |
 | `src/diagnostic.py` | 0.0 s | 0 |
-| **total** | **23.8 s** (30 assertions) | **0** |
+| **total** | **25.1 s** (30 assertions) | **0** |
 
 No SAT solver was invoked, no network access is required, no instance was added,
 and `n` was not increased beyond the measured `n ≤ 64`. Nothing was excluded
@@ -146,19 +147,48 @@ rather than the claim widened.
     not be injective on `A'`. "Certifies exactly our (H1)/(H2) pair" has been
     removed.
 
+
+### Third review pass (source review of `0f1dadd`)
+
+12. **The margin regression did not test the production path.** The helper it
+    exercised was a parallel copy; the CSV report used separate logic, so the
+    tests could pass while production classification regressed. There is now a
+    single module-level classifier, `regimes()` / `verdict_at()`, called by both
+    the report and the 19 regression cases. Writing the cases against production
+    immediately caught two **wrong expectations of mine**: at `p = 0` there are
+    no auxiliary variables, so a certified ordering is `preserved`, not `void`.
+13. **"The void half is unavailable" was too broad.** For an interval
+    `M ∈ [ℓ,u]` the upper endpoint is informative: `p ≥ u` gives `M ≤ p`, so
+    some allowed extension does tie or reverse the ordering. Hence the
+    three-regime Corollary D2, replacing the two-regime account. `[1,13]` gives
+    no one-variable tie but does give a void verdict at `p ≥ 13`.
+14. **One stale closure calculation remained.** The observable comparison in
+    `src/premises.py` still sized the closure by `2^{rank(A)}` after
+    `test_closure_size` had been corrected. Now augmented. Confirmed
+    independently: **151 of 300** systems are inconsistent and so change size,
+    yet the headline disagreement count is **295/300 either way** — a check is
+    now asserted on precisely that insensitivity, so the headline can never
+    again stand in for the calculation.
+15. **Non-injectivity does not violate (H2).** The prose connected them.
+    `A' = {(0,0),(0,1)}` with `A = {0}` has `π(A') = A`, so (H2) holds while
+    `π` collapses two members. (H2) fails exactly when the projected set omits
+    or adds an original assignment. Non-injectivity is a separate matter —
+    distinct-sample counts and sampling weights — and the two are now kept
+    apart in `NOTE.md` §2, §5 and `LITERATURE.md`.
+
 ## Hashes
 
 `MANIFEST.md` is excluded, since it carries the list.
 
 ```
-4771545dee0cbe8e0e961ea7bccc45af  NOTE.md
-aafc26d90fcef425926e7ec23f1044d3  LITERATURE.md
-e5f1c8c0549ed6a4128d5859dcbb390e  src/diagnostic.py
+e9112ba75a86244bad5e57145551ae44  NOTE.md
+8752f32d40bf88560449a3709f2fa648  LITERATURE.md
+99f5b06487fcd26f5b61e892c1ee4e67  src/diagnostic.py
 fa5dee58f2c6659b8838d15c1cef0932  src/interface.py
-5434440d263adf8ce4762b0f3f315786  src/premises.py
+e85393d6844e8c1fd1ae4adbbbd665d7  src/premises.py
 2916707fa9a70f26e4fb0426b8f041f1  src/preservation.py
-c4e3b30f56c9b71768648ee93d9d561b  results/diagnostic.txt
+9cb0579b3578046274852f408f32b5c3  results/diagnostic.txt
 11f0660d27c4c9f5cdf687cf57fb4663  results/interface.txt
-a195860277d03d363ccf1ffc0c5a59ad  results/premises.txt
+0d426747ad10355a07cfed695c00e375  results/premises.txt
 75d578583e0e15462cc70e94e4d3a106  results/preservation.txt
 ```

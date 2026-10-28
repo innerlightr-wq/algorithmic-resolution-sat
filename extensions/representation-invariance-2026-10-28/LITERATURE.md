@@ -70,8 +70,10 @@ anything here. For (H2) the attribution needs narrowing: their Skolem
 assignments give a *construction* of a lift for a chosen sample, which covers
 every lift used in this note, but they do not certify (H2) for an arbitrary
 recorded sample. When the sample is a solver's recorded output, (H2) is an
-assumption about the recording procedure — and `NOTE.md` §5 notes it can fail,
-since `π` need not be injective on `A'`.
+assumption about the recording procedure. Note that (H2) is a set equality and
+is **not** broken by `π` failing to be injective on `A'` — `A' = {(0,0),(0,1)}`
+over `A = {0}` satisfies it — so the non-injectivity issue of `NOTE.md` §5 is a
+separate matter, about distinct-sample counts and sampling weights.
 
 What that literature does **not** contain, as far as this search found: any
 metric or geometric quantity on the projected solution set. A full-text search of

@@ -41,7 +41,7 @@ def _solv(rows, b, n):
 #                     OBSERVABLE moves.  Theorem 1 is about sign(grad O).
 def test_decision_invariant_observable_not(n=6, trials=300):
     rngs = _lcg(4242)
-    diff_dec = 0; diff_obs = 0; tested = 0
+    diff_dec = 0; diff_obs = 0; diff_obs_stale = 0; n_incons = 0; tested = 0
     for _ in range(trials):
         m = 1 + rngs() % (2 * n)
         rows = [rngs() % (1 << n) for _ in range(m)]
@@ -52,18 +52,35 @@ def test_decision_invariant_observable_not(n=6, trials=300):
                  for x in range(1 << n))                      # brute force
         tested += 1
         if d1 != d2: diff_dec += 1
-        # the two encodings' observable O(E) = (#constraints)/n
+        # the two encodings' observable O(E) = (#constraints)/n.
+        # CORRECTED 2026-10-28 (external review, second pass): this consumer
+        # still sized the closure by 2^rank(A).  The closure is spanned by
+        # whole EQUATIONS, so the size is 2^rank[A|b] (see test_closure_size).
+        # The headline disagreement count is 295/300 EITHER WAY, which is
+        # exactly why checking only the headline would have missed this.
         o1 = Fraction(sum(bin(r).count('1') for r in rows) + m, n)   # sparse E1
         rk = rank2(list(rows), n)
-        o2 = Fraction((1 << rk), n)                                  # closure E2
+        rk_aug = rank2([rows[i] | (b[i] << n) for i in range(m)], n + 1)
+        o2 = Fraction((1 << rk_aug), n)                              # closure E2
+        if rk_aug != rk: n_incons += 1
         if o1 != o2: diff_obs += 1
+        if o1 != Fraction((1 << rk), n): diff_obs_stale += 1
     check('the LINSAT decision is identical under both encodings on every '
           'instance, by two independent computations (GF(2) elimination and '
           'brute force)', diff_dec == 0, f'{tested} systems, 0 disagreements')
     check('while the constraint-count observable O(E) differs between the two '
           'encodings on essentially every instance -- so Theorem 1 varies an '
           'OBSERVABLE, not a classification decision', diff_obs > 0.9 * tested,
-          f'{diff_obs} of {tested} instances have O(E1) != O(E2)')
+          f'{diff_obs} of {tested} instances have O(E1) != O(E2), with the '
+          f'closure sized by the AUGMENTED rank')
+    check('and the headline count is insensitive to the closure-size bug: it '
+          'is identical whether the closure is sized by rank(A) or by '
+          'rank[A|b], even though the two differ on the inconsistent systems '
+          '-- so this check alone could never have caught the stale '
+          'calculation', diff_obs == diff_obs_stale,
+          f'{diff_obs} vs {diff_obs_stale} of {tested}, while {n_incons} of '
+          f'{tested} systems are inconsistent and so have different closure '
+          f'sizes under the two formulas')
 
 def _lcg(seed):
     s = [seed]

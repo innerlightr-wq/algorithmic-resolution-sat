@@ -27,12 +27,15 @@ different answers:
 For a *comparison* of two observed samples, the consequence is a margin
 criterion (§4): a certified strict margin `M` is guaranteed against every
 solution-preserving re-encoding that adds at most `M − 1` auxiliary variables,
-and above that the guarantee is void. Applied to this repository's certified
-comparisons (§6), **43 of 116 carry no nonzero-`p` guarantee** — 28 because
-their margin is exactly 1, and 15 because their margin is only bounded below by
-1 and is otherwise unresolved. Those are different situations and §6 keeps them
-apart: for the 28 the criterion also says some extension ties them, while for
-the 15 it says nothing beyond the absence of a guarantee.
+and above that some extension ties or reverses it. A comparison certified only
+as `M ∈ [ℓ,u]` therefore has **three** regimes in the auxiliary-variable count
+`p`, not two: preserved for `p ≤ ℓ−1`, unsettled for `ℓ ≤ p ≤ u−1`, void for
+`p ≥ u`. An exact margin is the degenerate case `ℓ = u`, which settles every
+`p`.
+
+Applied to this repository's 116 certified comparisons (§6): **43 carry no
+guarantee beyond `p = 0`** — 28 with an exact margin of 1, and 15 certified only
+as `M ≥ 1`. The two differ in what else can be said, and §6 keeps them apart.
 
 **No result in this repository changes.** `ε̂` here is computed on the original
 variables, which is the invariant case.
@@ -58,10 +61,16 @@ with HOL4-validated soundness. (H2) is the lift side. Their Skolem assignments
 *construct* a lift satisfying (H2) for a sample one chooses, which is more than
 enough for the constructions used below; they do **not** certify that an
 arbitrary *recorded* sample `A'` projects exactly onto `A`. For a recorded
-sample, (H2) is an assumption about the recording procedure, and §5 shows it can
-fail in a way that matters: `π` need not be injective on `A'`. Stating both
+sample, (H2) is an assumption about the recording procedure. Stating both
 hypotheses explicitly matters here because dropping either breaks everything
 below.
+
+**(H2) is about set equality, not injectivity.** `π` being non-injective on `A'`
+does **not** violate (H2): `A' = {(0,0),(0,1)}` with `A = {0}` has
+`π(A') = {0} = A`, so (H2) holds while `π` collapses two members. (H2) fails
+exactly when the projected set **omits or adds** an original assignment relative
+to `A`. Non-injectivity is a separate matter — it changes distinct-sample counts
+and can change sampling weights (§5) — and the two should not be conflated.
 
 **Lemma 1 (invariance on the original coordinates).** Under (H1) and (H2),
 
@@ -124,13 +133,31 @@ free padding with `A₂` lifted to one auxiliary value and `A₁` to all gives
 So `p_max = M − 1` is the largest auxiliary-variable count at which the ordering
 is guaranteed.
 
+**Corollary D2 (what a certified interval establishes).** In practice `M` is not
+pinned but certified as `M ∈ [ℓ, u]` with `ℓ ≥ 1`. Combining Corollary D1 with
+the interval gives **three** regimes in `p`:
+
+| auxiliary variables | what the interval establishes |
+|---|---|
+| `p ≤ ℓ − 1` | `M ≥ ℓ > p`, so **every** allowed extension preserves the ordering |
+| `ℓ ≤ p ≤ u − 1` | neither half applies: the interval alone does not settle robustness |
+| `p ≥ u` | `M ≤ u ≤ p`, so **some** allowed extension ties or reverses it |
+
+An exact margin is the degenerate case `ℓ = u`, where the middle regime is empty
+and the interval settles every `p`. **Both endpoints are informative**: a lower
+bound alone bounds the safe regime, and the upper endpoint alone bounds the void
+regime. `src/diagnostic.py` implements exactly this as one shared classifier,
+used by both the report and its regression cases.
+
 **The second half is an existence statement, and the distinction matters.**
 "The guarantee is void" is *not* "the ordering reverses". Adding auxiliary
 variables does not automatically reverse anything: a particular encoding may
 leave every certified ordering intact, and in the regime `M ≤ p` the criterion
 simply stops certifying either way. An earlier draft of this note said that
 small-margin comparisons are "destroyed by a single auxiliary variable". That
-was wrong, and the corrected statement is the one above.
+was wrong, and the corrected statement is the one above. A later draft then
+over-corrected, treating the void half as unavailable whenever the margin was
+not pinned; Corollary D2 is the right account.
 
 ## 5. Sharpness and the five controls
 
@@ -155,8 +182,10 @@ comparison rather than on `ε̂`:
 * uniform sampling of an *extended* formula is a uniform sample of `S_F` **only**
   when the extension has constant multiplicity;
 * `π` need not be injective on `A'`, so an extension can report `|A'|` solutions
-  whose projection has fewer distinct members. `ε_x` is unaffected; a
-  cardinality-matched comparison is.
+  whose projection has fewer distinct members. This does **not** break (H2),
+  which asks only for `π(A') = A` as sets; `ε_x` is unaffected too. What it
+  affects is the **distinct-sample count**, and so any cardinality-matched
+  comparison.
 
 ## 6. Applied to this repository's certified comparisons
 
@@ -185,33 +214,43 @@ from 18 attempted instances across two budgets, three selection schemes and
 nested replicates; the equal-size stage's 21 rows come from 7 instances with 3
 nested replicates. Nothing below should be read as 116 independent observations.
 
-Margin distribution, with the two kinds kept apart:
+Margin distribution. Every row is classified through one shared function,
+`regimes()` in `src/diagnostic.py`, which the regression cases also call.
 
-**Exact margins (92).** Both halves of Corollary D1 apply.
+**Exact margins (92),** `ℓ = u`: no unsettled gap, so every `p` is settled.
 
-| margin `M` | comparisons | guaranteed for | and void for |
+| margin `M` | comparisons | preserved for | void for |
 |---|---|---|---|
-| 1 | **28** | `p = 0` only | some extension with `p ≥ 1` |
+| 1 | **28** | `p = 0` only | `p ≥ 1` |
 | 2–3 | 27 | `p ≤ 1`, `p ≤ 2` | `p ≥ 2`, `p ≥ 3` |
 | 4–9 | 17 | `p ≤ 3` … `p ≤ 8` | `p ≥ 4` … `p ≥ 9` |
-| ≥ 10 | **20** | up to `p ≤ 18` at `M = 19` | `p ≥ 11` … `p ≥ 19` |
+| ≥ 10 | **20** | up to `p ≤ 18` at `M = 19` | `p ≥ 10` … `p ≥ 19` |
 
-**Certified lower bounds only (24).** The safe half applies; the void half does
-**not**, because the actual margin is unresolved.
+**Intervals (24),** `ℓ < u`: a genuine gap, but **both** endpoints inform.
 
-| certified `M ≥` | comparisons | guaranteed for | void half |
+| certified `[ℓ, u]` | comparisons | preserved for | unsettled for | void for |
+|---|---|---|---|---|
+| `[1, 3]` … `[1, 13]` | **15** | `p = 0` only | `1 … u−1` | `p ≥ u`, up to 13 |
+| `[2, 3]`, `[2, 11]` | 2 | `p ≤ 1` | `2 … u−1` | `p ≥ u` |
+| `[5, 12]`, `[7, 8]`, `[7, 16]`, `[8, 14]` | 6 | `p ≤ ℓ−1` | `ℓ … u−1` | `p ≥ u` |
+| `[10, 16]` | 1 | `p ≤ 9` | `10 … 15` | `p ≥ 16` |
+
+The widest interval, `[1, 13]`, does **not** establish a one-variable tie — but
+it does establish that some allowed extension with `p = 13` ties or reverses the
+ordering. The upper endpoint stays informative, which an earlier draft of this
+note got wrong by calling the void half simply "unavailable" for such rows.
+
+Aggregating through the same classifier, across all 116 comparisons:
+
+| `p` | preserved | unsettled | void |
 |---|---|---|---|
-| 1 | **15** | `p = 0` only | **unavailable** — `diff_hi` reaches 13 |
-| 2–3 | 2 | `p ≤ 1`, `p ≤ 2` | unavailable |
-| 4–9 | 6 | `p ≤ 3` … `p ≤ 8` | unavailable |
-| ≥ 10 | 1 | `p ≤ 9` | unavailable |
-
-For the 15 rows certified only as `M ≥ 1`, the correct statement is that **the
-available bounds establish no positive auxiliary-variable tolerance** — and
-nothing more. It does *not* follow that one auxiliary variable can tie them:
-the widest such interval here is `[1, 13]`, which leaves an actual margin of up
-to 13 open. `src/diagnostic.py` carries a regression case over synthetic
-intervals so this distinction cannot silently collapse again.
+| 0 | 116 | 0 | 0 |
+| 1 | 73 | 15 | 28 |
+| 2 | 57 | 17 | 42 |
+| 5 | 37 | 17 | 62 |
+| 10 | 13 | 14 | 89 |
+| 13 | 3 | 3 | 110 |
+| 19 | 0 | 0 | 116 |
 
 The practical reading is one sentence: **measure Hamming distance on the original
 variables only, and report the margin beside the verdict.** This repository
@@ -344,15 +383,15 @@ A subexponential exponent is not a polynomial one.
 
 ```
 src/preservation.py     13 checks  Lemma 1, Theorem D, Corollary D1, 5 controls, oracle ladder
-src/premises.py          9 checks  Appendix A, incl. the inconsistent-system regression
+src/premises.py         10 checks  Appendix A, incl. the inconsistent-system regression
 src/interface.py         3 checks  Appendix B
-src/diagnostic.py        5 checks  §6, reads certified intervals only; incl. the
-                                   uncertain-margin regression
+src/diagnostic.py        4 checks  §6, reads certified intervals only; the
+                                   regression runs over the production classifier
 ```
 
 Each script is self-contained, exits nonzero on any failure, and needs only a
 CPython interpreter — no SAT solver, no network, no dependency cache. Total
-runtime **23.8 s** over 30 assertions, **0 solver calls**. `src/diagnostic.py` resolves the
+runtime **25.1 s** over 30 assertions, **0 solver calls**. `src/diagnostic.py` resolves the
 certified data from its own location, so the set reproduces from a clean
 checkout at any path. `MANIFEST.md` carries the hashes, the claims ledger, the
 costs and the list of corrections incorporated.

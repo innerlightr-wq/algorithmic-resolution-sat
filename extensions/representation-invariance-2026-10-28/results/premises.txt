@@ -4,7 +4,8 @@ PREMISE CHECKS AND INTERFACE ARITHMETIC
 
 -- P1. decision versus observable --
   [PASS] the LINSAT decision is identical under both encodings on every instance, by two independent computations (GF(2) elimination and brute force)  -- 300 systems, 0 disagreements
-  [PASS] while the constraint-count observable O(E) differs between the two encodings on essentially every instance -- so Theorem 1 varies an OBSERVABLE, not a classification decision  -- 295 of 300 instances have O(E1) != O(E2)
+  [PASS] while the constraint-count observable O(E) differs between the two encodings on essentially every instance -- so Theorem 1 varies an OBSERVABLE, not a classification decision  -- 295 of 300 instances have O(E1) != O(E2), with the closure sized by the AUGMENTED rank
+  [PASS] and the headline count is insensitive to the closure-size bug: it is identical whether the closure is sized by rank(A) or by rank[A|b], even though the two differ on the inconsistent systems -- so this check alone could never have caught the stale calculation  -- 295 vs 295 of 300, while 151 of 300 systems are inconsistent and so have different closure sizes under the two formulas
 
 -- P2. closure encoding size --
   [PASS] |Closure(A,b)| = 2^rank[A | b] exactly -- the AUGMENTED rank, since the closure is spanned by whole equations including their right-hand sides  -- 200 systems, 0 mismatches; 157 were inconsistent, and for those rank[A|b] = rank(A) + 1 in every case

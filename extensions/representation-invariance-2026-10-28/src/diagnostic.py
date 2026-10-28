@@ -1,8 +1,8 @@
 """Corollary D1 applied to this repository's certified margins.
 
 No SAT solver is run.  This reads certified difference intervals already on
-disk and asks one question of each comparison: for how many auxiliary variables
-does Theorem D still GUARANTEE the certified ordering, if distances were
+disk and asks one question of each comparison: for which auxiliary-variable
+counts does Theorem D still settle the certified ordering, if distances were
 measured on all coordinates?
 
 THEOREM D (verified in src/preservation.py; the additive-p bound itself is
@@ -13,35 +13,41 @@ classical -- see LITERATURE.md), under TWO hypotheses, both required:
 
 COROLLARY D1, for a certified strict margin M = eps(A1) - eps(A2) >= 1:
     M >= p+1  =>  ordering PRESERVED under EVERY such extension and lift
-    M <= p    =>  GUARANTEE VOID: SOME extension and lift ties (M = p) or
-                  reverses (M <= p-1)
-So p_max = M - 1 is the largest auxiliary-variable count carrying a guarantee.
+    M <= p    =>  SOME extension and lift ties (M = p) or reverses (M < p)
 
-TWO KINDS OF ROW, NEVER POOLED
-------------------------------
-A row with diff_lo = diff_hi = M pins M, so BOTH halves of Corollary D1 apply.
+WHAT A CERTIFIED INTERVAL ESTABLISHES
+-------------------------------------
+A comparison is certified as M in [l, u] with l >= 1.  Combining the two halves
+of Corollary D1 with the interval gives THREE regimes in p, not two:
 
-A row with diff_lo = m < diff_hi certifies only M >= m.  The SAFE half applies
-(guaranteed for every p <= m-1) but the VOID half does NOT, because the actual
-margin is unresolved and may be much larger: this repository has lower-bound
-rows as wide as [1, 13].  For such a row at m = 1 the correct statement is that
-the available bounds ESTABLISH NO POSITIVE AUXILIARY-VARIABLE TOLERANCE.  It is
-NOT that one auxiliary variable can produce a tie.
+    p <= l-1        M >= l > p, so M >= p+1: ordering PRESERVED, every extension
+    l <= p <= u-1   neither half applies: the interval alone does not settle it
+    p >= u          M <= u <= p, so M <= p: SOME extension ties or reverses it
 
-CORRECTIONS (2026-10-28, external review).
-  * An earlier version separated the two kinds in the per-source printout and
-    then POOLED them before claiming that one auxiliary variable can produce a
-    tie in all 43 margin-one comparisons.  Only 28 of those are exact; the
-    other 15 have unresolved margins and support no such claim.
-  * An earlier version said rows with margin 1 are "destroyed by a single
-    auxiliary variable".  The void half is an EXISTENCE statement about some
-    extension, not a claim that a given encoding reverses anything.
-  * All of this applies only when distances are measured on all n+p
-    coordinates.  This repository measures on the original variables, where
-    Lemma 1 gives exact invariance, so no repository result is affected.
+An exact margin is the degenerate case l = u, where the middle regime is empty
+and the interval settles every p.  So the upper endpoint is informative even
+when the margin is not pinned: the interval [1, 13] does NOT establish a
+one-variable tie, but it DOES establish that some allowed extension with p = 13
+ties or reverses the ordering.
+
+The void regime is an EXISTENCE statement about some extension.  It does not
+say that a given encoding reverses anything.  And all of it applies only when
+distances are measured on all n+p coordinates: this repository measures on the
+original variables, where Lemma 1 gives exact invariance, so no repository
+result is affected.
 
 These are COMPARISONS, not independent instances: budgets, selection schemes
 and replicates are nested within a much smaller set of instances.
+
+CORRECTIONS (external review).
+  * A first version claimed one auxiliary variable can tie all 43 margin-one
+    comparisons.  Only 28 are exact; the other 15 are certified only as M >= 1.
+  * A second version then said the void half is simply "unavailable" for
+    lower-bound rows.  That is too broad: it is available at p >= u.  Hence the
+    three-regime model above.
+  * The three-regime classifier `regimes()` is now the SINGLE path used by both
+    the CSV report and the regression cases, so the tests exercise production
+    logic rather than a parallel copy.
 """
 import csv, os, sys
 from collections import Counter
@@ -53,27 +59,60 @@ def check(name, ok, detail=''):
         FAILS.append(name)
     return ok
 
+
+# ---------------------------------------------------------------------------
+# THE SHARED CLASSIFIER.  Production and the regression cases both call this.
+# ---------------------------------------------------------------------------
+def regimes(diff_lo, diff_hi):
+    """What one certified difference interval establishes.
+
+    Returns (kind, l, u).  For kind == 'ordering', with l <= u:
+        p <= l-1       -> 'preserved'   (every allowed extension)
+        l <= p <= u-1  -> 'unsettled'   (empty iff l == u)
+        p >= u         -> 'void'        (some allowed extension ties/reverses)
+    """
+    if diff_lo == diff_hi == 0:
+        return ('tie', None, None)
+    if diff_lo * diff_hi <= 0:
+        return ('no ordering', None, None)
+    return ('ordering', min(abs(diff_lo), abs(diff_hi)),
+                        max(abs(diff_lo), abs(diff_hi)))
+
+
+def verdict_at(diff_lo, diff_hi, p):
+    """The verdict for a given auxiliary-variable count p. Same classifier."""
+    kind, l, u = regimes(diff_lo, diff_hi)
+    if kind != 'ordering':
+        return kind
+    if p <= l - 1:
+        return 'preserved'
+    if p >= u:
+        return 'void'
+    return 'unsettled'
+
+
 # Paths are resolved from this file's own location, so the script reproduces
 # from a clean checkout at any path.  src/ -> extensions/<this>/ -> extensions/
 EXT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 EXTS = os.path.dirname(EXT)
 
 SRC = {
- 'equal-size': os.path.join(EXTS, 'certified-resolution-2026-10-27',
-                            'data', 'equal-size', 'paired_results.csv'),
- 'budget/selection pilot': os.path.join(EXTS,
-                            'solver-budget-selection-pilot-2026-10-27',
-                            'data', 'paired_results.csv'),
+ 'equal-size': (os.path.join(EXTS, 'certified-resolution-2026-10-27',
+                             'data', 'equal-size', 'paired_results.csv'),
+                ('cell',)),
+ 'budget/selection pilot': (os.path.join(EXTS,
+                             'solver-budget-selection-pilot-2026-10-27',
+                             'data', 'paired_results.csv'),
+                ('instance_id',)),
 }
-ID_KEYS = {'equal-size': ('cell',), 'budget/selection pilot': ('instance_id',)}
 
 
-def classify(path):
-    """Partition the rows into the four certified outcomes."""
-    exact, lower, ties, straddle, ids = [], [], 0, 0, set()
-    n_rows = 0
+def classify(path, id_keys):
+    """Partition rows using `regimes()` -- the same function the tests call."""
+    out = {'ordering': [], 'tie': 0, 'no ordering': 0}
+    ids, n_rows = set(), 0
     for row in csv.DictReader(open(path)):
-        for k in ID_KEYS_CUR:
+        for k in id_keys:
             if row.get(k):
                 ids.add(row[k])
         try:
@@ -81,20 +120,16 @@ def classify(path):
         except (ValueError, KeyError, TypeError):
             continue
         n_rows += 1
-        if lo == hi == 0:
-            ties += 1
-        elif lo * hi <= 0:
-            straddle += 1
-        elif lo == hi:
-            exact.append(abs(lo))
+        kind, l, u = regimes(lo, hi)
+        if kind == 'ordering':
+            out['ordering'].append((l, u))
         else:
-            lower.append((min(abs(lo), abs(hi)), max(abs(lo), abs(hi))))
-    return exact, lower, ties, straddle, ids, n_rows
+            out[kind] += 1
+    return out, ids, n_rows
 
 
 def main():
-    global ID_KEYS_CUR
-    missing = [p for p in SRC.values() if not os.path.exists(p)]
+    missing = [p for p, _ in SRC.values() if not os.path.exists(p)]
     if missing:
         print('  [FAIL] required certified data not found:')
         for m in missing:
@@ -102,99 +137,91 @@ def main():
         FAILS.append('missing input data')
         return 1
 
-    all_exact, all_lower, all_ids = [], [], 0
-    for label, path in SRC.items():
-        ID_KEYS_CUR = ID_KEYS[label]
-        exact, lower, ties, straddle, ids, n_rows = classify(path)
-        all_exact += exact
-        all_lower += lower
-        all_ids += len(ids)
+    allo, n_ids = [], 0
+    for label, (path, id_keys) in SRC.items():
+        out, ids, n_rows = classify(path, id_keys)
+        o = out['ordering']
+        allo += o
+        n_ids += len(ids)
         print(f"\n       {label}")
-        print(f"         rows with a difference interval        : {n_rows}")
-        print(f"         distinct instance identifiers           : {len(ids)}")
-        print(f"         certified strict ordering               : "
-              f"{len(exact) + len(lower)}")
-        print(f"           EXACT margin   (both halves apply)    : {len(exact)}")
-        print(f"           LOWER BOUND    (safe half only)       : {len(lower)}")
-        print(f"         certified tie (margin exactly 0)        : {ties}")
-        print(f"         interval straddles 0 (no ordering)      : {straddle}")
+        print(f"         rows with a difference interval   : {n_rows}")
+        print(f"         distinct instance identifiers      : {len(ids)}")
+        print(f"         certified strict ordering          : {len(o)}")
+        print(f"           exact   (l = u, settles every p) : "
+              f"{sum(1 for l, u in o if l == u)}")
+        print(f"           interval (l < u, has a gap)      : "
+              f"{sum(1 for l, u in o if l < u)}")
+        print(f"         certified tie (margin 0)           : {out['tie']}")
+        print(f"         straddles 0 (no ordering)          : "
+              f"{out['no ordering']}")
 
-    print("\n       EXACT margins -- both halves of Corollary D1 apply")
-    print(f"       {'M':>4}{'rows':>6}{'p_max':>7}  guaranteed for          void for")
-    for m, c in sorted(Counter(all_exact).items()):
-        print(f"       {m:>4}{c:>6}{m-1:>7}  every p <= {m-1:<13} some ext. with p >= {m}")
+    print("\n       The three regimes, per certified interval [l, u]:")
+    print(f"       {'[l, u]':>10}{'rows':>6}   preserved for   unsettled for"
+          f"      void for")
+    for (l, u), c in sorted(Counter(allo).items()):
+        uns = f"{l}..{u-1}" if l < u else "(none)"
+        print(f"       {f'[{l}, {u}]':>10}{c:>6}   p <= {l-1:<10} {uns:<16} "
+              f"p >= {u}")
 
-    print("\n       LOWER-BOUND margins -- only the safe half applies, because")
-    print("       the actual margin is unresolved within the interval shown")
-    print(f"       {'M >=':>5}{'rows':>6}{'p_max >=':>10}  interval widths seen")
-    for m, c in sorted(Counter(lo for lo, hi in all_lower).items()):
-        his = sorted({hi for lo, hi in all_lower if lo == m})
-        print(f"       {m:>5}{c:>6}{m-1:>10}  diff_hi in {his}")
+    # Aggregate the report THROUGH the shared classifier, over p = 0..20.
+    print("\n       Aggregate verdicts by auxiliary-variable count p:")
+    print(f"       {'p':>3}{'preserved':>11}{'unsettled':>11}{'void':>7}")
+    agg = {}
+    for p in (0, 1, 2, 5, 10, 13, 19, 20):
+        c = Counter(verdict_at(l, u, p) for l, u in allo)
+        agg[p] = c
+        print(f"       {p:>3}{c['preserved']:>11}{c['unsettled']:>11}"
+              f"{c['void']:>7}")
 
-    n_ex1 = sum(1 for m in all_exact if m == 1)
-    n_lb1 = sum(1 for lo, hi in all_lower if lo == 1)
+    exact = [(l, u) for l, u in allo if l == u]
+    inter = [(l, u) for l, u in allo if l < u]
 
-    check('exact and lower-bound margins are reported separately and are never '
-          'pooled; these are COMPARISONS with budgets, schemes and replicates '
-          'nested, not independent instances',
-          bool(all_exact) and bool(all_lower),
-          f'{len(all_exact)} exact + {len(all_lower)} lower-bound = '
-          f'{len(all_exact)+len(all_lower)} certified strict comparisons over '
-          f'at most {all_ids} instance identifiers')
+    check('the CSV report and the regression cases call the SAME classifier '
+          '`regimes()`, so the tests exercise production logic', True,
+          f'{len(allo)} certified strict comparisons classified through it, '
+          f'over at most {n_ids} instance identifiers; these are comparisons '
+          f'with budgets, schemes and replicates nested')
 
-    check('for comparisons with an EXACT margin of 1, Corollary D1 gives no '
-          'nonzero-p guarantee AND its void half applies: some '
-          'solution-preserving extension with one auxiliary variable ties '
-          'them, if distances are measured on all coordinates. It does not '
-          'follow that any particular re-encoding does so, and the repository '
-          'measures on the original variables, where Lemma 1 gives exact '
-          'invariance', n_ex1 > 0,
-          f'{n_ex1} comparisons with exact margin 1')
-
-    widest = max(all_lower, key=lambda t: t[1] - t[0])
-    check('for comparisons whose margin is only bounded BELOW by 1, the '
-          'available bounds establish NO POSITIVE auxiliary-variable '
-          'tolerance, and nothing more: the actual margin is unresolved and '
-          'may be far larger, so no tie claim follows', n_lb1 > 0,
-          f'{n_lb1} such comparisons; widest interval [{widest[0]}, {widest[1]}], '
-          f'which leaves an actual margin of up to {widest[1]} open')
-
-    # REGRESSION (external review): a lower-bound row must never be treated as
-    # an exact margin.  Synthetic rows exercise the classifier directly, so the
-    # pooling bug cannot reappear silently if the CSVs change.
-    def tol_claims(lo, hi):
-        """What may be asserted for one certified difference interval."""
-        if lo == hi == 0:
-            return ('tie', None, None)
-        if lo * hi <= 0:
-            return ('no ordering', None, None)
-        m = min(abs(lo), abs(hi))
-        if lo == hi:
-            return ('exact', m - 1, m)        # (safe p_max, void from p)
-        return ('lower bound', m - 1, None)   # void half UNAVAILABLE
+    # REGRESSION over the production classifier, not a parallel copy.
     cases = [
-        ((1, 1), ('exact', 0, 1)),            # exact margin 1: void half applies
-        ((1, 8), ('lower bound', 0, None)),   # reviewer's example: it does NOT
-        ((1, 13), ('lower bound', 0, None)),  # widest such row in this repo
-        ((-3, -1), ('lower bound', 0, None)), # negative orientation, still a bound
-        ((19, 19), ('exact', 18, 19)),
-        ((0, 0), ('tie', None, None)),
-        ((-1, 2), ('no ordering', None, None)),
+        # (diff_lo, diff_hi, p, expected verdict).  p = 0 means no auxiliary
+        # variables at all, so every certified ordering is preserved there.
+        (1, 1, 0, 'preserved'), (1, 1, 1, 'void'),
+        (1, 8, 0, 'preserved'), (1, 8, 1, 'unsettled'),
+        (1, 8, 7, 'unsettled'), (1, 8, 8, 'void'), (1, 8, 20, 'void'),
+        (1, 13, 0, 'preserved'), (1, 13, 1, 'unsettled'),
+        (1, 13, 12, 'unsettled'), (1, 13, 13, 'void'),
+        (-3, -1, 0, 'preserved'),            # negative orientation, l = 1
+        (-3, -1, 1, 'unsettled'), (-3, -1, 3, 'void'),
+        (19, 19, 18, 'preserved'), (19, 19, 19, 'void'),
+        (0, 0, 0, 'tie'),
+        (-1, 2, 0, 'no ordering'), (2, -1, 0, 'no ordering'),
     ]
-    wrong = [(c, tol_claims(*c), want) for c, want in cases if tol_claims(*c) != want]
-    check('REGRESSION: the classifier never attributes a void-half (tie or '
-          'reversal) claim to a row whose margin is only bounded below -- '
-          'including the reviewer\'s [1, 8] case and this repository\'s widest '
-          '[1, 13]', not wrong,
-          f'{len(cases)} synthetic intervals classified correctly; '
-          f'[1,8] yields a safe bound p <= 0 and NO void claim')
+    wrong = [(lo, hi, p, verdict_at(lo, hi, p), want)
+             for lo, hi, p, want in cases if verdict_at(lo, hi, p) != want]
+    check('REGRESSION over the production classifier: an interval bounded only '
+          'below never yields a void verdict below its upper endpoint, and '
+          'does yield one at or above it', not wrong,
+          f'{len(cases)} (interval, p) cases correct; [1,8] is unsettled at '
+          f'p = 1..7 and void at p >= 8' if not wrong else f'{wrong[:2]}')
 
-    rob = [m for m in all_exact if m >= 10]
-    check('the largest exact margins carry a guarantee against every '
-          'solution-preserving extension adding up to M - 1 auxiliary '
-          'variables', bool(rob),
-          f'{len(rob)} comparisons with exact margin >= 10; largest exact '
-          f'margin {max(all_exact)} is guaranteed for p <= {max(all_exact)-1}')
+    n_ex1 = sum(1 for l, u in exact if l == 1)
+    check('comparisons with an EXACT margin of 1 are settled at every p: no '
+          'guarantee beyond p = 0, and some solution-preserving extension with '
+          'one auxiliary variable ties them', n_ex1 > 0,
+          f'{n_ex1} comparisons with exact margin 1; '
+          f'{sum(1 for l, u in exact if l >= 10)} with exact margin >= 10, '
+          f'largest {max(l for l, u in exact)} guaranteed for p <= '
+          f'{max(l for l, u in exact) - 1}')
+
+    widest = max(inter, key=lambda t: t[1] - t[0])
+    n_i1 = sum(1 for l, u in inter if l == 1)
+    check('comparisons whose margin is only bounded below carry a guarantee up '
+          'to p = l-1 and a void verdict from p = u, with a genuine gap '
+          'between -- the upper endpoint stays informative', bool(inter),
+          f'{len(inter)} such comparisons, {n_i1} with l = 1; widest '
+          f'[{widest[0]}, {widest[1]}] gives no one-variable tie but does give '
+          f'a void verdict at p >= {widest[1]}')
 
     print(f"\n  {'ALL PASS' if not FAILS else 'FAILURES: ' + '; '.join(FAILS)}")
     return 1 if FAILS else 0
