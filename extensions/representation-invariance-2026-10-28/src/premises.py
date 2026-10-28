@@ -73,23 +73,78 @@ def _lcg(seed):
     return nxt
 
 # =============== P2. The closure encoding is exponential except at log rank.
+# CORRECTED 2026-10-28 (external review).  The first version computed the span
+# of the ROWS OF A, discarding b, and compared it against 2^rank(A).  That is a
+# different object from Closure(A,b), whose members are whole EQUATIONS
+# including their right-hand sides.  The correct identity is
+#       |Closure(A,b)| = 2^rank[A | b]           (augmented rank)
+# and 2^rank(A) is wrong in general.  Reviewer's minimal counterexample: the
+# equations x = 0 and x = 1 give |Closure| = 4 while 2^rank(A) = 2.  Note those
+# two equations are INCONSISTENT, which is exactly when the two ranks differ:
+#       rank[A|b] = rank(A)      iff   the system is consistent (Rouche-Capelli)
+#       rank[A|b] = rank(A) + 1  iff   it is inconsistent.
+# So the alternative repair -- assuming consistency -- also works, and is now
+# tested as a separate case.  Either way rank[A|b] <= rank(A) + 1, so the
+# log-rank polynomial-size conclusion survives unchanged.
+def closure(rows, b):
+    """All GF(2) sums of subsets of the EQUATIONS (coefficients and rhs)."""
+    span = {0}
+    for r, bb in zip(rows, b):
+        eq = (bb << 32) | r              # rhs kept above the coefficient block
+        span |= {s ^ eq for s in span}
+    return span
+
+
 def test_closure_size(n=10, trials=200):
     rngs = _lcg(1)
-    bad = []; fullrank = []
+    bad_aug, bad_consistent, fullrank, incons = [], [], [], 0
     for _ in range(trials):
         m = n + 2
         rows = [rngs() % (1 << n) for _ in range(m)]
+        b = [rngs() & 1 for _ in range(m)]
         rk = rank2(list(rows), n)
-        span = {0}
-        for r in rows:
-            span |= {s ^ r for s in span}
-        if len(span) != (1 << rk): bad.append((rk, len(span)))
-        if rk == n: fullrank.append(len(span))
-    check('|Closure(A,b)| = 2^rank(A) exactly (it is the GF(2) row space), so '
-          'the closure encoding is polynomial only on the rank = O(log n) '
-          'family the paper restricts to', not bad,
-          f'{trials} systems, 0 mismatches; full-rank instances have '
-          f'|Closure| = 2^{n} = {1<<n}  ({len(fullrank)} of {trials} were full rank)')
+        aug = [rows[i] | (b[i] << n) for i in range(m)]
+        rk_aug = rank2(aug, n + 1)
+        size = len(closure(rows, b))
+        if size != (1 << rk_aug):
+            bad_aug.append((rk_aug, size))
+        if rk_aug == rk:                              # consistent system
+            if size != (1 << rk):
+                bad_consistent.append((rk, size))
+        else:
+            incons += 1
+            if rk_aug != rk + 1:
+                bad_aug.append(('rank gap', rk, rk_aug))
+        if rk == n:
+            fullrank.append(size)
+    check('|Closure(A,b)| = 2^rank[A | b] exactly -- the AUGMENTED rank, since '
+          'the closure is spanned by whole equations including their '
+          'right-hand sides', not bad_aug,
+          f'{trials} systems, 0 mismatches; {incons} were inconsistent, and '
+          f'for those rank[A|b] = rank(A) + 1 in every case')
+    check('on CONSISTENT systems the two ranks agree (Rouche-Capelli), so '
+          '2^rank(A) is also correct there -- adding consistency as a '
+          'hypothesis is the alternative repair', not bad_consistent,
+          f'{trials - incons} consistent systems, 0 mismatches')
+    # REGRESSION: the reviewer's inconsistent minimal example
+    rows, b = [0b1, 0b1], [0, 1]                       # x = 0  and  x = 1
+    size = len(closure(rows, b))
+    rk = rank2(list(rows), 1)
+    rk_aug = rank2([rows[i] | (b[i] << 1) for i in range(2)], 2)
+    check('REGRESSION (inconsistent system x = 0, x = 1): |Closure| = 4 = '
+          '2^rank[A|b], and 2^rank(A) = 2 is wrong -- the case that refuted '
+          'the first version of this check',
+          size == 4 and (1 << rk_aug) == 4 and (1 << rk) == 2,
+          f'|Closure| = {size}, 2^rank[A|b] = {1 << rk_aug}, '
+          f'2^rank(A) = {1 << rk}')
+    check('the closure encoding is therefore polynomial only on a log-rank '
+          'family: rank[A|b] <= rank(A) + 1, so the conclusion survives the '
+          'correction, but full-rank systems give |Closure| = 2^(n+1) at worst',
+          bool(fullrank) and max(fullrank) >= (1 << n),
+          f'{len(fullrank)} of {trials} full-rank instances, '
+          f'|Closure| up to {max(fullrank) if fullrank else 0} '
+          f'(2^{n} = {1 << n}, 2^{n+1} = {1 << (n+1)})')
+
 
 # =============== P3. An OR clause is not an XOR equation.
 def test_or_is_not_xor(kmax=4):

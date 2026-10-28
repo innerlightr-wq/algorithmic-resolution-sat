@@ -61,11 +61,17 @@ Mapping onto this note's hypotheses:
 | this note | their counterpart |
 |---|---|
 | (H1) `π(S_G) = S_F` | projected logical equivalence, the thing their certifier establishes |
-| (H2) `π(A') = A` | the Skolem-assignment side: a witness in `Y` for each retained `D`-assignment |
+| (H2) `π(A') = A` | the Skolem-assignment side: a witness in `Y` for each retained `D`-assignment. Their machinery **constructs** such a lift for a chosen sample; it does **not** certify that an arbitrary recorded `A'` projects onto `A` |
 | extension multiplicity `mult(x)` | exactly why auxiliary variables "increase the number of solutions and should not be counted" |
 
-So **neither projection hypothesis is novel**, and both are already handled
-with machine-checked certificates in a stronger setting than anything here.
+So **neither projection hypothesis is novel**. (H1) is precisely what their
+certifier establishes, with machine-checked soundness in a stronger setting than
+anything here. For (H2) the attribution needs narrowing: their Skolem
+assignments give a *construction* of a lift for a chosen sample, which covers
+every lift used in this note, but they do not certify (H2) for an arbitrary
+recorded sample. When the sample is a solver's recorded output, (H2) is an
+assumption about the recording procedure — and `NOTE.md` §5 notes it can fail,
+since `π` need not be injective on `A'`.
 
 What that literature does **not** contain, as far as this search found: any
 metric or geometric quantity on the projected solution set. A full-text search of

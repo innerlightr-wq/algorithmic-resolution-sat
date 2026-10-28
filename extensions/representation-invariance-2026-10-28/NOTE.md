@@ -28,8 +28,11 @@ For a *comparison* of two observed samples, the consequence is a margin
 criterion (§4): a certified strict margin `M` is guaranteed against every
 solution-preserving re-encoding that adds at most `M − 1` auxiliary variables,
 and above that the guarantee is void. Applied to this repository's certified
-comparisons (§6): **43 of 116 have `M = 1` and carry no nonzero-`p` guarantee**,
-while 21 have `M ≥ 10`.
+comparisons (§6), **43 of 116 carry no nonzero-`p` guarantee** — 28 because
+their margin is exactly 1, and 15 because their margin is only bounded below by
+1 and is otherwise unresolved. Those are different situations and §6 keeps them
+apart: for the 28 the criterion also says some extension ties them, while for
+the 15 it says nothing beyond the absence of a guarantee.
 
 **No result in this repository changes.** `ε̂` here is computed on the original
 variables, which is the invariant case.
@@ -49,11 +52,15 @@ implying the other**:
 * **(H2) the observed sample projects:** `π(A') = A` for the lifted sample
   `A' ⊆ S_G`.
 
-Both are standard. (H1) is projected logical equivalence, the property that
-projected knowledge compilation certifies; (H2) is the lift side, the analogue of
-a Skolem witness for each retained solution. Bryant, Tan and Heule (SAT 2025)
-certify exactly this pair in a stronger setting, with HOL4-validated soundness.
-Stating them explicitly matters here because dropping either breaks everything
+Both are standard. (H1) is projected logical equivalence, which is exactly what
+projected knowledge compilation certifies — Bryant, Tan and Heule (SAT 2025),
+with HOL4-validated soundness. (H2) is the lift side. Their Skolem assignments
+*construct* a lift satisfying (H2) for a sample one chooses, which is more than
+enough for the constructions used below; they do **not** certify that an
+arbitrary *recorded* sample `A'` projects exactly onto `A`. For a recorded
+sample, (H2) is an assumption about the recording procedure, and §5 shows it can
+fail in a way that matters: `π` need not be injective on `A'`. Stating both
+hypotheses explicitly matters here because dropping either breaks everything
 below.
 
 **Lemma 1 (invariance on the original coordinates).** Under (H1) and (H2),
@@ -178,14 +185,33 @@ from 18 attempted instances across two budgets, three selection schemes and
 nested replicates; the equal-size stage's 21 rows come from 7 instances with 3
 nested replicates. Nothing below should be read as 116 independent observations.
 
-Margin distribution over all 116 certified strict comparisons:
+Margin distribution, with the two kinds kept apart:
 
-| margin `M` | comparisons | guaranteed for |
-|---|---|---|
-| 1 | **43** | `p = 0` only — **no nonzero-`p` guarantee** |
-| 2–3 | 29 | `p ≤ 1`, `p ≤ 2` |
-| 4–9 | 23 | `p ≤ 3` … `p ≤ 8` |
-| ≥ 10 | **21** | up to `p ≤ 18` at the largest margin, `M = 19` |
+**Exact margins (92).** Both halves of Corollary D1 apply.
+
+| margin `M` | comparisons | guaranteed for | and void for |
+|---|---|---|---|
+| 1 | **28** | `p = 0` only | some extension with `p ≥ 1` |
+| 2–3 | 27 | `p ≤ 1`, `p ≤ 2` | `p ≥ 2`, `p ≥ 3` |
+| 4–9 | 17 | `p ≤ 3` … `p ≤ 8` | `p ≥ 4` … `p ≥ 9` |
+| ≥ 10 | **20** | up to `p ≤ 18` at `M = 19` | `p ≥ 11` … `p ≥ 19` |
+
+**Certified lower bounds only (24).** The safe half applies; the void half does
+**not**, because the actual margin is unresolved.
+
+| certified `M ≥` | comparisons | guaranteed for | void half |
+|---|---|---|---|
+| 1 | **15** | `p = 0` only | **unavailable** — `diff_hi` reaches 13 |
+| 2–3 | 2 | `p ≤ 1`, `p ≤ 2` | unavailable |
+| 4–9 | 6 | `p ≤ 3` … `p ≤ 8` | unavailable |
+| ≥ 10 | 1 | `p ≤ 9` | unavailable |
+
+For the 15 rows certified only as `M ≥ 1`, the correct statement is that **the
+available bounds establish no positive auxiliary-variable tolerance** — and
+nothing more. It does *not* follow that one auxiliary variable can tie them:
+the widest such interval here is `[1, 13]`, which leaves an actual margin of up
+to 13 open. `src/diagnostic.py` carries a regression case over synthetic
+intervals so this distinction cannot silently collapse again.
 
 The practical reading is one sentence: **measure Hamming distance on the original
 variables only, and report the margin beside the verdict.** This repository
@@ -211,11 +237,22 @@ the scope of a local note rather than as a result.
 `LINSAT ∈ P` under **both** encodings: on 300 random GF(2) systems the decision
 agreed between Gaussian elimination and brute force 300/300, while
 `O(E₁) ≠ O(E₂)` on 295/300. So the model varies an **observable**, not a
-classification decision. `|Closure(A,b)| = 2^{rank(A)}` exactly (200 systems, 0
-mismatches; 152 full rank), so the closure encoding is polynomial only on the
-`rank(A) = O(log n)` family the note restricts to. And `|sat(OR)| = 2^k − 1 ≠
-2^{k−1} = |sat(XOR)|` for every `k ≥ 2`, so a GF(2) result does not transfer to
-CNF-SAT by renaming.
+classification decision.
+
+The closure size is `|Closure(A,b)| = 2^{rank[A \mid b]}` — the **augmented**
+rank, since the closure is spanned by whole equations including their
+right-hand sides. Verified on 200 systems with 0 mismatches. `2^{rank(A)}` is
+wrong in general: the inconsistent pair `x = 0`, `x = 1` has `|Closure| = 4`
+while `2^{rank(A)} = 2`. The two ranks agree exactly on **consistent** systems
+(Rouché–Capelli), so adding consistency as a hypothesis is an equivalent
+repair; 43 of the 200 systems were consistent and matched `2^{rank(A)}` there,
+and all 157 inconsistent ones had `rank[A \mid b] = rank(A) + 1`. Since
+`rank[A \mid b] ≤ rank(A) + 1`, the conclusion is unaffected: the closure
+encoding is polynomial only on a log-rank family, and full-rank systems give
+`2^{n+1}` at worst.
+
+And `|sat(OR)| = 2^k − 1 ≠ 2^{k−1} = |sat(XOR)|` for every `k ≥ 2`, so a GF(2)
+result does not transfer to CNF-SAT by renaming.
 
 The surviving narrow statement: *for `LINSAT` restricted to `rank(A) = O(log n)`
 there are two polynomial-time encodings and a constraint-count observable `O`
@@ -285,9 +322,12 @@ A subexponential exponent is not a polynomial one.
   (`LITERATURE.md` §1). Lemma 1 restates a standard projection fact.
 * **No novelty in the projection hypotheses.** (H1) and (H2) are established and
   already machine-certified by Bryant–Tan–Heule (SAT 2025).
-* **No new SAT algorithm and no complexity lower bound.** Nothing here reduces
-  the number or cost of the radius queries, and nothing here is a lower bound.
-  A P-versus-NP framing would outrun the evidence entirely.
+* **No new SAT algorithm and no complexity lower bound.** This investigation
+  establishes no computational improvement, and nothing here is a lower bound.
+  A P-versus-NP framing would outrun the evidence entirely. Note that Lemma 1
+  does **not** imply re-encoding cannot help: preserving the answer and
+  reducing the cost of computing it are compatible, and a representation-based
+  speedup is not excluded by anything here — it is simply not demonstrated.
 * **No claim that any certified repository result is wrong or changes.** `ε̂` is
   measured on the original variables, where Lemma 1 gives exact invariance.
 * **No claim that a particular re-encoding reverses any ordering** (§4).
@@ -304,14 +344,15 @@ A subexponential exponent is not a polynomial one.
 
 ```
 src/preservation.py     13 checks  Lemma 1, Theorem D, Corollary D1, 5 controls, oracle ladder
-src/premises.py          6 checks  Appendix A
+src/premises.py          9 checks  Appendix A, incl. the inconsistent-system regression
 src/interface.py         3 checks  Appendix B
-src/diagnostic.py        3 checks  NOTE.md §6, reads certified intervals only
+src/diagnostic.py        5 checks  §6, reads certified intervals only; incl. the
+                                   uncertain-margin regression
 ```
 
 Each script is self-contained, exits nonzero on any failure, and needs only a
 CPython interpreter — no SAT solver, no network, no dependency cache. Total
-runtime **24.2 s**, **0 solver calls**. `src/diagnostic.py` resolves the
+runtime **23.8 s** over 30 assertions, **0 solver calls**. `src/diagnostic.py` resolves the
 certified data from its own location, so the set reproduces from a clean
 checkout at any path. `MANIFEST.md` carries the hashes, the claims ledger, the
 costs and the list of corrections incorporated.

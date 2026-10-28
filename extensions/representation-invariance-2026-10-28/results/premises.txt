@@ -7,7 +7,10 @@ PREMISE CHECKS AND INTERFACE ARITHMETIC
   [PASS] while the constraint-count observable O(E) differs between the two encodings on essentially every instance -- so Theorem 1 varies an OBSERVABLE, not a classification decision  -- 295 of 300 instances have O(E1) != O(E2)
 
 -- P2. closure encoding size --
-  [PASS] |Closure(A,b)| = 2^rank(A) exactly (it is the GF(2) row space), so the closure encoding is polynomial only on the rank = O(log n) family the paper restricts to  -- 200 systems, 0 mismatches; full-rank instances have |Closure| = 2^10 = 1024  (152 of 200 were full rank)
+  [PASS] |Closure(A,b)| = 2^rank[A | b] exactly -- the AUGMENTED rank, since the closure is spanned by whole equations including their right-hand sides  -- 200 systems, 0 mismatches; 157 were inconsistent, and for those rank[A|b] = rank(A) + 1 in every case
+  [PASS] on CONSISTENT systems the two ranks agree (Rouche-Capelli), so 2^rank(A) is also correct there -- adding consistency as a hypothesis is the alternative repair  -- 43 consistent systems, 0 mismatches
+  [PASS] REGRESSION (inconsistent system x = 0, x = 1): |Closure| = 4 = 2^rank[A|b], and 2^rank(A) = 2 is wrong -- the case that refuted the first version of this check  -- |Closure| = 4, 2^rank[A|b] = 4, 2^rank(A) = 2
+  [PASS] the closure encoding is therefore polynomial only on a log-rank family: rank[A|b] <= rank(A) + 1, so the conclusion survives the correction, but full-rank systems give |Closure| = 2^(n+1) at worst  -- 150 of 200 full-rank instances, |Closure| up to 2048 (2^10 = 1024, 2^11 = 2048)
 
 -- P3. OR versus XOR --
        k=2: |sat(OR)|=  3  |sat(XOR)|=  2  equal=False

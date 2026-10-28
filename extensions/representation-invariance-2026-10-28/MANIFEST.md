@@ -8,10 +8,10 @@ Companion to `NOTE.md` and `LITERATURE.md`. 2026-10-28.
 NOTE.md           the contribution
 LITERATURE.md     claim-by-claim prior-art comparison, read before assigning novelty
 MANIFEST.md       this file: ledger, costs, hashes, corrections
-src/preservation.py     13 checks  Lemma 1, Theorem D, Corollary D1, 5 controls, oracle ladder
-src/premises.py          6 checks  Appendix A
-src/interface.py         3 checks  Appendix B
-src/diagnostic.py        3 checks  NOTE.md §6, reads certified intervals only
+src/preservation.py  13 checks  Lemma 1, Theorem D, Corollary D1, 5 controls, oracle ladder
+src/premises.py       9 checks  Appendix A, incl. the inconsistent-system regression
+src/interface.py      3 checks  Appendix B
+src/diagnostic.py     5 checks  NOTE.md §6, incl. the uncertain-margin regression
 results/*.txt         verbatim output of each
 ```
 
@@ -38,17 +38,17 @@ from data on disk), **CLASSICAL** (established prior art, restated),
 | C4 | `π` need not be injective on `A'`, so `|π(A')| ≤ |A'|` | **PROVED**, by construction |
 | O1 | the radius ladder reconstructs `ε` exactly; `Q₀` UNSAT ⟺ `A = S_F` ⟺ `ε = 0`; `Q_n` UNSAT unconditionally | **PROVED**; 3 679 pairs, no exception |
 | A1 | `LINSAT ∈ P` under both encodings; decision invariant, `O(E)` not | **PROVED**; 300/300 agreement, 295/300 observable disagreement |
-| A2 | `|Closure(A,b)| = 2^{rank(A)}`, so the closure encoding is polynomial only at `rank = O(log n)` | **PROVED**; 200 systems, 0 mismatches |
+| A2 | `|Closure(A,b)| = 2^{rank[A\|b]}` — the **augmented** rank; `2^{rank(A)}` holds only on consistent systems | **PROVED**; 200 systems, 0 mismatches; 157 inconsistent, all with `rank[A\|b] = rank(A)+1`; regression case `x=0, x=1` |
 | A3 | `|sat(OR)| = 2^k − 1 ≠ 2^{k−1} = |sat(XOR)|` for `k ≥ 2` | **PROVED** |
 | A4 | a CNF with `|Aut(φ)| = 1` whose solution set is complement-closed | **PROVED** by witness `[(-4,1), (-4,1,3), (-2,-1,4), (-1,4)]` |
 | A5 | one definitional extension leaves the uniform random 3-CNF ensemble | **PROVED**; density `273/64 → 276/65`, width-2 clauses appear |
 | B1 | the radius-query interface costs `|A|·r` additive rows with `D ≤ 2n/r`; exponent `E = |A| r log₂(4n/r+1) + 2n/r` | **SCOPED** derivation |
 | B2 | admissible `|A| = 1` at `n = 64` (bar `E<n`), `0` under the paper-saving bar; `|A| = 40` needs `n ≥ 3 807` resp. `n ≥ 72 932` | **MEASURED** |
 | B3 | admissible `|A| = Θ(n/(log₂ n)²)`, constant `0.134–0.140` | **MEASURED** over `10⁶…10¹²` |
-| M1 | 116 certified strict comparisons: 92 exact margins, 24 lower-bound only; 43 at `M = 1`; 21 at `M ≥ 10`; max 19 | **MEASURED** |
+| M1 | 116 certified strict comparisons: **92 exact** (28 at `M=1`, 20 at `M≥10`, max 19) and **24 lower-bound only** (15 at `M≥1`, intervals up to `[1,13]`). Never pooled: the void half of D1 applies to the exact rows only | **MEASURED** |
 | M2 | these are comparisons over ≤ 25 instances with replicates nested, not independent observations | **MEASURED** |
 | N1 | any new inequality | **NOT ESTABLISHED** — see `LITERATURE.md` |
-| N2 | any improvement to computing or certifying `ε̂` | **NOT ESTABLISHED**; L1 explains why re-encoding cannot help |
+| N2 | any improvement to computing or certifying `ε̂` | **NOT ESTABLISHED** — this investigation establishes no computational improvement. Note L1 does **not** imply that re-encoding cannot help: preserving the answer and reducing the cost of computing it are compatible |
 | N3 | any SAT algorithm, complexity separation, lower bound, or circuit claim | **NOT ESTABLISHED** and not attempted |
 | N4 | correctness of the ETH preprint's Theorem 1.1 | **not assessed**; algorithm not implemented |
 | N5 | any solver ranking or cross-solver predictive transfer | **retracted upstream** (`docs/SOURCE_OF_TRUTH.md` C1, C7), not revived |
@@ -59,11 +59,11 @@ from data on disk), **CLASSICAL** (established prior art, restated),
 
 | script | wall time | solver calls |
 |---|---|---|
-| `src/preservation.py` | 4.0 s | 0 |
+| `src/preservation.py` | 3.9 s | 0 |
 | `src/premises.py` | 0.1 s | 0 |
-| `src/interface.py` | 20.1 s | 0 |
+| `src/interface.py` | 19.7 s | 0 |
 | `src/diagnostic.py` | 0.0 s | 0 |
-| **total** | **24.2 s** | **0** |
+| **total** | **23.8 s** (30 assertions) | **0** |
 
 No SAT solver was invoked, no network access is required, no instance was added,
 and `n` was not increased beyond the measured `n ≤ 64`. Nothing was excluded
@@ -109,19 +109,56 @@ rather than the claim widened.
    reproduces from a clean checkout at any path, and fails loudly if the data
    is absent.
 
+### Second review pass (source-and-data review of PR #2 at `db1f2be`)
+
+8. **The margin correction was incomplete in the code.** `src/diagnostic.py`
+   separated exact margins from lower bounds in its printout and then **pooled
+   them again** before claiming that one auxiliary variable can produce a tie
+   in all 43 margin-one comparisons. Recounted independently and confirmed:
+   only **28** of those have an exactly certified margin of 1; the other **15**
+   are certified only as `M ≥ 1` with the actual margin unresolved, and for
+   those the correct statement is that the available bounds establish **no
+   positive auxiliary-variable tolerance** — nothing about ties. The widest
+   such interval in this repository is `[1, 13]`. The script was rewritten to
+   keep the two kinds apart end to end, and a **regression case over synthetic
+   intervals** (including `[1, 8]` and `[1, 13]`) now guards the distinction.
+9. **The closure check tested the wrong object.** It computed the span of the
+   rows of `A`, discarding `b`, and compared it against `2^{rank(A)}`. The
+   closure is spanned by whole **equations**, so the identity is
+   `|Closure(A,b)| = 2^{rank[A\|b]}`. Minimal counterexample, now a regression
+   case: `x = 0`, `x = 1` gives `|Closure| = 4` while `2^{rank(A)} = 2`. The
+   two ranks agree exactly on consistent systems (Rouché–Capelli), so assuming
+   consistency is an equivalent repair, and both are tested. Since
+   `rank[A\|b] ≤ rank(A) + 1`, the log-rank polynomial-size conclusion
+   survives.
+10. **Invariance does not imply that re-encoding cannot improve computation.**
+    Ledger row N2 said Lemma 1 "explains why re-encoding cannot help". That is
+    a non-sequitur: preserving the answer and reducing the cost of computing it
+    are compatible. Replaced throughout with *this investigation establishes no
+    computational improvement*, which leaves the representation-based idea open
+    rather than falsely closing it.
+11. **Literature attribution narrowed.** Bryant–Tan–Heule certify (H1),
+    projected equivalence, with machine-checked soundness. Their Skolem
+    assignments **construct** a lift satisfying (H2) for a sample one chooses;
+    they do **not** certify that an arbitrary *recorded* sample `A'` projects
+    exactly onto `A`. For a recorded sample, (H2) is an assumption about the
+    recording procedure — and `NOTE.md` §5 shows it can fail, since `π` need
+    not be injective on `A'`. "Certifies exactly our (H1)/(H2) pair" has been
+    removed.
+
 ## Hashes
 
 `MANIFEST.md` is excluded, since it carries the list.
 
 ```
-c237f34fb45b761ba225640ed9475ad7  NOTE.md
-b944fd705be6f25f9bad6336c5e9ff07  LITERATURE.md
-39c166f9536d885780b2e59fdc6bc669  src/diagnostic.py
+4771545dee0cbe8e0e961ea7bccc45af  NOTE.md
+aafc26d90fcef425926e7ec23f1044d3  LITERATURE.md
+e5f1c8c0549ed6a4128d5859dcbb390e  src/diagnostic.py
 fa5dee58f2c6659b8838d15c1cef0932  src/interface.py
-7ddd89e8d7abe991608d14d49323cec1  src/premises.py
+5434440d263adf8ce4762b0f3f315786  src/premises.py
 2916707fa9a70f26e4fb0426b8f041f1  src/preservation.py
-ba6617876f4ceb1c065efc2fab445004  results/diagnostic.txt
+c4e3b30f56c9b71768648ee93d9d561b  results/diagnostic.txt
 11f0660d27c4c9f5cdf687cf57fb4663  results/interface.txt
-f242d8955cbbcaa7c8a09073973fa44a  results/premises.txt
+a195860277d03d363ccf1ffc0c5a59ad  results/premises.txt
 75d578583e0e15462cc70e94e4d3a106  results/preservation.txt
 ```
