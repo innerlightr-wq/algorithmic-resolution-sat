@@ -50,15 +50,37 @@ certificates/  proofs for the verified-paired units (tar.gz)
 
 ## Reproducing
 
-Tables are regenerated from the recorded data with no solver:
+Three tiers, with different requirements. Stated precisely so no more is implied
+than holds.
+
+**Tier 1 — tables, no dependencies.** Regenerates every table in the
+consolidation note from the recorded data, with no solver and no third-party
+package:
 
 ```
 python3 src/maketables.py --markdown
 ```
 
-Re-running the measurement needs the `optimization-2026-10-27` stage's own
-`units.recover()` (which re-verifies the formula and observed-set hashes), a
-SAT solver and a proof checker; see **Environment** below.
+The committed `notes/consolidation-2026-10-28/tables_generated.tex` matches a
+fresh run of this, byte for byte.
+
+**Tier 2 — re-verify the shipped certificates.** Needs only `drat-trim` at the
+pinned commit:
+
+```
+tar xzf certificates/verified-paired-proofs.tar.gz -C /tmp/certs
+for c in /tmp/certs/*.cnf; do drat-trim "$c" "${c%.cnf}.drup"; done
+```
+
+All 12 shipped proofs were re-verified this way during release validation, with
+the pinned binary (sha256 `e17cd2e8...`), and all 12 reported `s VERIFIED`.
+
+**Tier 3 — re-run the measurement.** Needs, in addition: the frozen source
+workspaces (`~/scratch/sat-resolution-oracle-audit-2026-10-26/`, which supply
+`units.recover()` and re-verify the formula and observed-set hashes), `python-sat`,
+**and `numpy`**, which the original pilot code imports. Without them
+`src/replay.py` and `src/lazy.py` will not import. These workspaces are not part
+of this repository.
 
 ## Environment actually used
 
