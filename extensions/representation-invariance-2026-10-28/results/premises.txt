@@ -1,0 +1,34 @@
+============================================================================================
+PREMISE CHECKS AND INTERFACE ARITHMETIC
+============================================================================================
+
+-- P1. decision versus observable --
+  [PASS] the LINSAT decision is identical under both encodings on every instance, by two independent computations (GF(2) elimination and brute force)  -- 300 systems, 0 disagreements
+  [PASS] while the constraint-count observable O(E) differs between the two encodings on essentially every instance -- so Theorem 1 varies an OBSERVABLE, not a classification decision  -- 295 of 300 instances have O(E1) != O(E2), with the closure sized by the AUGMENTED rank
+  [PASS] and the headline count is insensitive to the closure-size bug: it is identical whether the closure is sized by rank(A) or by rank[A|b], even though the two differ on the inconsistent systems -- so this check alone could never have caught the stale calculation  -- 295 vs 295 of 300, while 151 of 300 systems are inconsistent and so have different closure sizes under the two formulas
+
+-- P2. closure encoding size --
+  [PASS] |Closure(A,b)| = 2^rank[A | b] exactly -- the AUGMENTED rank, since the closure is spanned by whole equations including their right-hand sides  -- 200 systems, 0 mismatches; 157 were inconsistent, and for those rank[A|b] = rank(A) + 1 in every case
+  [PASS] on CONSISTENT systems the two ranks agree (Rouche-Capelli), so 2^rank(A) is also correct there -- adding consistency as a hypothesis is the alternative repair  -- 43 consistent systems, 0 mismatches
+  [PASS] REGRESSION (inconsistent system x = 0, x = 1): |Closure| = 4 = 2^rank[A|b], and 2^rank(A) = 2 is wrong -- the case that refuted the first version of this check  -- |Closure| = 4, 2^rank[A|b] = 4, 2^rank(A) = 2
+  [PASS] the closure encoding is therefore polynomial only on a log-rank family: rank[A|b] <= rank(A) + 1, so the conclusion survives the correction, but full-rank systems give |Closure| = 2^(n+1) at worst  -- 150 of 200 full-rank instances, |Closure| up to 2048 (2^10 = 1024, 2^11 = 2048)
+
+-- P3. OR versus XOR --
+       k=2: |sat(OR)|=  3  |sat(XOR)|=  2  equal=False
+       k=3: |sat(OR)|=  7  |sat(XOR)|=  4  equal=False
+       k=4: |sat(OR)|= 15  |sat(XOR)|=  8  equal=False
+  [PASS] an OR clause and an XOR equation on the same k variables have different solution sets for every k >= 2, so a result about GF(2) linear systems does not transfer to CNF-SAT by renaming  -- sat(OR) = 2^k - 1, sat(XOR) = 2^(k-1)
+
+-- P4. trivial Aut with a real symmetry --
+       witness CNF (n=4): [(-4, 1), (-4, 1, 3), (-2, -1, 4), (-1, 4)]
+       solutions: [(0, 0, 0, 0), (0, 0, 1, 0), (0, 1, 0, 0), (0, 1, 1, 0), (1, 0, 0, 1), (1, 0, 1, 1), (1, 1, 0, 1), (1, 1, 1, 1)]   |S| = 8
+       |Aut(phi)| = 1  =>  Delta_theory = log|S| - log|S/Aut| = 0, rho = 0
+       yet x -> complement(x) is a fixed-point-free involution of S
+  [PASS] a CNF exists with |Aut(phi)| = 1 -- zero quotient reduction, rho = 0, symmetry-breaking efficiency undefined -- whose solution set is still closed under global complementation; so zero reduction under the variable-permutation quotient does not mean the instance has no exploitable symmetry  -- found after 384 random CNFs
+
+-- P5. ensemble preservation --
+       before: n=64 m=273 density=273/64=4.2656 widths={3: 273}
+       after : n=65 m=276 density=276/65=4.2462 widths={3: 274, 2: 2}
+  [PASS] a single solution-preserving definitional extension changes both the clause-width distribution and the density, so its image is not in the uniform random 3-CNF ensemble; a threshold statement about that ensemble therefore does not transfer to the transformed family  -- density 273/64 -> 276/65, and width-2 clauses appear where the ensemble has none
+
+  ALL PASS
